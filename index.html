@@ -40,9 +40,9 @@
             padding-bottom: 30px;
         }
 
-        /* Header */
+        /* Header - 梅花背景回歸 */
         header {
-            background-image: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=2070&auto=format&fit=crop');
+            background-image: url('https://images.unsplash.com/photo-1490750967868-58cb75069ed6?q=80&w=2574&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             height: 180px;
@@ -56,7 +56,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.5); /* 稍微調亮一點 */
             backdrop-filter: blur(2px);
         }
 
@@ -69,7 +69,7 @@
         h1 {
             margin: 0;
             font-size: 2rem;
-            color: var(--ocean-dark);
+            color: #D81B60; /* 梅紅色標題 */
             text-shadow: 2px 2px 0px white;
             letter-spacing: 2px;
         }
@@ -136,6 +136,36 @@
             border-bottom: 2px dashed #ddd;
             padding-bottom: 10px;
             margin-top: 0;
+        }
+
+        /* Food Link Styles */
+        .food-tag {
+            background: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 0 6px 8px 0;
+            display: inline-block;
+            border: 1px solid #eee;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+
+        .food-tag:hover {
+            background: var(--plum-light);
+            color: #D81B60;
+            transform: translateY(-2px);
+            border-color: var(--plum);
+            box-shadow: 0 4px 8px rgba(240, 98, 146, 0.2);
+        }
+
+        .food-tag i {
+            margin-left: 4px;
+            font-size: 0.8rem;
+            color: #ccc;
         }
 
         /* Itinerary Styles (Accordion) */
@@ -383,7 +413,7 @@
 
         <div id="food" class="section">
             <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
-            <h2>🍜 九州必吃清單</h2>
+            <h2>🍜 點擊店家導航</h2>
             <div id="food-container"></div>
         </div>
 
@@ -421,7 +451,7 @@
     </div>
 
 <script>
-    // --- Data Configuration with Local File Names ---
+    // --- Data Configuration (Preserved your photo filenames) ---
 
     const itineraryData = [
         {
@@ -542,14 +572,12 @@
     // Itinerary Rendering (Accordion)
     const itinDiv = document.getElementById('itinerary-content');
     itineraryData.forEach((day, index) => {
-        // Create Date Button
         const btn = document.createElement('button');
         btn.className = 'date-btn';
         btn.innerHTML = `<span>${day.date}</span> <i class="fas fa-chevron-down"></i>`;
         btn.onclick = () => toggleDay(index);
         itinDiv.appendChild(btn);
 
-        // Create Details Container
         const details = document.createElement('div');
         details.id = `day-${index}`;
         details.className = 'day-details';
@@ -613,10 +641,16 @@
         localStorage.setItem(`pack_${idx}`, el.checked);
     }
 
-    // Render Food
+    // Render Food (New: Click to Google Maps)
     const foodDiv = document.getElementById('food-container');
     foodData.forEach(cat => {
-        const items = cat.items.map(i => `<span style="background:white; padding:5px 10px; border-radius:15px; font-size:0.9rem; margin:0 5px 5px 0; display:inline-block; border:1px solid #eee;">${i}</span>`).join('');
+        // Generate Google Maps Search Link
+        const items = cat.items.map(i => {
+            const query = encodeURIComponent(`${cat.region} ${i}`);
+            const link = `https://www.google.com/maps/search/?api=1&query=${query}`;
+            return `<a href="${link}" target="_blank" class="food-tag">${i} <i class="fas fa-external-link-alt"></i></a>`;
+        }).join('');
+        
         const div = document.createElement('div');
         div.style.marginBottom = '15px';
         div.innerHTML = `<h3 style="margin:0 0 5px 0; font-size:1rem; color:var(--plum);"><i class="fas fa-map-marker-alt"></i> ${cat.region}</h3><div>${items}</div>`;
