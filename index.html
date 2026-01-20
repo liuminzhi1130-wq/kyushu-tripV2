@@ -40,9 +40,8 @@
             padding-bottom: 30px;
         }
 
-        /* --- Header: 設定為梅花背景 --- */
+        /* --- Header: 梅花背景 --- */
         header {
-            /* 使用 Unsplash 高清梅花/櫻花圖片 */
             background-image: url('https://images.unsplash.com/photo-1522383225653-ed111181a951?q=80&w=2076&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -57,7 +56,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(255,255,255,0.4); /* 輕微遮罩 */
+            background: rgba(255,255,255,0.4);
             backdrop-filter: blur(1px);
         }
 
@@ -70,7 +69,7 @@
         h1 {
             margin: 0;
             font-size: 2rem;
-            color: #D81B60; /* 深梅紅色 */
+            color: #D81B60;
             text-shadow: 2px 2px 4px rgba(255,255,255,0.9);
             letter-spacing: 3px;
             font-weight: 800;
@@ -140,7 +139,7 @@
             margin-top: 0;
         }
 
-        /* --- Food Link Styles (Updated) --- */
+        /* Food Link Styles */
         .food-tag {
             background: white;
             padding: 10px 14px;
@@ -154,7 +153,7 @@
             transition: all 0.2s;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             cursor: pointer;
-            border-left: 4px solid var(--plum); /* 增加一點裝飾 */
+            border-left: 4px solid var(--plum);
         }
 
         .food-tag:hover {
@@ -164,14 +163,10 @@
             box-shadow: 0 4px 8px rgba(240, 98, 146, 0.2);
         }
 
-        .food-tag i {
-            margin-left: 5px;
-            font-size: 0.8rem;
-            color: #aaa;
-        }
+        .food-tag i { margin-left: 5px; font-size: 0.8rem; color: #aaa; }
 
-        /* Itinerary Styles (Accordion) */
-        .date-btn {
+        /* Styles for Collapsible Buttons (Shared by Itinerary & Food) */
+        .collapse-btn {
             width: 100%;
             background: white;
             border: none;
@@ -180,7 +175,7 @@
             border-radius: 12px;
             text-align: left;
             font-family: inherit;
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: bold;
             color: var(--text);
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
@@ -189,152 +184,53 @@
             justify-content: space-between;
             align-items: center;
             transition: 0.2s;
-            border-left: 5px solid var(--ocean);
         }
 
-        .date-btn:hover { background: #f8fcfd; }
-        .date-btn.active { background: var(--plum-light); border-left-color: var(--plum); color: var(--plum); }
+        /* Specific border colors for differentiation */
+        .date-btn { border-left: 5px solid var(--ocean); }
+        .food-region-btn { border-left: 5px solid var(--plum); }
+
+        .collapse-btn:hover { background: #f8fcfd; }
+        .collapse-btn.active { background: var(--plum-light); color: #D81B60; }
         
-        .day-details {
+        .collapse-content {
             display: none;
             padding: 10px 5px;
             margin-bottom: 15px;
             animation: slideDown 0.3s ease;
         }
         
-        .day-details.open { display: block; }
+        .collapse-content.open { display: block; }
 
         @keyframes slideDown {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .timeline-step {
-            display: flex;
-            margin-bottom: 15px;
-            padding-left: 10px;
-            position: relative;
-        }
-
-        .timeline-step::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 8px; bottom: -20px;
-            width: 2px;
-            background: #eee;
-        }
+        /* Timeline */
+        .timeline-step { display: flex; margin-bottom: 15px; padding-left: 10px; position: relative; }
+        .timeline-step::before { content: ''; position: absolute; left: 0; top: 8px; bottom: -20px; width: 2px; background: #eee; }
         .timeline-step:last-child::before { display: none; }
-
-        .step-time {
-            font-size: 0.8rem;
-            color: #999;
-            width: 50px;
-            flex-shrink: 0;
-            padding-top: 3px;
-            font-weight: bold;
-        }
-
-        .step-content {
-            background: white;
-            padding: 12px 15px;
-            border-radius: 12px;
-            flex-grow: 1;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-            border-left: 4px solid var(--mountain);
-            cursor: pointer;
-            transition: 0.2s;
-            position: relative;
-        }
-
+        .step-time { font-size: 0.8rem; color: #999; width: 50px; flex-shrink: 0; padding-top: 3px; font-weight: bold; }
+        .step-content { background: white; padding: 12px 15px; border-radius: 12px; flex-grow: 1; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border-left: 4px solid var(--mountain); cursor: pointer; transition: 0.2s; position: relative; }
         .step-content:active { transform: scale(0.98); background: #fafafa; }
         .step-content::after { content: '📸'; font-size: 1rem; position: absolute; right: 10px; top: 12px; opacity: 0.6; }
 
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-            backdrop-filter: blur(5px);
-        }
-        
+        /* Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(5px); }
         .modal.open { display: flex; animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-
-        @keyframes popIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .modal-card {
-            background: white;
-            width: 100%;
-            max-width: 400px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            position: relative;
-        }
-
-        .modal-img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            background: #f0f0f0;
-            display: block;
-        }
-        
-        .modal-img:after {
-            content: "尚未上傳照片";
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            color: #999;
-            font-size: 0.9rem;
-        }
-
+        @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .modal-card { background: white; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.2); position: relative; }
+        .modal-img { width: 100%; height: 250px; object-fit: cover; background: #f0f0f0; display: block; }
+        .modal-img:after { content: "尚未上傳照片"; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; color: #999; font-size: 0.9rem; }
         .modal-body { padding: 20px; }
         .modal-title { font-size: 1.3rem; color: var(--ocean-dark); margin: 0 0 10px 0; font-weight: bold; }
         .modal-desc { font-size: 0.95rem; line-height: 1.6; color: #555; }
-        .close-modal {
-            position: absolute;
-            top: 15px; right: 15px;
-            background: rgba(0,0,0,0.5);
-            color: white;
-            border: none;
-            width: 30px; height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            display: flex; align-items: center; justify-content: center;
-        }
+        .close-modal { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
 
         /* Mapcode Pagination */
-        .map-tabs {
-            display: flex;
-            background: #f0f0f0;
-            border-radius: 10px;
-            padding: 5px;
-            margin-bottom: 20px;
-        }
-        .map-tab-btn {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            font-weight: bold;
-            color: #888;
-            border-radius: 8px;
-            transition: 0.3s;
-            font-family: inherit;
-        }
+        .map-tabs { display: flex; background: #f0f0f0; border-radius: 10px; padding: 5px; margin-bottom: 20px; }
+        .map-tab-btn { flex: 1; padding: 10px; border: none; background: transparent; cursor: pointer; font-weight: bold; color: #888; border-radius: 8px; transition: 0.3s; font-family: inherit; }
         .map-tab-btn.active { background: white; color: var(--ocean-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .map-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
         .map-table td { background: white; padding: 12px; border: 1px solid #eee; }
@@ -343,24 +239,12 @@
         .copy-btn { background: var(--plum-light); color: var(--plum); border: none; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; cursor: pointer; }
 
         /* Checklist */
-        .checklist-item {
-            background: white;
-            padding: 12px;
-            margin-bottom: 8px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            border: 1px solid #f0f0f0;
-        }
+        .checklist-item { background: white; padding: 12px; margin-bottom: 8px; border-radius: 10px; display: flex; align-items: center; border: 1px solid #f0f0f0; }
         .checklist-item input { margin-right: 15px; width: 20px; height: 20px; accent-color: var(--plum); }
         .checklist-item.checked span { text-decoration: line-through; color: #ccc; }
 
         /* Petals */
-        .petal {
-            position: fixed; background: #FFCDD2; width: 10px; height: 10px;
-            border-radius: 100% 0 100% 0; pointer-events: none;
-            animation: fall linear infinite; z-index: 9999; opacity: 0.6;
-        }
+        .petal { position: fixed; background: #FFCDD2; width: 10px; height: 10px; border-radius: 100% 0 100% 0; pointer-events: none; animation: fall linear infinite; z-index: 9999; opacity: 0.6; }
         @keyframes fall { to { transform: translateY(100vh) rotate(720deg); } }
 
     </style>
@@ -415,7 +299,7 @@
 
         <div id="food" class="section">
             <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
-            <h2>🍜 點擊店家導航 (已擴充!)</h2>
+            <h2>🍜 點擊店家導航</h2>
             <div id="food-container"></div>
         </div>
 
@@ -455,7 +339,6 @@
 <script>
     // --- Data Configuration ---
 
-    // 行程資料 (圖片名稱已保留)
     const itineraryData = [
         {
             date: "1/29 (四) Day 1",
@@ -532,7 +415,7 @@
 
     const packingList = ["護照 (效期內)", "台灣駕照 (正本)", "駕照日文譯本", "富邦J卡", "日幣現金", "手機 & 充電器", "eSIM", "保溫瓶", "牙刷牙膏", "雨具"];
     
-    // --- Food Data (Expanded & No Nabe) ---
+    // --- Food Data (Collapsible & Google Maps Link) ---
     const foodData = [
         { 
             region: "博多", 
@@ -633,14 +516,14 @@
     const itinDiv = document.getElementById('itinerary-content');
     itineraryData.forEach((day, index) => {
         const btn = document.createElement('button');
-        btn.className = 'date-btn';
+        btn.className = 'collapse-btn date-btn';
         btn.innerHTML = `<span>${day.date}</span> <i class="fas fa-chevron-down"></i>`;
-        btn.onclick = () => toggleDay(index);
+        btn.onclick = () => toggleAccordion(index, 'day-details', 'date-btn');
         itinDiv.appendChild(btn);
 
         const details = document.createElement('div');
-        details.id = `day-${index}`;
-        details.className = 'day-details';
+        details.id = `day-details-${index}`;
+        details.className = 'collapse-content day-details';
         
         const stepsHtml = day.steps.map(s => `
             <div class="timeline-step">
@@ -656,17 +539,45 @@
         itinDiv.appendChild(details);
     });
 
-    function toggleDay(index) {
-        document.querySelectorAll('.day-details').forEach((el, idx) => {
-            if(idx !== index) {
-                el.classList.remove('open');
-                document.querySelectorAll('.date-btn')[idx].classList.remove('active');
-            }
-        });
-        const details = document.getElementById(`day-${index}`);
-        const btn = document.querySelectorAll('.date-btn')[index];
-        details.classList.toggle('open');
-        btn.classList.toggle('active');
+    // Food Rendering (Accordion)
+    const foodDiv = document.getElementById('food-container');
+    foodData.forEach((cat, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'collapse-btn food-region-btn';
+        btn.innerHTML = `<span><i class="fas fa-map-marker-alt"></i> ${cat.region}</span> <i class="fas fa-chevron-down"></i>`;
+        btn.onclick = () => toggleAccordion(index, 'food-list', 'food-region-btn');
+        foodDiv.appendChild(btn);
+
+        const listDiv = document.createElement('div');
+        listDiv.id = `food-list-${index}`;
+        listDiv.className = 'collapse-content food-list';
+        
+        const itemsHtml = cat.items.map(i => {
+            const cleanName = i.split('(')[0].trim();
+            const query = encodeURIComponent(`${cat.region} ${cleanName}`);
+            const link = `https://www.google.com/maps/search/?api=1&query=${query}`;
+            return `<a href="${link}" target="_blank" class="food-tag">${i} <i class="fas fa-location-arrow"></i></a>`;
+        }).join('');
+        
+        listDiv.innerHTML = itemsHtml;
+        foodDiv.appendChild(listDiv);
+    });
+
+    // General Accordion Toggle Function
+    function toggleAccordion(index, contentClass, btnClass) {
+        const targetContent = document.getElementById(`${contentClass}-${index}`);
+        const targetBtn = document.getElementsByClassName(btnClass)[index];
+        const isOpen = targetContent.classList.contains('open');
+
+        // Close all of the same type
+        document.querySelectorAll(`.${contentClass}`).forEach(el => el.classList.remove('open'));
+        document.querySelectorAll(`.${btnClass}`).forEach(el => el.classList.remove('active'));
+
+        // Toggle clicked
+        if (!isOpen) {
+            targetContent.classList.add('open');
+            targetBtn.classList.add('active');
+        }
     }
 
     // Modal Logic
@@ -700,25 +611,6 @@
         el.parentElement.classList.toggle('checked');
         localStorage.setItem(`pack_${idx}`, el.checked);
     }
-
-    // Render Food (New: Click to Google Maps with encodeURIComponent)
-    const foodDiv = document.getElementById('food-container');
-    foodData.forEach(cat => {
-        const items = cat.items.map(i => {
-            // Clean up name for search (remove parenthesis content)
-            const cleanName = i.split('(')[0].trim();
-            // Create Google Maps Search URL
-            const query = encodeURIComponent(`${cat.region} ${cleanName}`);
-            const link = `https://www.google.com/maps/search/?api=1&query=${query}`;
-            
-            return `<a href="${link}" target="_blank" class="food-tag">${i} <i class="fas fa-location-arrow"></i></a>`;
-        }).join('');
-        
-        const div = document.createElement('div');
-        div.style.marginBottom = '20px';
-        div.innerHTML = `<h3 style="margin:0 0 8px 0; font-size:1.1rem; color:var(--plum); border-bottom:1px dashed #eee; padding-bottom:5px;"><i class="fas fa-map-marker-alt"></i> ${cat.region}</h3><div>${items}</div>`;
-        foodDiv.appendChild(div);
-    });
 
     // Render Mapcodes
     const splitIndex = mapcodeData.findIndex(item => item.n.includes("阿蘇中岳火山口"));
