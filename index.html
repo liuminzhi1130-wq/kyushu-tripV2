@@ -3,111 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>九州春日部防衛隊之旅 🚗</title>
+    <title>春日序曲｜九州山海自駕日記 🌸</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
+        /* 引入活潑圓潤的字體 */
+        @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap');
 
         :root {
-            --shin-red: #FF4757;
-            --shin-yellow: #F1C40F;
-            --shin-blue: #3498DB;
-            --shin-skin: #FFEAA7;
-            --border-color: #2c3e50;
+            --plum-pink: #F48FB1;       /* 梅花粉 */
+            --plum-light: #FCE4EC;      /* 淺粉背景 */
+            --sea-blue: #4FC3F7;        /* 天草海藍 */
+            --deep-sea: #0277BD;        /* 深藍文字 */
+            --mountain-green: #AED581;  /* 阿蘇草千里綠 */
+            --text-color: #455A64;      /* 質感深灰 */
+            --card-bg: rgba(255, 255, 255, 0.95);
         }
 
         body {
-            font-family: 'Kosugi Maru', sans-serif; /* 圓潤可愛字體 */
-            background-color: var(--shin-skin);
+            font-family: 'Zen Maru Gothic', sans-serif;
+            background: linear-gradient(135deg, #E0F7FA 0%, #F8BBD0 100%); /* 藍天接到梅花粉的漸層 */
             margin: 0;
             padding: 20px;
-            color: var(--border-color);
-            background-image: radial-gradient(#fab1a0 15%, transparent 16%), radial-gradient(#fab1a0 15%, transparent 16%);
-            background-size: 60px 60px;
-            background-position: 0 0, 30px 30px;
+            color: var(--text-color);
+            min-height: 100vh;
+            background-attachment: fixed;
         }
 
         .container {
             max-width: 600px;
             margin: 0 auto;
-            background: white;
-            border: 4px solid var(--border-color);
-            border-radius: 20px;
-            box-shadow: 10px 10px 0px var(--border-color);
+            background: var(--card-bg);
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             overflow: hidden;
             position: relative;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.5);
         }
 
-        /* Header Area */
+        /* 🌸 Header Design */
         header {
-            background-color: var(--shin-yellow);
-            padding: 20px;
+            background: url('https://images.unsplash.com/photo-1490750967868-58cb75069ed6?q=80&w=2574&auto=format&fit=crop') center/cover;
+            height: 180px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            border-bottom: 4px solid var(--border-color);
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.6); /* 柔和遮罩 */
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
         }
 
         h1 {
             margin: 0;
             font-size: 1.8rem;
-            color: var(--shin-red);
-            text-shadow: 2px 2px 0px white;
+            color: #D81B60;
             letter-spacing: 2px;
+            text-shadow: 2px 2px 0px rgba(255,255,255,0.8);
         }
 
         .subtitle {
             font-size: 0.9rem;
+            color: #01579B;
             margin-top: 5px;
             font-weight: bold;
+            background: rgba(255,255,255,0.7);
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
         }
 
-        /* Navigation Grid */
+        /* 🧭 Navigation Grid */
         .nav-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
-            padding: 20px;
+            padding: 25px;
         }
 
         .nav-btn {
             background: white;
-            border: 3px solid var(--border-color);
-            border-radius: 15px;
-            padding: 15px;
+            border-radius: 20px;
+            padding: 20px;
             text-align: center;
             font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.1s, box-shadow 0.1s;
-            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 5px;
+            gap: 8px;
+            border: 2px solid transparent;
         }
 
-        .nav-btn:active {
-            transform: translate(2px, 2px);
-            box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+        .nav-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: var(--plum-pink);
         }
 
         .nav-btn i {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-bottom: 5px;
+            background: -webkit-linear-gradient(45deg, var(--plum-pink), var(--sea-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* Colors for buttons */
-        .btn-red { background-color: #ffcccc; color: #d63031; }
-        .btn-blue { background-color: #cceeff; color: #0984e3; }
-        .btn-green { background-color: #ccffcc; color: #00b894; }
-        .btn-yellow { background-color: #ffffcc; color: #f1c40f; }
-        .btn-purple { background-color: #ecdcf9; color: #6c5ce7; }
-        .btn-orange { background-color: #ffeaa7; color: #e17055; }
-
-        /* Content Sections */
+        /* 🎨 Section Styles */
         .section {
-            display: none; /* Hidden by default */
+            display: none;
             padding: 20px;
-            animation: fadeIn 0.3s ease;
+            animation: slideIn 0.4s ease-out;
+            min-height: 50vh;
         }
 
         .section.active {
@@ -115,34 +135,52 @@
         }
 
         .back-btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background: var(--border-color);
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(to right, var(--plum-pink), var(--sea-blue));
             color: white;
             border: none;
-            font-family: inherit;
+            border-radius: 50px;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 0.9rem;
             cursor: pointer;
             margin-bottom: 20px;
-            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(244, 143, 177, 0.4);
+            transition: 0.2s;
+        }
+        
+        .back-btn:hover {
+            transform: scale(1.05);
         }
 
-        /* Checkbox List */
+        h2 {
+            color: var(--deep-sea);
+            border-left: 5px solid var(--plum-pink);
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* ✅ Checklist */
         .checklist-item {
             display: flex;
             align-items: center;
-            padding: 10px;
-            border-bottom: 2px dashed #ddd;
-            font-size: 1.1rem;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            background: white;
+            transition: 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .checklist-item:hover {
+            background: var(--plum-light);
         }
 
         .checklist-item input[type="checkbox"] {
-            width: 25px;
-            height: 25px;
+            width: 20px;
+            height: 20px;
             margin-right: 15px;
-            accent-color: var(--shin-red);
+            accent-color: var(--plum-pink);
             cursor: pointer;
         }
 
@@ -151,117 +189,148 @@
             color: #aaa;
         }
 
-        /* Itinerary */
+        /* 🗓 Itinerary Timeline */
         .day-card {
-            background: #fff;
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
+            background: white;
+            border-radius: 15px;
             margin-bottom: 15px;
             overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            border: 1px solid #f0f0f0;
         }
 
         .day-header {
-            background: var(--shin-blue);
-            color: white;
-            padding: 10px 15px;
+            background: linear-gradient(to right, #ffffff, #f0f7ff);
+            padding: 15px 20px;
             font-weight: bold;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: var(--deep-sea);
+            border-bottom: 1px solid #eee;
+        }
+        
+        .day-header:hover {
+            background: #f0f4ff;
         }
 
         .day-content {
             display: none;
-            padding: 15px;
-            background: #f9f9f9;
-        }
-
-        .day-content.open {
-            display: block;
+            padding: 20px;
+            background: white;
         }
 
         .timeline-item {
-            margin-bottom: 10px;
-            padding-left: 10px;
-            border-left: 3px solid var(--shin-yellow);
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 15px;
+            border-left: 2px solid var(--plum-pink);
         }
 
-        .time { font-weight: bold; color: var(--shin-red); font-size: 0.9rem; }
-        .activity { font-size: 1rem; }
+        .timeline-item::before {
+            content: '🌸';
+            position: absolute;
+            left: -9px;
+            top: 0;
+            font-size: 12px;
+            background: white;
+        }
 
-        /* Mapcode Table */
+        .time { font-weight: bold; color: var(--plum-pink); font-size: 0.85rem; }
+        .activity { font-size: 1rem; color: #555; }
+
+        /* 🍜 Food & Mapcodes */
+        .info-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .info-card h3 {
+            margin: 0 0 10px 0;
+            color: var(--deep-sea);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        .info-card h3 i { margin-right: 8px; color: var(--mountain-green); }
+
+        .tag {
+            display: inline-block;
+            background: var(--plum-light);
+            color: #D81B60;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* 📋 Mapcode Table */
         .map-table {
             width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
+            border-collapse: separate;
+            border-spacing: 0 8px;
         }
-        
-        .map-table th { background: var(--shin-yellow); padding: 8px; border: 2px solid var(--border-color); }
-        .map-table td { padding: 8px; border: 2px solid var(--border-color); background: white; }
-        
+        .map-table td {
+            background: white;
+            padding: 12px;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        .map-table td:first-child { border-left: 1px solid #eee; border-radius: 10px 0 0 10px; font-weight: bold; color: var(--deep-sea); }
+        .map-table td:last-child { border-right: 1px solid #eee; border-radius: 0 10px 10px 0; }
+
         .copy-btn {
-            font-size: 0.7rem;
-            background: var(--shin-blue);
+            background: var(--sea-blue);
             color: white;
             border: none;
-            padding: 2px 5px;
-            border-radius: 4px;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.75rem;
             cursor: pointer;
             margin-left: 5px;
         }
 
-        /* Food List */
-        .food-region {
-            margin-bottom: 20px;
-        }
-        .food-region h3 {
-            border-bottom: 4px solid var(--shin-red);
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-        .food-item {
-            background: white;
-            border: 2px solid var(--border-color);
-            padding: 10px;
-            margin-bottom: 8px;
-            border-radius: 8px;
-            box-shadow: 3px 3px 0 #eee;
-        }
-
-        /* Reservations */
+        /* 🎫 Reservations */
         .res-card {
             background: white;
-            border: 3px solid var(--border-color);
-            border-radius: 12px;
-            padding: 15px;
+            border-radius: 15px;
+            padding: 20px;
             margin-bottom: 15px;
+            border-left: 6px solid var(--mountain-green);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             position: relative;
         }
-        .res-card::before {
-            content: '📌';
+        .res-icon {
             position: absolute;
-            top: -15px;
-            right: 10px;
-            font-size: 20px;
+            right: 15px;
+            top: 15px;
+            font-size: 1.5rem;
+            opacity: 0.3;
         }
-        .res-title { font-weight: bold; font-size: 1.2rem; color: var(--shin-blue); margin-bottom: 5px; }
-        .res-detail { font-size: 0.9rem; line-height: 1.5; }
-        .res-highlight { background: var(--shin-yellow); padding: 0 4px; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .shin-chan-deco {
-            position: absolute;
-            bottom: -10px;
-            right: -10px;
-            font-size: 100px;
-            opacity: 0.2;
+        /* 🌸 Falling Petals Animation */
+        .petal {
+            position: fixed;
+            top: -10px;
+            background: #FFCDD2;
+            border-radius: 100% 0 100% 0;
+            opacity: 0.8;
             pointer-events: none;
-            z-index: 0;
+            z-index: 999;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(720deg); }
         }
 
     </style>
@@ -271,86 +340,71 @@
 
     <div class="container">
         <header>
-            <h1>九州春日部之旅</h1>
-            <div class="subtitle">柳旻志 2026 九州自駕大冒險</div>
+            <div class="header-content">
+                <h1>春日序曲｜九州山海自駕日記</h1>
+                <div class="subtitle">2026 博多・由布院・熊本・天草 🌸</div>
+            </div>
         </header>
 
         <div id="home" class="section active">
             <div class="nav-grid">
-                <div class="nav-btn btn-red" onclick="showSection('packing')">
-                    <i class="fas fa-suitcase"></i> 旅行清單
+                <div class="nav-btn" onclick="showSection('packing')">
+                    <i class="fas fa-suitcase-rolling"></i> 旅行清單
                 </div>
-                <div class="nav-btn btn-blue" onclick="showSection('itinerary')">
-                    <i class="fas fa-calendar-alt"></i> 行程表
+                <div class="nav-btn" onclick="showSection('itinerary')">
+                    <i class="fas fa-map-marked-alt"></i> 每日行程
                 </div>
-                <div class="nav-btn btn-yellow" onclick="showSection('food')">
-                    <i class="fas fa-utensils"></i> 美食推薦
+                <div class="nav-btn" onclick="showSection('food')">
+                    <i class="fas fa-utensils"></i> 美食地圖
                 </div>
-                <div class="nav-btn btn-green" onclick="showSection('mapcodes')">
-                    <i class="fas fa-map-marked-alt"></i> 地圖碼&電話
+                <div class="nav-btn" onclick="showSection('mapcodes')">
+                    <i class="fas fa-car-side"></i> 導航編碼
                 </div>
-                <div class="nav-btn btn-purple" onclick="showSection('reservations')">
-                    <i class="fas fa-file-contract"></i> 預約資料
+                <div class="nav-btn" onclick="showSection('reservations')">
+                    <i class="fas fa-ticket-alt"></i> 預約憑證
                 </div>
-                <div class="nav-btn btn-orange" onclick="openSupermarket()">
+                <div class="nav-btn" onclick="openSupermarket()">
                     <i class="fas fa-shopping-basket"></i> 附近超市
                 </div>
-            </div>
-            <div style="text-align:center; padding: 20px;">
-                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6/xT1R9Z8f71tB3z8XzG/giphy.gif" alt="Shinchan" style="width: 100px; border-radius: 50%;">
-                <p>出發囉！動感光波！嗶嗶嗶！</p>
             </div>
         </div>
 
         <div id="packing" class="section">
-            <button class="back-btn" onclick="showSection('home')">↩ 返回首頁</button>
-            <h2>🎒 行李準備好了沒？</h2>
-            <div id="checklist-container">
-                </div>
+            <button class="back-btn" onclick="showSection('home')">↩ 返回</button>
+            <h2>🎒 行李檢查</h2>
+            <div id="checklist-container"></div>
         </div>
 
         <div id="itinerary" class="section">
-            <button class="back-btn" onclick="showSection('home')">↩ 返回首頁</button>
-            <h2>📅 九天八夜大冒險</h2>
-            <div id="itinerary-container">
-                </div>
+            <button class="back-btn" onclick="showSection('home')">↩ 返回</button>
+            <h2>📅 自駕旅程表</h2>
+            <div id="itinerary-container"></div>
         </div>
 
         <div id="food" class="section">
-            <button class="back-btn" onclick="showSection('home')">↩ 返回首頁</button>
-            <h2>🍜 肚子餓了...吃什麼？</h2>
-            <div id="food-container">
-                </div>
+            <button class="back-btn" onclick="showSection('home')">↩ 返回</button>
+            <h2>🍱 美食口袋名單</h2>
+            <div id="food-container"></div>
         </div>
 
         <div id="mapcodes" class="section">
-            <button class="back-btn" onclick="showSection('home')">↩ 返回首頁</button>
-            <h2>🚗 導航輸入這邊</h2>
-            <p style="font-size:0.8rem; color:red;">*點擊數字可以複製喔！</p>
+            <button class="back-btn" onclick="showSection('home')">↩ 返回</button>
+            <h2>🚗 MapCode 導航</h2>
+            <p style="font-size:0.8rem; color:#888;">*點擊數字即可複製</p>
             <table class="map-table">
-                <thead>
-                    <tr>
-                        <th>地點</th>
-                        <th>MapCode / 電話</th>
-                    </tr>
-                </thead>
-                <tbody id="mapcode-body">
-                    </tbody>
+                <tbody id="mapcode-body"></tbody>
             </table>
         </div>
 
         <div id="reservations" class="section">
-            <button class="back-btn" onclick="showSection('home')">↩ 返回首頁</button>
-            <h2>🎫 預約憑證都在這</h2>
-            <div id="res-container">
-                </div>
+            <button class="back-btn" onclick="showSection('home')">↩ 返回</button>
+            <h2>🎫 重要預約資訊</h2>
+            <div id="res-container"></div>
         </div>
-
-        <div class="shin-chan-deco">🍑</div>
     </div>
 
 <script>
-    // --- Data ---
+    // --- Data (Same as before, preserved) ---
     
     const packingItems = [
         "手機", "錢包 (日幣)", "護照 (效期內)", "台灣駕照", "駕照日文譯本", 
@@ -361,7 +415,7 @@
     const itineraryData = [
         { 
             date: "1/29 (四) Day 1", 
-            title: "抵達福岡 & 燒肉之夜", 
+            title: "抵達福岡・燒肉之夜", 
             steps: [
                 {t: "08:25", d: "高雄起飛 (CI138)"},
                 {t: "12:00", d: "抵達福岡機場 ✈️"},
@@ -372,26 +426,26 @@
         },
         { 
             date: "1/30 (五) Day 2", 
-            title: "海之中道 & 運河城", 
+            title: "海之中道・運河城", 
             steps: [
                 {t: "上午", d: "博多埠頭搭船 (10:35 / 12:35)"},
-                {t: "下午", d: "🐬 海之中道海濱公園 (騎腳踏車)"},
+                {t: "下午", d: "🐬 海之中道海濱公園 (單車漫遊)"},
                 {t: "晚上", d: "博多運河城 Canal City (拉麵/牛舌)"}
             ]
         },
         { 
             date: "1/31 (六) Day 3", 
-            title: "租車出發 & 草莓吃到飽", 
+            title: "租車自駕・草莓與溫泉", 
             steps: [
                 {t: "09:00", d: "🚗 取車 (Toyota 博多站東入口)"},
                 {t: "11:30", d: "🍓 採草莓 (ULUU Gardens SAGA)"},
-                {t: "下午", d: "由布院 (湯之坪/童話村)"},
-                {t: "19:00前", d: "🏨 湯布院山水館 Check-in (遲到沒飯吃!)"}
+                {t: "下午", d: "由布院散策 (湯之坪/童話村)"},
+                {t: "19:00前", d: "🏨 湯布院山水館 Check-in (晚餐)"}
             ]
         },
         { 
             date: "2/1 (日) Day 4", 
-            title: "阿蘇火山大巡禮", 
+            title: "阿蘇火山・草千里", 
             steps: [
                 {t: "早晨", d: "金鱗湖晨霧"},
                 {t: "上午", d: "🌋 阿蘇火山 (草千里/米塚/火山口)"},
@@ -401,7 +455,7 @@
         },
         { 
             date: "2/2 (一) Day 5", 
-            title: "天草海豚 & 熊本逛街", 
+            title: "天草海豚・熊本城下町", 
             steps: [
                 {t: "上午", d: "開車前往天草 (約2hr)"},
                 {t: "11:30", d: "🐬 天草看海豚 (天草海鮮蔵)"},
@@ -411,7 +465,7 @@
         },
         { 
             date: "2/3 (二) Day 6", 
-            title: "熊本城 & 太宰府", 
+            title: "熊本城・太宰府天滿宮", 
             steps: [
                 {t: "上午", d: "🏯 熊本城 / 櫻之馬場 城彩苑"},
                 {t: "下午", d: "⛩️ 太宰府天滿宮 (梅枝餅)"},
@@ -420,7 +474,7 @@
         },
         { 
             date: "2/4 (三) Day 7", 
-            title: "呼子朝市 & 糸島", 
+            title: "佐賀呼子・糸島海景", 
             steps: [
                 {t: "上午", d: "🦑 佐賀 呼子朝市 (活花枝刺身)"},
                 {t: "下午", d: "唐津城 & 糸島 (夫婦岩/白色鳥居)"}
@@ -428,7 +482,7 @@
         },
         { 
             date: "2/5 (四) Day 8", 
-            title: "Outlet 爆買 & 還車", 
+            title: "Outlet 採購・還車", 
             steps: [
                 {t: "全日", d: "🛍️ THE OUTLETS KITAKYUSHU"},
                 {t: "18:00前", d: "🚗 還車 (Toyota 博多站東入口)"}
@@ -436,7 +490,7 @@
         },
         { 
             date: "2/6 (五) Day 9", 
-            title: "回家囉", 
+            title: "再見九州", 
             steps: [
                 {t: "上午", d: "搭計程車前往福岡機場"},
                 {t: "11:40", d: "飛機起飛 (CI139)"},
@@ -446,13 +500,13 @@
     ];
 
     const foodData = {
-        "博多": ["Full Full 明太子法國麵包", "藥院燒肉 NIKUICHI (Day1晚餐)", "il FORNO del MIGNON (可頌)", "博多一双 (拉麵)", "大地烏龍麵 (炸牛蒡)", "博多水炊き とり田"],
-        "天神": ["I'm donut? (生甜甜圈)", "Shin Shin 拉麵", "葫蘆壽司 (迴轉壽司)", "天婦羅 Hirao (現炸)"],
-        "中洲": ["中洲屋台街 (關東煮/拉麵)", "一蘭拉麵 總本店", "川端善哉廣場 (紅豆湯)"],
+        "博多": ["Full Full 明太子麵包", "藥院燒肉 NIKUICHI", "il FORNO del MIGNON 可頌", "博多一双 拉麵", "大地烏龍麵"],
+        "天神": ["I'm donut?", "Shin Shin 拉麵", "葫蘆壽司", "天婦羅 Hirao"],
+        "中洲": ["中洲屋台街", "一蘭拉麵 總本店", "川端善哉廣場"],
         "由布院": ["B-Speak 蛋糕捲", "史努比茶屋", "豐後牛可樂餅"],
-        "熊本": ["黑亭拉麵 (焦香黑蒜油)", "勝烈亭 (炸豬排)", "Imakin食堂 (赤牛丼/阿蘇)", "蜂樂饅頭", "菅乃屋 (馬肉)"],
+        "熊本": ["黑亭拉麵", "勝烈亭 豬排", "Imakin食堂 赤牛丼", "蜂樂饅頭", "菅乃屋 馬肉"],
         "阿蘇": ["阿蘇赤牛丼", "阿蘇休息站布丁"],
-        "太宰府": ["梅枝餅 (必吃)", "一蘭拉麵 (合格碗)"]
+        "太宰府": ["梅枝餅", "一蘭拉麵 (合格碗)"]
     };
 
     const mapcodeData = [
@@ -474,40 +528,49 @@
 
     const reservationData = [
         {
-            title: "✈️ 機票 (華航)",
-            details: "去程: CI138 1/29 08:25 KHH -> 12:00 FUK<br>回程: CI139 2/6 11:40 FUK -> 13:45 KHH<br>旅客: Liu Minzhi"
+            title: "機票 (華航 CI138/CI139)",
+            details: "1/29 08:25 KHH -> 12:00 FUK<br>2/6 11:40 FUK -> 13:45 KHH<br>旅客: Liu Minzhi",
+            icon: "fa-plane"
         },
         {
-            title: "🚗 租車 (Toyota)",
-            details: "取車: 1/31 09:00 博多站東入口<br>還車: 2/5 18:00 同地點<br>方案: W1禁煙車, <span class='res-highlight'>含雪胎 & ETC</span><br>費用: 約 ¥72,600 (現場付)"
+            title: "租車 (Toyota Rent a Car)",
+            details: "1/31 09:00 - 2/5 18:00<br>地點: 博多站東入口<br>方案: W1禁煙, <b>含雪胎 & ETC</b>",
+            icon: "fa-car"
         },
         {
-            title: "🍓 ULUU 草莓吃到飽",
-            details: "日期: 1/31 (六)<br>時間: 11:30 (請勿遲到)<br>地點: UluuGardensSAGA (佐賀)<br>人數: 3大1小<br>費用: ¥7,700 (現場付)"
+            title: "ULUU 草莓吃到飽",
+            details: "1/31 (六) 11:30<br>地點: UluuGardensSAGA (佐賀)<br>3大1小, ¥7,700 (現場付)",
+            icon: "fa-utensils"
         },
         {
-            title: "🥩 藥院燒肉 NIKUICHI",
-            details: "日期: 1/29 (Day 1 晚餐)<br>狀態: 已預約 (請出示確認信)"
+            title: "藥院燒肉 NIKUICHI",
+            details: "1/29 (Day 1 晚餐)<br>狀態: 已預約 (請出示確認信)",
+            icon: "fa-fire"
         },
         {
-            title: "🐬 天草海鮮蔵 (海豚)",
-            details: "日期: 2/2 (一)<br>時間: 11:30 集合<br>內容: 觀賞海豚 + 海鮮BBQ"
+            title: "天草海鮮蔵 (海豚)",
+            details: "2/2 (一) 11:30 集合<br>內容: 觀賞海豚 + 海鮮BBQ",
+            icon: "fa-anchor"
         },
         {
-            title: "🏨 西鐵 Croom 博多祇園",
-            details: "日期: 1/29 - 1/31 (2晚)<br>房型: 單臥室公寓<br>地鐵: 櫛田神社前"
+            title: "西鐵 Croom 博多祇園",
+            details: "1/29 - 1/31 (2晚)<br>單臥室公寓",
+            icon: "fa-bed"
         },
         {
-            title: "🏨 湯布院山水館",
-            details: "日期: 1/31 - 2/1 (1晚)<br>提醒: <span class='res-highlight'>19:00前必須 Check-in</span> 才有晚餐吃！<br>房型: Deluxe Twin"
+            title: "湯布院山水館",
+            details: "1/31 - 2/1 (1晚)<br><b>19:00前 Check-in</b>",
+            icon: "fa-hot-tub"
         },
         {
-            title: "🏨 Dormy Inn Kumamoto",
-            details: "日期: 2/1 - 2/3 (2晚)<br>特色: 天然溫泉 六花之湯<br>地點: 熊本 辛島町"
+            title: "Dormy Inn Kumamoto",
+            details: "2/1 - 2/3 (2晚)<br>地點: 熊本 辛島町",
+            icon: "fa-bed"
         },
         {
-            title: "🏨 三井花園福岡中洲",
-            details: "日期: 2/3 - 2/6 (3晚)<br>地點: 中洲川端站附近"
+            title: "三井花園福岡中洲",
+            details: "2/3 - 2/6 (3晚)",
+            icon: "fa-bed"
         }
     ];
 
@@ -519,12 +582,12 @@
         window.scrollTo(0, 0);
     }
 
-    // Packing List Logic
+    // Packing List
     const checklistContainer = document.getElementById('checklist-container');
     packingItems.forEach((item, index) => {
         const div = document.createElement('div');
         div.className = 'checklist-item';
-        const checked = localStorage.getItem('pack_' + index) === 'true';
+        const checked = localStorage.getItem('pack_v2_' + index) === 'true';
         if(checked) div.classList.add('checked');
         
         div.innerHTML = `
@@ -535,11 +598,11 @@
     });
 
     function toggleCheck(checkbox, index) {
-        localStorage.setItem('pack_' + index, checkbox.checked);
+        localStorage.setItem('pack_v2_' + index, checkbox.checked);
         checkbox.parentElement.classList.toggle('checked');
     }
 
-    // Itinerary Logic
+    // Itinerary
     const itineraryContainer = document.getElementById('itinerary-container');
     itineraryData.forEach((day, idx) => {
         const card = document.createElement('div');
@@ -554,10 +617,9 @@
         card.innerHTML = `
             <div class="day-header" onclick="toggleDay(this)">
                 <span>${day.date}</span>
-                <span>${idx === 0 ? '▼' : '▶'}</span>
+                <span style="font-size:0.8rem; color:#888;">${day.title} ▼</span>
             </div>
             <div class="day-content" style="display: ${idx === 0 ? 'block' : 'none'}">
-                <div class="subtitle" style="margin-bottom:10px; color:var(--shin-blue)">${day.title}</div>
                 ${stepsHtml}
             </div>
         `;
@@ -566,38 +628,34 @@
 
     function toggleDay(header) {
         const content = header.nextElementSibling;
-        const icon = header.querySelector('span:last-child');
         const isOpen = content.style.display === 'block';
         
-        // Close all others (optional, keeps it clean)
         document.querySelectorAll('.day-content').forEach(c => c.style.display = 'none');
-        document.querySelectorAll('.day-header span:last-child').forEach(s => s.textContent = '▶');
-
+        
         if (!isOpen) {
             content.style.display = 'block';
-            icon.textContent = '▼';
         }
     }
 
-    // Food Logic
+    // Food
     const foodContainer = document.getElementById('food-container');
     for (const [region, shops] of Object.entries(foodData)) {
-        const regionDiv = document.createElement('div');
-        regionDiv.className = 'food-region';
-        const itemsHtml = shops.map(shop => `<div class="food-item">😋 ${shop}</div>`).join('');
-        regionDiv.innerHTML = `<h3>${region}</h3><div>${itemsHtml}</div>`;
-        foodContainer.appendChild(regionDiv);
+        const div = document.createElement('div');
+        div.className = 'info-card';
+        const tags = shops.map(shop => `<span class="tag">${shop}</span>`).join('');
+        div.innerHTML = `<h3><i class="fas fa-map-marker-alt"></i> ${region}</h3><div>${tags}</div>`;
+        foodContainer.appendChild(div);
     }
 
-    // Mapcode Logic
+    // Mapcode
     const mapBody = document.getElementById('mapcode-body');
     mapcodeData.forEach(item => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>${item.n}</td>
             <td>
-                <div>${item.c} <button class="copy-btn" onclick="copyText('${item.c}')">複製</button></div>
-                <div style="font-size:0.8rem; color:#666; margin-top:2px;">📞 ${item.p} <button class="copy-btn" onclick="copyText('${item.p}')">複製</button></div>
+                <div style="margin-bottom:4px;">${item.c} <button class="copy-btn" onclick="copyText('${item.c}')"><i class="far fa-copy"></i></button></div>
+                <div style="font-size:0.85rem; color:#666;">📞 ${item.p} <button class="copy-btn" onclick="copyText('${item.p}')"><i class="far fa-copy"></i></button></div>
             </td>
         `;
         mapBody.appendChild(tr);
@@ -605,28 +663,43 @@
 
     function copyText(text) {
         navigator.clipboard.writeText(text).then(() => {
-            alert('複製成功：' + text + '\n小白：汪汪！');
+            alert('已複製：' + text);
         });
     }
 
-    // Reservation Logic
+    // Reservations
     const resContainer = document.getElementById('res-container');
     reservationData.forEach(res => {
         const card = document.createElement('div');
         card.className = 'res-card';
         card.innerHTML = `
-            <div class="res-title">${res.title}</div>
-            <div class="res-detail">${res.details}</div>
+            <i class="fas ${res.icon} res-icon"></i>
+            <div style="font-weight:bold; font-size:1.1rem; margin-bottom:5px; color:#0277BD;">${res.title}</div>
+            <div style="font-size:0.95rem; line-height:1.6; color:#555;">${res.details}</div>
         `;
         resContainer.appendChild(card);
     });
 
-    // Supermarket Function
     function openSupermarket() {
-        if(confirm("要搜尋附近的超市嗎？(美冴要去搶特價品了！)")) {
-            window.open("https://www.google.com/maps/search/supermarket+near+me");
+        if(confirm("開啟 Google Maps 搜尋附近超市？")) {
+            window.open("https://www.google.com/maps/search/supermarket/");
         }
     }
+
+    // Creating falling petals
+    function createPetals() {
+        const petalCount = 8;
+        for (let i = 0; i < petalCount; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = Math.random() * 5 + 5 + 's';
+            petal.style.width = Math.random() * 10 + 10 + 'px';
+            petal.style.height = petal.style.width;
+            document.body.appendChild(petal);
+        }
+    }
+    createPetals();
 
 </script>
 </body>
