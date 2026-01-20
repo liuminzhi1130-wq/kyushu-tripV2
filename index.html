@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>九州春日部防衛隊之旅 🚗</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
+
+        :root {
+            --shin-red: #FF4757;
+            --shin-yellow: #F1C40F;
+            --shin-blue: #3498DB;
+            --shin-skin: #FFEAA7;
+            --border-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Kosugi Maru', sans-serif; /* 圓潤可愛字體 */
+            background-color: var(--shin-skin);
+            margin: 0;
+            padding: 20px;
+            color: var(--border-color);
+            background-image: radial-gradient(#fab1a0 15%, transparent 16%), radial-gradient(#fab1a0 15%, transparent 16%);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border: 4px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: 10px 10px 0px var(--border-color);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Header Area */
+        header {
+            background-color: var(--shin-yellow);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--border-color);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: var(--shin-red);
+            text-shadow: 2px 2px 0px white;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        /* Navigation Grid */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .nav-btn {
+            background: white;
+            border: 3px solid var(--border-color);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.1s;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .nav-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+        }
+
+        .nav-btn i {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        /* Colors for buttons */
+        .btn-red { background-color: #ffcccc; color: #d63031; }
+        .btn-blue { background-color: #cceeff; color: #0984e3; }
+        .btn-green { background-color: #ccffcc; color: #00b894; }
+        .btn-yellow { background-color: #ffffcc; color: #f1c40f; }
+        .btn-purple { background-color: #ecdcf9; color: #6c5ce7; }
+        .btn-orange { background-color: #ffeaa7; color: #e17055; }
+
+        /* Content Sections */
+        .section {
+            display: none; /* Hidden by default */
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .back-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: var(--border-color);
+            color: white;
+            border: none;
+            font-family: inherit;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        /* Checkbox List */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 2px dashed #ddd;
+            font-size: 1.1rem;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 25px;
+            height: 25px;
+            margin-right: 15px;
+            accent-color: var(--shin-red);
+            cursor: pointer;
+        }
+
+        .checklist-item.checked span {
+            text-decoration: line-through;
+            color: #aaa;
+        }
+
+        /* Itinerary */
+        .day-card {
+            background: #fff;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .day-header {
+            background: var(--shin-blue);
+            color: white;
+            padding: 10px 15px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .day-content {
+            display: none;
+            padding: 15px;
+            background: #f9f9f9;
+        }
+
+        .day-content.open {
+            display: block;
+        }
+
+        .timeline-item {
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 3px solid var(--shin-yellow);
+        }
+
+        .time { font-weight: bold; color: var(--shin-red); font-size: 0.9rem; }
+        .activity { font-size: 1rem; }
+
+        /* Mapcode Table */
+        .map-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        
+        .map-table th { background: var(--shin-yellow); padding: 8px; border: 2px solid var(--border-color); }
+        .map-table td { padding: 8px; border: 2px solid var(--border-color); background: white; }
+        
+        .copy-btn {
+            font-size: 0.7rem;
+            background: var(--shin-blue);
+            color: white;
+            border: none;
+            padding: 2px 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        /* Food List */
+        .food-region {
+            margin-bottom: 20px;
+        }
+        .food-region h3 {
+            border-bottom: 4px solid var(--shin-red);
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .food-item {
+            background: white;
+            border: 2px solid var(--border-color);
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            box-shadow: 3px 3px 0 #eee;
+        }
+
+        /* Reservations */
+        .res-card {
+            background: white;
+            border: 3px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .res-card::before {
+            content: '📌';
+            position: absolute;
+            top: -15px;
+            right: 10px;
+            font-size: 20px;
+        }
+        .res-title { font-weight: bold; font-size: 1.2rem; color: var(--shin-blue); margin-bottom: 5px; }
+        .res-detail { font-size: 0.9rem; line-height: 1.5; }
+        .res-highlight { background: var(--shin-yellow); padding: 0 4px; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .shin-chan-deco {
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            font-size: 100px;
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>九州春日部之旅</h1>
+            <div class="subtitle">柳旻志 2026 九州自駕大冒險</div>
+        </header>
+
+        <div id="home" class="section active">
+            <div class="nav-grid">
+                <div class="nav-btn btn-red" onclick="showSection('packing')">
+                    <i class="fas fa-suitcase"></i> 旅行清單
+                </div>
+                <div class="nav-btn btn-blue" onclick="showSection('itinerary')">
+                    <i class="fas fa-calendar-alt"></i> 行程表
+                </div>
+                <div class="nav-btn btn-yellow" onclick="showSection('food')">
+                    <i class="fas fa-utensils"></i> 美食推薦
+                </div>
+                <div class="nav-btn btn-green" onclick="showSection('mapcodes')">
+                    <i class="fas fa-map-marked-alt"></i> 地圖碼&電話
+                </div>
+                <div class="nav-btn btn-purple" onclick="showSection('reservations')">
+                    <i class="fas fa-file-contract"></i> 預約資料
+                </div>
+                <div class="nav-btn btn-orange" onclick="openSupermarket()">
+                    <i class="fas fa-shopping-basket"></i> 附近超市
+                </div>
+            </div>
+            <div style="text-align:center; padding: 20px;">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6/xT1R9Z8f71tB3z8XzG/giphy.gif" alt="Shinchan" style="width: 100px; border-radius: 50%;">
+                <p>出發囉！動感光波！嗶嗶嗶！</p>
+            </div>
+        </div>
+
+        <div id="packing" class="section">
+            <button class="back-btn" onclick="showSection('home')">↩ 返回首頁</button>
+            <h2>🎒 行李準備好了沒？</h2>
+            <div id="checklist-container">
+                </div>
+        </div>
+
+        <div id="itinerary" class="section">
+            <button class="back-btn" onclick="showSection('home')">↩ 返回首頁</button>
+            <h2>📅 九天八夜大冒險</h2>
+            <div id="itinerary-container">
+                </div>
+        </div>
+
+        <div id="food" class="section">
+            <button class="back-btn" onclick="showSection('home')">↩ 返回首頁</button>
+            <h2>🍜 肚子餓了...吃什麼？</h2>
+            <div id="food-container">
+                </div>
+        </div>
+
+        <div id="mapcodes" class="section">
+            <button class="back-btn" onclick="showSection('home')">↩ 返回首頁</button>
+            <h2>🚗 導航輸入這邊</h2>
+            <p style="font-size:0.8rem; color:red;">*點擊數字可以複製喔！</p>
+            <table class="map-table">
+                <thead>
+                    <tr>
+                        <th>地點</th>
+                        <th>MapCode / 電話</th>
+                    </tr>
+                </thead>
+                <tbody id="mapcode-body">
+                    </tbody>
+            </table>
+        </div>
+
+        <div id="reservations" class="section">
+            <button class="back-btn" onclick="showSection('home')">↩ 返回首頁</button>
+            <h2>🎫 預約憑證都在這</h2>
+            <div id="res-container">
+                </div>
+        </div>
+
+        <div class="shin-chan-deco">🍑</div>
+    </div>
+
+<script>
+    // --- Data ---
+    
+    const packingItems = [
+        "手機", "錢包 (日幣)", "護照 (效期內)", "台灣駕照", "駕照日文譯本", 
+        "凡士林", "充電器", "行動電源", "eSIM (已安裝?)", "保溫瓶",
+        "牙刷牙膏", "個人藥品", "雨傘/雨衣", "信用卡 (富邦J卡)"
+    ];
+
+    const itineraryData = [
+        { 
+            date: "1/29 (四) Day 1", 
+            title: "抵達福岡 & 燒肉之夜", 
+            steps: [
+                {t: "08:25", d: "高雄起飛 (CI138)"},
+                {t: "12:00", d: "抵達福岡機場 ✈️"},
+                {t: "下午", d: "飯店寄放行李 @ 博多祇園"},
+                {t: "下午", d: "川端通商店街 / Full Full 明太子麵包"},
+                {t: "晚餐", d: "🔥 藥院燒肉 NIKUICHI (已預約)"}
+            ]
+        },
+        { 
+            date: "1/30 (五) Day 2", 
+            title: "海之中道 & 運河城", 
+            steps: [
+                {t: "上午", d: "博多埠頭搭船 (10:35 / 12:35)"},
+                {t: "下午", d: "🐬 海之中道海濱公園 (騎腳踏車)"},
+                {t: "晚上", d: "博多運河城 Canal City (拉麵/牛舌)"}
+            ]
+        },
+        { 
+            date: "1/31 (六) Day 3", 
+            title: "租車出發 & 草莓吃到飽", 
+            steps: [
+                {t: "09:00", d: "🚗 取車 (Toyota 博多站東入口)"},
+                {t: "11:30", d: "🍓 採草莓 (ULUU Gardens SAGA)"},
+                {t: "下午", d: "由布院 (湯之坪/童話村)"},
+                {t: "19:00前", d: "🏨 湯布院山水館 Check-in (遲到沒飯吃!)"}
+            ]
+        },
+        { 
+            date: "2/1 (日) Day 4", 
+            title: "阿蘇火山大巡禮", 
+            steps: [
+                {t: "早晨", d: "金鱗湖晨霧"},
+                {t: "上午", d: "🌋 阿蘇火山 (草千里/米塚/火山口)"},
+                {t: "午餐", d: "阿蘇赤牛丼 (Imakin 或 休息站)"},
+                {t: "晚上", d: "移動至熊本市區 (Dormy Inn)"}
+            ]
+        },
+        { 
+            date: "2/2 (一) Day 5", 
+            title: "天草海豚 & 熊本逛街", 
+            steps: [
+                {t: "上午", d: "開車前往天草 (約2hr)"},
+                {t: "11:30", d: "🐬 天草看海豚 (天草海鮮蔵)"},
+                {t: "午餐", d: "海鮮 BBQ"},
+                {t: "晚上", d: "熊本 上通/下通商店街"}
+            ]
+        },
+        { 
+            date: "2/3 (二) Day 6", 
+            title: "熊本城 & 太宰府", 
+            steps: [
+                {t: "上午", d: "🏯 熊本城 / 櫻之馬場 城彩苑"},
+                {t: "下午", d: "⛩️ 太宰府天滿宮 (梅枝餅)"},
+                {t: "晚上", d: "天神地下街 / 入住三井花園中洲"}
+            ]
+        },
+        { 
+            date: "2/4 (三) Day 7", 
+            title: "呼子朝市 & 糸島", 
+            steps: [
+                {t: "上午", d: "🦑 佐賀 呼子朝市 (活花枝刺身)"},
+                {t: "下午", d: "唐津城 & 糸島 (夫婦岩/白色鳥居)"}
+            ]
+        },
+        { 
+            date: "2/5 (四) Day 8", 
+            title: "Outlet 爆買 & 還車", 
+            steps: [
+                {t: "全日", d: "🛍️ THE OUTLETS KITAKYUSHU"},
+                {t: "18:00前", d: "🚗 還車 (Toyota 博多站東入口)"}
+            ]
+        },
+        { 
+            date: "2/6 (五) Day 9", 
+            title: "回家囉", 
+            steps: [
+                {t: "上午", d: "搭計程車前往福岡機場"},
+                {t: "11:40", d: "飛機起飛 (CI139)"},
+                {t: "13:45", d: "抵達高雄"}
+            ]
+        }
+    ];
+
+    const foodData = {
+        "博多": ["Full Full 明太子法國麵包", "藥院燒肉 NIKUICHI (Day1晚餐)", "il FORNO del MIGNON (可頌)", "博多一双 (拉麵)", "大地烏龍麵 (炸牛蒡)", "博多水炊き とり田"],
+        "天神": ["I'm donut? (生甜甜圈)", "Shin Shin 拉麵", "葫蘆壽司 (迴轉壽司)", "天婦羅 Hirao (現炸)"],
+        "中洲": ["中洲屋台街 (關東煮/拉麵)", "一蘭拉麵 總本店", "川端善哉廣場 (紅豆湯)"],
+        "由布院": ["B-Speak 蛋糕捲", "史努比茶屋", "豐後牛可樂餅"],
+        "熊本": ["黑亭拉麵 (焦香黑蒜油)", "勝烈亭 (炸豬排)", "Imakin食堂 (赤牛丼/阿蘇)", "蜂樂饅頭", "菅乃屋 (馬肉)"],
+        "阿蘇": ["阿蘇赤牛丼", "阿蘇休息站布丁"],
+        "太宰府": ["梅枝餅 (必吃)", "一蘭拉麵 (合格碗)"]
+    };
+
+    const mapcodeData = [
+        {n: "Toyota Rent a Car (取/還)", c: "13 320 18871", p: "092-472-8388"},
+        {n: "ULUU 草莓園", c: "37 491 66213", p: "080-8956-1030"},
+        {n: "湯布院山水館", c: "269 328 633*45", p: "0977-84-2101"},
+        {n: "金鱗湖停車場", c: "269 359 583*03", p: "0977-84-3111"},
+        {n: "草千里 (阿蘇)", c: "256 456 77085", p: "0967-34-0131"},
+        {n: "阿蘇中岳火山口", c: "256 458 60030", p: "0967-34-1600"},
+        {n: "Imakin 食堂", c: "256 685 02441", p: "0967-32-0031"},
+        {n: "Dormy Inn Kumamoto", c: "29 459 468*88", p: "096-311-5489"},
+        {n: "天草海鮮蔵", c: "474 084 15844", p: "0969-52-7707"},
+        {n: "熊本城", c: "29 459 34258", p: "096-352-5900"},
+        {n: "太宰府天滿宮", c: "55 364 128*71", p: "092-922-8225"},
+        {n: "呼子朝市", c: "182 722 104*50", p: "0955-82-3426"},
+        {n: "糸島 夫婦岩", c: "224 788 206*25", p: "092-327-0317"},
+        {n: "THE OUTLETS KITAKYUSHU", c: "16 427 590*78", p: "093-663-7251"}
+    ];
+
+    const reservationData = [
+        {
+            title: "✈️ 機票 (華航)",
+            details: "去程: CI138 1/29 08:25 KHH -> 12:00 FUK<br>回程: CI139 2/6 11:40 FUK -> 13:45 KHH<br>旅客: Liu Minzhi"
+        },
+        {
+            title: "🚗 租車 (Toyota)",
+            details: "取車: 1/31 09:00 博多站東入口<br>還車: 2/5 18:00 同地點<br>方案: W1禁煙車, <span class='res-highlight'>含雪胎 & ETC</span><br>費用: 約 ¥72,600 (現場付)"
+        },
+        {
+            title: "🍓 ULUU 草莓吃到飽",
+            details: "日期: 1/31 (六)<br>時間: 11:30 (請勿遲到)<br>地點: UluuGardensSAGA (佐賀)<br>人數: 3大1小<br>費用: ¥7,700 (現場付)"
+        },
+        {
+            title: "🥩 藥院燒肉 NIKUICHI",
+            details: "日期: 1/29 (Day 1 晚餐)<br>狀態: 已預約 (請出示確認信)"
+        },
+        {
+            title: "🐬 天草海鮮蔵 (海豚)",
+            details: "日期: 2/2 (一)<br>時間: 11:30 集合<br>內容: 觀賞海豚 + 海鮮BBQ"
+        },
+        {
+            title: "🏨 西鐵 Croom 博多祇園",
+            details: "日期: 1/29 - 1/31 (2晚)<br>房型: 單臥室公寓<br>地鐵: 櫛田神社前"
+        },
+        {
+            title: "🏨 湯布院山水館",
+            details: "日期: 1/31 - 2/1 (1晚)<br>提醒: <span class='res-highlight'>19:00前必須 Check-in</span> 才有晚餐吃！<br>房型: Deluxe Twin"
+        },
+        {
+            title: "🏨 Dormy Inn Kumamoto",
+            details: "日期: 2/1 - 2/3 (2晚)<br>特色: 天然溫泉 六花之湯<br>地點: 熊本 辛島町"
+        },
+        {
+            title: "🏨 三井花園福岡中洲",
+            details: "日期: 2/3 - 2/6 (3晚)<br>地點: 中洲川端站附近"
+        }
+    ];
+
+    // --- Logic ---
+
+    function showSection(id) {
+        document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0, 0);
+    }
+
+    // Packing List Logic
+    const checklistContainer = document.getElementById('checklist-container');
+    packingItems.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'checklist-item';
+        const checked = localStorage.getItem('pack_' + index) === 'true';
+        if(checked) div.classList.add('checked');
+        
+        div.innerHTML = `
+            <input type="checkbox" id="pack_${index}" ${checked ? 'checked' : ''} onchange="toggleCheck(this, ${index})">
+            <span>${item}</span>
+        `;
+        checklistContainer.appendChild(div);
+    });
+
+    function toggleCheck(checkbox, index) {
+        localStorage.setItem('pack_' + index, checkbox.checked);
+        checkbox.parentElement.classList.toggle('checked');
+    }
+
+    // Itinerary Logic
+    const itineraryContainer = document.getElementById('itinerary-container');
+    itineraryData.forEach((day, idx) => {
+        const card = document.createElement('div');
+        card.className = 'day-card';
+        let stepsHtml = day.steps.map(s => `
+            <div class="timeline-item">
+                <div class="time">${s.t}</div>
+                <div class="activity">${s.d}</div>
+            </div>
+        `).join('');
+
+        card.innerHTML = `
+            <div class="day-header" onclick="toggleDay(this)">
+                <span>${day.date}</span>
+                <span>${idx === 0 ? '▼' : '▶'}</span>
+            </div>
+            <div class="day-content" style="display: ${idx === 0 ? 'block' : 'none'}">
+                <div class="subtitle" style="margin-bottom:10px; color:var(--shin-blue)">${day.title}</div>
+                ${stepsHtml}
+            </div>
+        `;
+        itineraryContainer.appendChild(card);
+    });
+
+    function toggleDay(header) {
+        const content = header.nextElementSibling;
+        const icon = header.querySelector('span:last-child');
+        const isOpen = content.style.display === 'block';
+        
+        // Close all others (optional, keeps it clean)
+        document.querySelectorAll('.day-content').forEach(c => c.style.display = 'none');
+        document.querySelectorAll('.day-header span:last-child').forEach(s => s.textContent = '▶');
+
+        if (!isOpen) {
+            content.style.display = 'block';
+            icon.textContent = '▼';
+        }
+    }
+
+    // Food Logic
+    const foodContainer = document.getElementById('food-container');
+    for (const [region, shops] of Object.entries(foodData)) {
+        const regionDiv = document.createElement('div');
+        regionDiv.className = 'food-region';
+        const itemsHtml = shops.map(shop => `<div class="food-item">😋 ${shop}</div>`).join('');
+        regionDiv.innerHTML = `<h3>${region}</h3><div>${itemsHtml}</div>`;
+        foodContainer.appendChild(regionDiv);
+    }
+
+    // Mapcode Logic
+    const mapBody = document.getElementById('mapcode-body');
+    mapcodeData.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${item.n}</td>
+            <td>
+                <div>${item.c} <button class="copy-btn" onclick="copyText('${item.c}')">複製</button></div>
+                <div style="font-size:0.8rem; color:#666; margin-top:2px;">📞 ${item.p} <button class="copy-btn" onclick="copyText('${item.p}')">複製</button></div>
+            </td>
+        `;
+        mapBody.appendChild(tr);
+    });
+
+    function copyText(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert('複製成功：' + text + '\n小白：汪汪！');
+        });
+    }
+
+    // Reservation Logic
+    const resContainer = document.getElementById('res-container');
+    reservationData.forEach(res => {
+        const card = document.createElement('div');
+        card.className = 'res-card';
+        card.innerHTML = `
+            <div class="res-title">${res.title}</div>
+            <div class="res-detail">${res.details}</div>
+        `;
+        resContainer.appendChild(card);
+    });
+
+    // Supermarket Function
+    function openSupermarket() {
+        if(confirm("要搜尋附近的超市嗎？(美冴要去搶特價品了！)")) {
+            window.open("https://www.google.com/maps/search/supermarket+near+me");
+        }
+    }
+
+</script>
+</body>
+</html>
