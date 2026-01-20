@@ -8,13 +8,13 @@
         @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
 
         :root {
-            --plum: #F06292;
+            --plum: #F06292;        /* 梅花主色 */
             --plum-light: #FCE4EC;
-            --ocean: #29B6F6;
+            --ocean: #29B6F6;       /* 海洋藍 */
             --ocean-dark: #0277BD;
-            --mountain: #9CCC65;
+            --mountain: #9CCC65;    /* 阿蘇綠 */
             --text: #37474F;
-            --glass: rgba(255, 255, 255, 0.95);
+            --glass: rgba(255, 255, 255, 0.93);
         }
 
         body {
@@ -40,12 +40,13 @@
             padding-bottom: 30px;
         }
 
-        /* Header - 梅花背景回歸 */
+        /* --- Header: 設定為梅花背景 --- */
         header {
-            background-image: url('https://images.unsplash.com/photo-1490750967868-58cb75069ed6?q=80&w=2574&auto=format&fit=crop');
+            /* 使用 Unsplash 高清梅花/櫻花圖片 */
+            background-image: url('https://images.unsplash.com/photo-1522383225653-ed111181a951?q=80&w=2076&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            height: 180px;
+            height: 200px;
             position: relative;
             display: flex;
             align-items: center;
@@ -56,8 +57,8 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(255,255,255,0.5); /* 稍微調亮一點 */
-            backdrop-filter: blur(2px);
+            background: rgba(255,255,255,0.4); /* 輕微遮罩 */
+            backdrop-filter: blur(1px);
         }
 
         .header-text {
@@ -69,9 +70,10 @@
         h1 {
             margin: 0;
             font-size: 2rem;
-            color: #D81B60; /* 梅紅色標題 */
-            text-shadow: 2px 2px 0px white;
-            letter-spacing: 2px;
+            color: #D81B60; /* 深梅紅色 */
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.9);
+            letter-spacing: 3px;
+            font-weight: 800;
         }
 
         /* Navigation Grid */
@@ -138,13 +140,13 @@
             margin-top: 0;
         }
 
-        /* Food Link Styles */
+        /* --- Food Link Styles (Updated) --- */
         .food-tag {
             background: white;
-            padding: 8px 12px;
+            padding: 10px 14px;
             border-radius: 20px;
-            font-size: 0.9rem;
-            margin: 0 6px 8px 0;
+            font-size: 0.95rem;
+            margin: 0 6px 10px 0;
             display: inline-block;
             border: 1px solid #eee;
             text-decoration: none;
@@ -152,20 +154,20 @@
             transition: all 0.2s;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             cursor: pointer;
+            border-left: 4px solid var(--plum); /* 增加一點裝飾 */
         }
 
         .food-tag:hover {
             background: var(--plum-light);
             color: #D81B60;
             transform: translateY(-2px);
-            border-color: var(--plum);
             box-shadow: 0 4px 8px rgba(240, 98, 146, 0.2);
         }
 
         .food-tag i {
-            margin-left: 4px;
+            margin-left: 5px;
             font-size: 0.8rem;
-            color: #ccc;
+            color: #aaa;
         }
 
         /* Itinerary Styles (Accordion) */
@@ -413,7 +415,7 @@
 
         <div id="food" class="section">
             <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
-            <h2>🍜 點擊店家導航</h2>
+            <h2>🍜 點擊店家導航 (已擴充!)</h2>
             <div id="food-container"></div>
         </div>
 
@@ -451,8 +453,9 @@
     </div>
 
 <script>
-    // --- Data Configuration (Preserved your photo filenames) ---
+    // --- Data Configuration ---
 
+    // 行程資料 (圖片名稱已保留)
     const itineraryData = [
         {
             date: "1/29 (四) Day 1",
@@ -527,15 +530,72 @@
         }
     ];
 
-    // Other Data
     const packingList = ["護照 (效期內)", "台灣駕照 (正本)", "駕照日文譯本", "富邦J卡", "日幣現金", "手機 & 充電器", "eSIM", "保溫瓶", "牙刷牙膏", "雨具"];
+    
+    // --- Food Data (Expanded & No Nabe) ---
     const foodData = [
-        { region: "博多", items: ["Full Full 明太子麵包", "藥院燒肉 NIKUICHI", "一雙拉麵"] },
-        { region: "天神", items: ["I'm donut?", "Shin Shin 拉麵", "葫蘆壽司"] },
-        { region: "由布院", items: ["B-Speak 蛋糕捲", "豐後牛可樂餅", "釜飯心"] },
-        { region: "熊本", items: ["黑亭拉麵", "勝烈亭炸豬排", "蜂樂饅頭"] },
-        { region: "阿蘇/佐賀", items: ["Imakin 赤牛丼", "呼子活花枝刺身", "糸島布丁"] }
+        { 
+            region: "博多", 
+            items: [
+                "Full Full 明太子麵包", 
+                "藥院燒肉 NIKUICHI", 
+                "一雙拉麵 (泡系豚骨)",
+                "吉塚鰻魚屋 (必吃老店)",
+                "努努雞 (冷炸雞)",
+                "博多一口餃子 宝雲亭",
+                "とりかわ大臣 (雞皮串燒)"
+            ] 
+        },
+        { 
+            region: "天神", 
+            items: [
+                "I'm donut? (生甜甜圈)", 
+                "Shin Shin 拉麵", 
+                "葫蘆壽司 (迴轉壽司)",
+                "元祖博多めんたい重 (明太子飯)",
+                "壽司郎 天神店 (高CP值)",
+                "敘敘苑 遊玄亭 (景觀燒肉)",
+                "BAKE CHEESE TART 天神地下街"
+            ] 
+        },
+        { 
+            region: "由布院", 
+            items: [
+                "B-Speak 蛋糕捲", 
+                "豐後牛可樂餅", 
+                "釜飯心 (排隊名店)",
+                "Milch 由布院 (半熟起司蛋糕)",
+                "花麴菊家 (布丁銅鑼燒)",
+                "金賞可樂餅",
+                "telato (濃抹茶冰淇淋)"
+            ] 
+        },
+        { 
+            region: "熊本", 
+            items: [
+                "黑亭拉麵 (焦蒜油)", 
+                "勝烈亭炸豬排 (鹿兒島黑豚)", 
+                "蜂樂饅頭 (在地甜點)",
+                "菅乃屋 (馬肉料理專門店)",
+                "紅蘭亭 (太平燕)",
+                "村上カラシレンコン (芥末蓮藕)",
+                "長壽庵 (いきなり団子)"
+            ] 
+        },
+        { 
+            region: "阿蘇/佐賀", 
+            items: [
+                "Imakin 食堂 (赤牛丼)", 
+                "呼子活花枝刺身 (河太郎)", 
+                "糸島布丁 (海邊咖啡廳)",
+                "阿蘇とり宮 (馬肉可樂餅)",
+                "佐賀牛餐廳 季樂 (高級佐賀牛)",
+                "高森田楽保存会 (圍爐裏燒烤)",
+                "嬉野溫泉 宗庵橫長 (湯豆腐)"
+            ] 
+        }
     ];
+    
     const mapcodeData = [
         { n: "Toyota Rent a Car", c: "13 320 188*71", p: "092-472-8388" },
         { n: "ULUU 草莓園", c: "37 491 662*13", p: "080-8956-1030" },
@@ -641,19 +701,22 @@
         localStorage.setItem(`pack_${idx}`, el.checked);
     }
 
-    // Render Food (New: Click to Google Maps)
+    // Render Food (New: Click to Google Maps with encodeURIComponent)
     const foodDiv = document.getElementById('food-container');
     foodData.forEach(cat => {
-        // Generate Google Maps Search Link
         const items = cat.items.map(i => {
-            const query = encodeURIComponent(`${cat.region} ${i}`);
+            // Clean up name for search (remove parenthesis content)
+            const cleanName = i.split('(')[0].trim();
+            // Create Google Maps Search URL
+            const query = encodeURIComponent(`${cat.region} ${cleanName}`);
             const link = `https://www.google.com/maps/search/?api=1&query=${query}`;
-            return `<a href="${link}" target="_blank" class="food-tag">${i} <i class="fas fa-external-link-alt"></i></a>`;
+            
+            return `<a href="${link}" target="_blank" class="food-tag">${i} <i class="fas fa-location-arrow"></i></a>`;
         }).join('');
         
         const div = document.createElement('div');
-        div.style.marginBottom = '15px';
-        div.innerHTML = `<h3 style="margin:0 0 5px 0; font-size:1rem; color:var(--plum);"><i class="fas fa-map-marker-alt"></i> ${cat.region}</h3><div>${items}</div>`;
+        div.style.marginBottom = '20px';
+        div.innerHTML = `<h3 style="margin:0 0 8px 0; font-size:1.1rem; color:var(--plum); border-bottom:1px dashed #eee; padding-bottom:5px;"><i class="fas fa-map-marker-alt"></i> ${cat.region}</h3><div>${items}</div>`;
         foodDiv.appendChild(div);
     });
 
