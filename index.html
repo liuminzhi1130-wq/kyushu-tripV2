@@ -5,25 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>春日序曲｜九州山海自駕日記 🌸</title>
     <style>
-        /* 引入活潑圓潤的字體 */
-        @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
 
         :root {
-            --plum-pink: #F48FB1;       /* 梅花粉 */
-            --plum-light: #FCE4EC;      /* 淺粉背景 */
-            --sea-blue: #4FC3F7;        /* 天草海藍 */
-            --deep-sea: #0277BD;        /* 深藍文字 */
-            --mountain-green: #AED581;  /* 阿蘇草千里綠 */
-            --text-color: #455A64;      /* 質感深灰 */
-            --card-bg: rgba(255, 255, 255, 0.95);
+            --plum: #F06292;        /* 梅花主色 */
+            --plum-light: #FCE4EC;  /* 淺粉 */
+            --ocean: #29B6F6;       /* 海洋藍 */
+            --ocean-dark: #0277BD;  /* 深海藍 */
+            --mountain: #9CCC65;    /* 阿蘇綠 */
+            --text: #37474F;
+            --glass: rgba(255, 255, 255, 0.92);
         }
 
         body {
             font-family: 'Zen Maru Gothic', sans-serif;
-            background: linear-gradient(135deg, #E0F7FA 0%, #F8BBD0 100%); /* 藍天接到梅花粉的漸層 */
+            background: linear-gradient(160deg, #E1F5FE 0%, #F3E5F5 50%, #F1F8E9 100%);
             margin: 0;
             padding: 20px;
-            color: var(--text-color);
+            color: var(--text);
             min-height: 100vh;
             background-attachment: fixed;
         }
@@ -31,328 +30,307 @@
         .container {
             max-width: 600px;
             margin: 0 auto;
-            background: var(--card-bg);
-            border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: var(--glass);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             position: relative;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.6);
+            padding-bottom: 30px;
         }
 
-        /* 🌸 Header Design */
+        /* Header */
         header {
-            background: url('https://images.unsplash.com/photo-1490750967868-58cb75069ed6?q=80&w=2574&auto=format&fit=crop') center/cover;
-            height: 180px;
+            background-image: url('https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            height: 200px;
             position: relative;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            align-items: flex-end;
+            padding: 20px;
         }
 
         header::after {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(255, 255, 255, 0.6); /* 柔和遮罩 */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.6));
         }
 
-        .header-content {
+        .header-text {
             position: relative;
             z-index: 2;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        h1 {
-            margin: 0;
-            font-size: 1.8rem;
-            color: #D81B60;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 0px rgba(255,255,255,0.8);
-        }
+        h1 { margin: 0; font-size: 1.6rem; letter-spacing: 1px; }
+        .subtitle { font-size: 0.9rem; opacity: 0.9; margin-top: 5px; font-weight: normal; }
 
-        .subtitle {
-            font-size: 0.9rem;
-            color: #01579B;
-            margin-top: 5px;
-            font-weight: bold;
-            background: rgba(255,255,255,0.7);
-            padding: 5px 15px;
-            border-radius: 20px;
-            display: inline-block;
-        }
-
-        /* 🧭 Navigation Grid */
+        /* Navigation Grid */
         .nav-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            padding: 25px;
+            padding: 20px;
         }
 
         .nav-btn {
             background: white;
-            border-radius: 20px;
-            padding: 20px;
+            padding: 18px;
+            border-radius: 16px;
             text-align: center;
-            font-size: 1.1rem;
             font-weight: bold;
+            color: var(--text);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 2px solid transparent;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             gap: 8px;
-            border: 2px solid transparent;
         }
 
         .nav-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            border-color: var(--plum-pink);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(240, 98, 146, 0.2);
+            border-color: var(--plum-light);
         }
 
-        .nav-btn i {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-            background: -webkit-linear-gradient(45deg, var(--plum-pink), var(--sea-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .nav-btn i { font-size: 1.5rem; color: var(--plum); }
 
-        /* 🎨 Section Styles */
-        .section {
-            display: none;
-            padding: 20px;
-            animation: slideIn 0.4s ease-out;
-            min-height: 50vh;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        .back-btn {
-            display: inline-block;
-            padding: 8px 20px;
-            background: linear-gradient(to right, var(--plum-pink), var(--sea-blue));
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            cursor: pointer;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(244, 143, 177, 0.4);
-            transition: 0.2s;
-        }
+        /* Sections */
+        .section { display: none; padding: 0 20px; animation: fadeIn 0.4s ease; }
+        .section.active { display: block; }
         
-        .back-btn:hover {
-            transform: scale(1.05);
-        }
-
-        h2 {
-            color: var(--deep-sea);
-            border-left: 5px solid var(--plum-pink);
-            padding-left: 15px;
-            margin-bottom: 20px;
-        }
-
-        /* ✅ Checklist */
-        .checklist-item {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 8px;
-            background: white;
-            transition: 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-        }
-
-        .checklist-item:hover {
-            background: var(--plum-light);
-        }
-
-        .checklist-item input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            margin-right: 15px;
-            accent-color: var(--plum-pink);
-            cursor: pointer;
-        }
-
-        .checklist-item.checked span {
-            text-decoration: line-through;
-            color: #aaa;
-        }
-
-        /* 🗓 Itinerary Timeline */
-        .day-card {
-            background: white;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-            border: 1px solid #f0f0f0;
-        }
-
-        .day-header {
-            background: linear-gradient(to right, #ffffff, #f0f7ff);
-            padding: 15px 20px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--deep-sea);
-            border-bottom: 1px solid #eee;
-        }
-        
-        .day-header:hover {
-            background: #f0f4ff;
-        }
-
-        .day-content {
-            display: none;
-            padding: 20px;
-            background: white;
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 15px;
-            border-left: 2px solid var(--plum-pink);
-        }
-
-        .timeline-item::before {
-            content: '🌸';
-            position: absolute;
-            left: -9px;
-            top: 0;
-            font-size: 12px;
-            background: white;
-        }
-
-        .time { font-weight: bold; color: var(--plum-pink); font-size: 0.85rem; }
-        .activity { font-size: 1rem; color: #555; }
-
-        /* 🍜 Food & Mapcodes */
-        .info-card {
-            background: white;
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .info-card h3 {
-            margin: 0 0 10px 0;
-            color: var(--deep-sea);
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-        }
-        .info-card h3 i { margin-right: 8px; color: var(--mountain-green); }
-
-        .tag {
-            display: inline-block;
-            background: var(--plum-light);
-            color: #D81B60;
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            margin-right: 5px;
-            margin-bottom: 5px;
-        }
-
-        /* 📋 Mapcode Table */
-        .map-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0 8px;
-        }
-        .map-table td {
-            background: white;
-            padding: 12px;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-        }
-        .map-table td:first-child { border-left: 1px solid #eee; border-radius: 10px 0 0 10px; font-weight: bold; color: var(--deep-sea); }
-        .map-table td:last-child { border-right: 1px solid #eee; border-radius: 0 10px 10px 0; }
-
-        .copy-btn {
-            background: var(--sea-blue);
-            color: white;
-            border: none;
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            margin-left: 5px;
-        }
-
-        /* 🎫 Reservations */
-        .res-card {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-left: 6px solid var(--mountain-green);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            position: relative;
-        }
-        .res-icon {
-            position: absolute;
-            right: 15px;
-            top: 15px;
-            font-size: 1.5rem;
-            opacity: 0.3;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 🌸 Falling Petals Animation */
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--ocean-dark);
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: inherit;
+        }
+        
+        h2 {
+            font-size: 1.4rem;
+            color: var(--plum);
+            border-bottom: 2px dashed #ddd;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        /* Itinerary Styles */
+        .day-group { margin-bottom: 25px; }
+        .day-title {
+            background: linear-gradient(to right, var(--plum), var(--plum-light));
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(240, 98, 146, 0.3);
+        }
+
+        .timeline-step {
+            display: flex;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 8px; bottom: -20px;
+            width: 2px;
+            background: #eee;
+        }
+        .timeline-step:last-child::before { display: none; }
+
+        .step-time {
+            font-size: 0.8rem;
+            color: #999;
+            width: 50px;
+            flex-shrink: 0;
+            padding-top: 3px;
+            font-weight: bold;
+        }
+
+        .step-content {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 12px;
+            flex-grow: 1;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border-left: 4px solid var(--ocean);
+            cursor: pointer;
+            transition: 0.2s;
+            position: relative;
+        }
+
+        .step-content:active { transform: scale(0.98); background: #fafafa; }
+        .step-content::after { content: '👆'; font-size: 0.8rem; position: absolute; right: 10px; top: 10px; opacity: 0.5; }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal.open { display: flex; animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-card {
+            background: white;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #eee;
+        }
+
+        .modal-body { padding: 20px; }
+        .modal-title { font-size: 1.3rem; color: var(--ocean-dark); margin: 0 0 10px 0; font-weight: bold; }
+        .modal-desc { font-size: 0.95rem; line-height: 1.6; color: #555; }
+        .close-modal {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* Mapcode Pagination */
+        .map-tabs {
+            display: flex;
+            background: #f0f0f0;
+            border-radius: 10px;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .map-tab-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-weight: bold;
+            color: #888;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        
+        .map-tab-btn.active {
+            background: white;
+            color: var(--ocean-dark);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .map-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
+        .map-table td { background: white; padding: 12px; border: 1px solid #eee; }
+        .map-table td:first-child { border-radius: 10px 0 0 10px; border-right: none; font-weight: bold; color: var(--text); }
+        .map-table td:last-child { border-radius: 0 10px 10px 0; border-left: none; text-align: right; }
+        
+        .copy-btn {
+            background: var(--plum-light);
+            color: var(--plum);
+            border: none;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Checklist */
+        .checklist-item {
+            background: white;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            border: 1px solid #f0f0f0;
+        }
+        .checklist-item input { margin-right: 15px; width: 20px; height: 20px; accent-color: var(--plum); }
+        .checklist-item.checked span { text-decoration: line-through; color: #ccc; }
+
+        /* Floating Petals */
         .petal {
             position: fixed;
-            top: -10px;
             background: #FFCDD2;
+            width: 10px; height: 10px;
             border-radius: 100% 0 100% 0;
-            opacity: 0.8;
             pointer-events: none;
-            z-index: 999;
             animation: fall linear infinite;
+            z-index: 9999;
+            opacity: 0.6;
         }
-
-        @keyframes fall {
-            to { transform: translateY(100vh) rotate(720deg); }
-        }
+        @keyframes fall { to { transform: translateY(100vh) rotate(720deg); } }
 
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
     <div class="container">
         <header>
-            <div class="header-content">
-                <h1>春日序曲｜九州山海自駕日記</h1>
-                <div class="subtitle">2026 博多・由布院・熊本・天草 🌸</div>
+            <div class="header-text">
+                <h1>春日序曲</h1>
+                <div class="subtitle">柳旻志 2026 九州山海自駕日記 🌸</div>
             </div>
         </header>
 
         <div id="home" class="section active">
             <div class="nav-grid">
-                <div class="nav-btn" onclick="showSection('packing')">
-                    <i class="fas fa-suitcase-rolling"></i> 旅行清單
-                </div>
                 <div class="nav-btn" onclick="showSection('itinerary')">
-                    <i class="fas fa-map-marked-alt"></i> 每日行程
+                    <i class="fas fa-map-marked-alt"></i> 互動行程表
+                </div>
+                <div class="nav-btn" onclick="showSection('packing')">
+                    <i class="fas fa-suitcase"></i> 旅行清單
                 </div>
                 <div class="nav-btn" onclick="showSection('food')">
                     <i class="fas fa-utensils"></i> 美食地圖
@@ -363,218 +341,189 @@
                 <div class="nav-btn" onclick="showSection('reservations')">
                     <i class="fas fa-ticket-alt"></i> 預約憑證
                 </div>
-                <div class="nav-btn" onclick="openSupermarket()">
+                <div class="nav-btn" onclick="window.open('https://www.google.com/maps/search/超市')">
                     <i class="fas fa-shopping-basket"></i> 附近超市
                 </div>
             </div>
+            <p style="text-align:center; color:#999; font-size:0.8rem; margin-top:10px;">
+                *行程表中的地點可以點擊查看照片哦！
+            </p>
         </div>
 
         <div id="packing" class="section">
-            <button class="back-btn" onclick="showSection('home')">↩ 返回</button>
-            <h2>🎒 行李檢查</h2>
+            <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
+            <h2>🎒 出發前檢查</h2>
             <div id="checklist-container"></div>
         </div>
 
         <div id="itinerary" class="section">
-            <button class="back-btn" onclick="showSection('home')">↩ 返回</button>
-            <h2>📅 自駕旅程表</h2>
-            <div id="itinerary-container"></div>
+            <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
+            <h2>📅 點擊地點看照片</h2>
+            <div id="itinerary-content"></div>
         </div>
 
         <div id="food" class="section">
-            <button class="back-btn" onclick="showSection('home')">↩ 返回</button>
-            <h2>🍱 美食口袋名單</h2>
+            <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
+            <h2>🍜 九州必吃清單</h2>
             <div id="food-container"></div>
         </div>
 
         <div id="mapcodes" class="section">
-            <button class="back-btn" onclick="showSection('home')">↩ 返回</button>
-            <h2>🚗 MapCode 導航</h2>
-            <p style="font-size:0.8rem; color:#888;">*點擊數字即可複製</p>
-            <table class="map-table">
-                <tbody id="mapcode-body"></tbody>
-            </table>
+            <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
+            <h2>🚗 自駕導航</h2>
+            
+            <div class="map-tabs">
+                <button class="map-tab-btn active" onclick="switchMapTab(1)">第一部：山林篇</button>
+                <button class="map-tab-btn" onclick="switchMapTab(2)">第二部：海洋篇</button>
+            </div>
+
+            <div id="map-page-1">
+                <p style="font-size:0.8rem; color:#666; margin-bottom:10px;">📍 從福岡取車 到 阿蘇火山口</p>
+                <table class="map-table">
+                    <tbody id="map-body-1"></tbody>
+                </table>
+            </div>
+
+            <div id="map-page-2" style="display:none;">
+                <p style="font-size:0.8rem; color:#666; margin-bottom:10px;">📍 從阿蘇赤牛 到 Outlets</p>
+                <table class="map-table">
+                    <tbody id="map-body-2"></tbody>
+                </table>
+            </div>
         </div>
 
         <div id="reservations" class="section">
-            <button class="back-btn" onclick="showSection('home')">↩ 返回</button>
-            <h2>🎫 重要預約資訊</h2>
+            <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
+            <h2>🎫 預約確認資料</h2>
             <div id="res-container"></div>
         </div>
     </div>
 
+    <div id="location-modal" class="modal" onclick="closeModal(event)">
+        <div class="modal-card">
+            <button class="close-modal" onclick="closeModal(event)">×</button>
+            <img id="modal-img" class="modal-img" src="" alt="Location">
+            <div class="modal-body">
+                <h3 id="modal-title" class="modal-title"></h3>
+                <p id="modal-desc" class="modal-desc"></p>
+                <div style="font-size:0.8rem; color:#999; margin-top:10px;">*圖片為網路示意圖，僅供參考</div>
+            </div>
+        </div>
+    </div>
+
 <script>
-    // --- Data (Same as before, preserved) ---
-    
-    const packingItems = [
-        "手機", "錢包 (日幣)", "護照 (效期內)", "台灣駕照", "駕照日文譯本", 
-        "凡士林", "充電器", "行動電源", "eSIM (已安裝?)", "保溫瓶",
-        "牙刷牙膏", "個人藥品", "雨傘/雨衣", "信用卡 (富邦J卡)"
+    // --- Data Configuration ---
+
+    const packingList = [
+        "護照 (效期內)", "台灣駕照 (正本)", "駕照日文譯本", "富邦J卡 (日本回饋)", "日幣現金", 
+        "手機 & 充電器", "行動電源", "eSIM (確認開通)", "個人藥品", "保溫瓶",
+        "牙刷牙膏", "雨具", "凡士林 (乾燥)", "舒適好走的鞋"
     ];
 
     const itineraryData = [
-        { 
-            date: "1/29 (四) Day 1", 
-            title: "抵達福岡・燒肉之夜", 
+        {
+            date: "1/29 (四) Day 1",
             steps: [
-                {t: "08:25", d: "高雄起飛 (CI138)"},
-                {t: "12:00", d: "抵達福岡機場 ✈️"},
-                {t: "下午", d: "飯店寄放行李 @ 博多祇園"},
-                {t: "下午", d: "川端通商店街 / Full Full 明太子麵包"},
-                {t: "晚餐", d: "🔥 藥院燒肉 NIKUICHI (已預約)"}
+                { t: "12:00", name: "福岡機場 (FUK)", imgKey: "Fukuoka Airport", desc: "抵達福岡！CI138 航班。出關後搭計程車或地鐵前往博多市區。" },
+                { t: "14:00", name: "川端通商店街", imgKey: "Kawabata Shopping Arcade", desc: "博多最古老的商店街，有各式小吃與伴手禮。必逛！" },
+                { t: "15:00", name: "Full Full 明太子麵包", imgKey: "Baguette", desc: "雖然本店人多，但這家明太子法棍是傳說中的美味，外酥內軟。" },
+                { t: "18:00", name: "藥院燒肉 NIKUICHI", imgKey: "Yakiniku", desc: "【已預約】CP值超高的黑毛和牛燒肉，肉質鮮嫩，記得出示預約信。" },
+                { t: "20:00", name: "西鐵 Croom 博多祇園", imgKey: "Hotel Room", desc: "【住宿】位於櫛田神社前，交通方便，有大浴場可以泡湯。" }
             ]
         },
-        { 
-            date: "1/30 (五) Day 2", 
-            title: "海之中道・運河城", 
+        {
+            date: "1/30 (五) Day 2",
             steps: [
-                {t: "上午", d: "博多埠頭搭船 (10:35 / 12:35)"},
-                {t: "下午", d: "🐬 海之中道海濱公園 (單車漫遊)"},
-                {t: "晚上", d: "博多運河城 Canal City (拉麵/牛舌)"}
+                { t: "10:35", name: "博多埠頭搭船", imgKey: "Ferry", desc: "搭乘渡輪前往海之中道，享受博多灣的海風，船程約20分鐘。" },
+                { t: "11:00", name: "海之中道海濱公園", imgKey: "Uminonakamichi Seaside Park", desc: "租腳踏車漫遊！有水豚君、袋鼠，還有一望無際的花海與草地。" },
+                { t: "18:00", name: "博多運河城", imgKey: "Canal City Hakata", desc: "大型購物中心，每半小時有水舞秀。晚餐推薦拉麵競技場或牛舌。" }
             ]
         },
-        { 
-            date: "1/31 (六) Day 3", 
-            title: "租車自駕・草莓與溫泉", 
+        {
+            date: "1/31 (六) Day 3",
             steps: [
-                {t: "09:00", d: "🚗 取車 (Toyota 博多站東入口)"},
-                {t: "11:30", d: "🍓 採草莓 (ULUU Gardens SAGA)"},
-                {t: "下午", d: "由布院散策 (湯之坪/童話村)"},
-                {t: "19:00前", d: "🏨 湯布院山水館 Check-in (晚餐)"}
+                { t: "09:00", name: "Toyota Rent a Car", imgKey: "Car Rental", desc: "【取車】博多站東入口店。方案含雪胎與ETC。記得檢查車況。" },
+                { t: "11:30", name: "ULUU 草莓吃到飽", imgKey: "Strawberry Picking", desc: "【已預約】佐賀的夢幻草莓園，多品種草莓現採現吃，煉乳無限加！" },
+                { t: "15:00", name: "由布院 湯之坪街道", imgKey: "Yufuin", desc: "童話般的街道，有史努比茶屋、B-Speak蛋糕捲、豐後牛可樂餅。" },
+                { t: "18:30", name: "湯布院山水館", imgKey: "Onsen Ryokan", desc: "【住宿】19:00前必須Check-in！享受露天溫泉與會席料理，還能看見由布岳。" }
             ]
         },
-        { 
-            date: "2/1 (日) Day 4", 
-            title: "阿蘇火山・草千里", 
+        {
+            date: "2/1 (日) Day 4",
             steps: [
-                {t: "早晨", d: "金鱗湖晨霧"},
-                {t: "上午", d: "🌋 阿蘇火山 (草千里/米塚/火山口)"},
-                {t: "午餐", d: "阿蘇赤牛丼 (Imakin 或 休息站)"},
-                {t: "晚上", d: "移動至熊本市區 (Dormy Inn)"}
+                { t: "08:00", name: "金鱗湖", imgKey: "Kinrin Lake", desc: "清晨必來！湖面飄著夢幻的晨霧，溫泉水與冷空氣交織的奇景。" },
+                { t: "11:00", name: "阿蘇草千里", imgKey: "Aso Kusasenri", desc: "廣闊的草原與馬匹，背景是冒煙的阿蘇火山，風景壯麗。" },
+                { t: "13:00", name: "阿蘇赤牛丼", imgKey: "Beef Bowl", desc: "午餐推薦 Imakin 食堂或休息站，半熟紅牛肉鋪滿整碗飯！" },
+                { t: "19:00", name: "Dormy Inn Kumamoto", imgKey: "Hot Spring Hotel", desc: "【住宿】位於熊本市區辛島町，頂樓有天然溫泉，宵夜有免費拉麵。" }
             ]
         },
-        { 
-            date: "2/2 (一) Day 5", 
-            title: "天草海豚・熊本城下町", 
+        {
+            date: "2/2 (一) Day 5",
             steps: [
-                {t: "上午", d: "開車前往天草 (約2hr)"},
-                {t: "11:30", d: "🐬 天草看海豚 (天草海鮮蔵)"},
-                {t: "午餐", d: "海鮮 BBQ"},
-                {t: "晚上", d: "熊本 上通/下通商店街"}
+                { t: "11:30", name: "天草海鮮蔵 (海豚)", imgKey: "Dolphin Watching", desc: "【已預約】搭船出海看野生海豚，機率高達98%！午餐享用海鮮BBQ。" },
+                { t: "18:00", name: "熊本 下通商店街", imgKey: "Shopping Street", desc: "熊本最熱鬧的逛街聖地，藥妝、服飾、餐廳應有盡有。" }
             ]
         },
-        { 
-            date: "2/3 (二) Day 6", 
-            title: "熊本城・太宰府天滿宮", 
+        {
+            date: "2/3 (二) Day 6",
             steps: [
-                {t: "上午", d: "🏯 熊本城 / 櫻之馬場 城彩苑"},
-                {t: "下午", d: "⛩️ 太宰府天滿宮 (梅枝餅)"},
-                {t: "晚上", d: "天神地下街 / 入住三井花園中洲"}
+                { t: "10:00", name: "熊本城 & 城彩苑", imgKey: "Kumamoto Castle", desc: "日本三大名城之一，黑色天守閣非常帥氣。城彩苑有很多熊本特色小吃。" },
+                { t: "15:00", name: "太宰府天滿宮", imgKey: "Dazaifu Tenmangu", desc: "學問之神，參道上有隈研吾設計的星巴克，必吃現烤梅枝餅。" },
+                { t: "19:00", name: "三井花園飯店中洲", imgKey: "Modern Hotel", desc: "【住宿】最後三晚的家，質感設計，交通方便，近中洲屋台。" }
             ]
         },
-        { 
-            date: "2/4 (三) Day 7", 
-            title: "佐賀呼子・糸島海景", 
+        {
+            date: "2/4 (三) Day 7",
             steps: [
-                {t: "上午", d: "🦑 佐賀 呼子朝市 (活花枝刺身)"},
-                {t: "下午", d: "唐津城 & 糸島 (夫婦岩/白色鳥居)"}
+                { t: "09:00", name: "呼子朝市", imgKey: "Squid Sashimi", desc: "日本三大朝市之一，必吃「透明活花枝刺身」，口感脆甜！" },
+                { t: "14:00", name: "糸島 夫婦岩", imgKey: "Itoshima Torii", desc: "海中白色鳥居與夫婦岩，福岡最紅的網美打卡點，海景無敵。" }
             ]
         },
-        { 
-            date: "2/5 (四) Day 8", 
-            title: "Outlet 採購・還車", 
+        {
+            date: "2/5 (四) Day 8",
             steps: [
-                {t: "全日", d: "🛍️ THE OUTLETS KITAKYUSHU"},
-                {t: "18:00前", d: "🚗 還車 (Toyota 博多站東入口)"}
-            ]
-        },
-        { 
-            date: "2/6 (五) Day 9", 
-            title: "再見九州", 
-            steps: [
-                {t: "上午", d: "搭計程車前往福岡機場"},
-                {t: "11:40", d: "飛機起飛 (CI139)"},
-                {t: "13:45", d: "抵達高雄"}
+                { t: "All Day", name: "THE OUTLETS", imgKey: "Shopping Mall", desc: "北九州最大Outlet，各式品牌瘋狂採購，為旅程畫下完美句點。" },
+                { t: "18:00", name: "還車 (Toyota)", imgKey: "Car Return", desc: "回到博多站東入口還車，記得加滿油並保留收據。" }
             ]
         }
     ];
 
-    const foodData = {
-        "博多": ["Full Full 明太子麵包", "藥院燒肉 NIKUICHI", "il FORNO del MIGNON 可頌", "博多一双 拉麵", "大地烏龍麵"],
-        "天神": ["I'm donut?", "Shin Shin 拉麵", "葫蘆壽司", "天婦羅 Hirao"],
-        "中洲": ["中洲屋台街", "一蘭拉麵 總本店", "川端善哉廣場"],
-        "由布院": ["B-Speak 蛋糕捲", "史努比茶屋", "豐後牛可樂餅"],
-        "熊本": ["黑亭拉麵", "勝烈亭 豬排", "Imakin食堂 赤牛丼", "蜂樂饅頭", "菅乃屋 馬肉"],
-        "阿蘇": ["阿蘇赤牛丼", "阿蘇休息站布丁"],
-        "太宰府": ["梅枝餅", "一蘭拉麵 (合格碗)"]
-    };
+    const foodData = [
+        { region: "博多", items: ["Full Full 明太子麵包", "藥院燒肉 NIKUICHI", "一雙拉麵 (泡系豚骨)"] },
+        { region: "天神", items: ["I'm donut? (生甜甜圈)", "Shin Shin 拉麵", "葫蘆壽司"] },
+        { region: "由布院", items: ["B-Speak 蛋糕捲", "豐後牛可樂餅", "釜飯心"] },
+        { region: "熊本", items: ["黑亭拉麵 (焦蒜油)", "勝烈亭炸豬排", "蜂樂饅頭"] },
+        { region: "阿蘇", items: ["Imakin 赤牛丼", "阿蘇牛奶布丁"] },
+        { region: "佐賀/糸島", items: ["呼子活花枝刺身", "糸島布丁", "海景咖啡廳"] }
+    ];
 
     const mapcodeData = [
-        {n: "Toyota Rent a Car (取/還)", c: "13 320 18871", p: "092-472-8388"},
-        {n: "ULUU 草莓園", c: "37 491 66213", p: "080-8956-1030"},
-        {n: "湯布院山水館", c: "269 328 633*45", p: "0977-84-2101"},
-        {n: "金鱗湖停車場", c: "269 359 583*03", p: "0977-84-3111"},
-        {n: "草千里 (阿蘇)", c: "256 456 77085", p: "0967-34-0131"},
-        {n: "阿蘇中岳火山口", c: "256 458 60030", p: "0967-34-1600"},
-        {n: "Imakin 食堂", c: "256 685 02441", p: "0967-32-0031"},
-        {n: "Dormy Inn Kumamoto", c: "29 459 468*88", p: "096-311-5489"},
-        {n: "天草海鮮蔵", c: "474 084 15844", p: "0969-52-7707"},
-        {n: "熊本城", c: "29 459 34258", p: "096-352-5900"},
-        {n: "太宰府天滿宮", c: "55 364 128*71", p: "092-922-8225"},
-        {n: "呼子朝市", c: "182 722 104*50", p: "0955-82-3426"},
-        {n: "糸島 夫婦岩", c: "224 788 206*25", p: "092-327-0317"},
-        {n: "THE OUTLETS KITAKYUSHU", c: "16 427 590*78", p: "093-663-7251"}
+        { n: "Toyota Rent a Car (博多)", c: "13 320 188*71", p: "092-472-8388" },
+        { n: "ULUU 草莓園 (佐賀)", c: "37 491 662*13", p: "080-8956-1030" },
+        { n: "湯布院山水館", c: "269 328 633*45", p: "0977-84-2101" },
+        { n: "金鱗湖停車場", c: "269 359 583*03", p: "0977-84-3111" },
+        { n: "阿蘇草千里", c: "256 456 770*85", p: "0967-34-0131" },
+        { n: "阿蘇中岳火山口", c: "256 458 600*30", p: "0967-34-1600" }, // 界線
+        { n: "Imakin 食堂 (赤牛丼)", c: "256 685 024*41", p: "0967-32-0031" },
+        { n: "Dormy Inn 熊本", c: "29 459 468*88", p: "096-311-5489" },
+        { n: "天草海鮮蔵 (海豚)", c: "474 084 158*44", p: "0969-52-7707" },
+        { n: "熊本城 (停車場)", c: "29 459 342*58", p: "096-352-5900" },
+        { n: "太宰府天滿宮", c: "55 364 128*71", p: "092-922-8225" },
+        { n: "佐賀 呼子朝市", c: "182 722 104*50", p: "0955-82-3426" },
+        { n: "糸島 夫婦岩", c: "224 788 206*25", p: "092-327-0317" },
+        { n: "THE OUTLETS 北九州", c: "16 427 590*78", p: "093-663-7251" }
     ];
 
     const reservationData = [
-        {
-            title: "機票 (華航 CI138/CI139)",
-            details: "1/29 08:25 KHH -> 12:00 FUK<br>2/6 11:40 FUK -> 13:45 KHH<br>旅客: Liu Minzhi",
-            icon: "fa-plane"
-        },
-        {
-            title: "租車 (Toyota Rent a Car)",
-            details: "1/31 09:00 - 2/5 18:00<br>地點: 博多站東入口<br>方案: W1禁煙, <b>含雪胎 & ETC</b>",
-            icon: "fa-car"
-        },
-        {
-            title: "ULUU 草莓吃到飽",
-            details: "1/31 (六) 11:30<br>地點: UluuGardensSAGA (佐賀)<br>3大1小, ¥7,700 (現場付)",
-            icon: "fa-utensils"
-        },
-        {
-            title: "藥院燒肉 NIKUICHI",
-            details: "1/29 (Day 1 晚餐)<br>狀態: 已預約 (請出示確認信)",
-            icon: "fa-fire"
-        },
-        {
-            title: "天草海鮮蔵 (海豚)",
-            details: "2/2 (一) 11:30 集合<br>內容: 觀賞海豚 + 海鮮BBQ",
-            icon: "fa-anchor"
-        },
-        {
-            title: "西鐵 Croom 博多祇園",
-            details: "1/29 - 1/31 (2晚)<br>單臥室公寓",
-            icon: "fa-bed"
-        },
-        {
-            title: "湯布院山水館",
-            details: "1/31 - 2/1 (1晚)<br><b>19:00前 Check-in</b>",
-            icon: "fa-hot-tub"
-        },
-        {
-            title: "Dormy Inn Kumamoto",
-            details: "2/1 - 2/3 (2晚)<br>地點: 熊本 辛島町",
-            icon: "fa-bed"
-        },
-        {
-            title: "三井花園福岡中洲",
-            details: "2/3 - 2/6 (3晚)",
-            icon: "fa-bed"
-        }
+        { t: "機票 (CI138/139)", d: "1/29 去 08:25 - 12:00<br>2/6 回 11:40 - 13:45" },
+        { t: "租車 (Toyota)", d: "1/31 09:00 - 2/5 18:00<br>博多站東入口 (含雪胎/ETC)" },
+        { t: "草莓吃到飽 (ULUU)", d: "1/31 11:30<br>佐賀 ULUU Gardens (現場付)" },
+        { t: "藥院燒肉 NIKUICHI", d: "1/29 晚餐 (預約確認信)" },
+        { t: "天草海豚 (海鮮蔵)", d: "2/2 11:30 集合 (賞豚+BBQ)" },
+        { t: "湯布院山水館", d: "1/31 入住 (19:00前 Check-in)" }
     ];
 
-    // --- Logic ---
+    // --- Logic Implementation ---
 
     function showSection(id) {
         document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
@@ -582,124 +531,134 @@
         window.scrollTo(0, 0);
     }
 
-    // Packing List
-    const checklistContainer = document.getElementById('checklist-container');
-    packingItems.forEach((item, index) => {
+    // 1. Checklist
+    const checklistDiv = document.getElementById('checklist-container');
+    packingList.forEach((item, idx) => {
         const div = document.createElement('div');
         div.className = 'checklist-item';
-        const checked = localStorage.getItem('pack_v2_' + index) === 'true';
-        if(checked) div.classList.add('checked');
+        const isChecked = localStorage.getItem(`pack_${idx}`) === 'true';
+        if(isChecked) div.classList.add('checked');
         
         div.innerHTML = `
-            <input type="checkbox" id="pack_${index}" ${checked ? 'checked' : ''} onchange="toggleCheck(this, ${index})">
+            <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleCheck(this, ${idx})">
             <span>${item}</span>
         `;
-        checklistContainer.appendChild(div);
+        checklistDiv.appendChild(div);
     });
 
-    function toggleCheck(checkbox, index) {
-        localStorage.setItem('pack_v2_' + index, checkbox.checked);
-        checkbox.parentElement.classList.toggle('checked');
+    function toggleCheck(el, idx) {
+        el.parentElement.classList.toggle('checked');
+        localStorage.setItem(`pack_${idx}`, el.checked);
     }
 
-    // Itinerary
-    const itineraryContainer = document.getElementById('itinerary-container');
-    itineraryData.forEach((day, idx) => {
-        const card = document.createElement('div');
-        card.className = 'day-card';
-        let stepsHtml = day.steps.map(s => `
-            <div class="timeline-item">
-                <div class="time">${s.t}</div>
-                <div class="activity">${s.d}</div>
+    // 2. Itinerary with Clickable Modal
+    const itinDiv = document.getElementById('itinerary-content');
+    itineraryData.forEach(day => {
+        const group = document.createElement('div');
+        group.className = 'day-group';
+        
+        const stepsHtml = day.steps.map(s => `
+            <div class="timeline-step">
+                <div class="step-time">${s.t}</div>
+                <div class="step-content" onclick="openModal('${s.name}', '${s.imgKey}', '${s.desc}')">
+                    <div style="font-weight:bold; color:var(--text)">${s.name}</div>
+                    <div style="font-size:0.85rem; color:#666; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                        ${s.desc}
+                    </div>
+                </div>
             </div>
         `).join('');
 
-        card.innerHTML = `
-            <div class="day-header" onclick="toggleDay(this)">
-                <span>${day.date}</span>
-                <span style="font-size:0.8rem; color:#888;">${day.title} ▼</span>
-            </div>
-            <div class="day-content" style="display: ${idx === 0 ? 'block' : 'none'}">
-                ${stepsHtml}
-            </div>
-        `;
-        itineraryContainer.appendChild(card);
+        group.innerHTML = `<div class="day-title">${day.date}</div>${stepsHtml}`;
+        itinDiv.appendChild(group);
     });
 
-    function toggleDay(header) {
-        const content = header.nextElementSibling;
-        const isOpen = content.style.display === 'block';
-        
-        document.querySelectorAll('.day-content').forEach(c => c.style.display = 'none');
-        
-        if (!isOpen) {
-            content.style.display = 'block';
+    // Modal Logic
+    const modal = document.getElementById('location-modal');
+    function openModal(title, keyword, desc) {
+        document.getElementById('modal-title').innerText = title;
+        document.getElementById('modal-desc').innerText = desc;
+        // Use Unsplash Source for illustrative images
+        document.getElementById('modal-img').src = `https://source.unsplash.com/600x400/?${keyword},kyushu,japan`; 
+        modal.classList.add('open');
+    }
+    
+    function closeModal(e) {
+        if(e.target === modal || e.target.classList.contains('close-modal')) {
+            modal.classList.remove('open');
         }
     }
 
-    // Food
-    const foodContainer = document.getElementById('food-container');
-    for (const [region, shops] of Object.entries(foodData)) {
+    // 3. Food
+    const foodDiv = document.getElementById('food-container');
+    foodData.forEach(cat => {
+        const items = cat.items.map(i => `<span style="background:white; padding:5px 10px; border-radius:15px; font-size:0.9rem; margin:0 5px 5px 0; display:inline-block; border:1px solid #eee;">${i}</span>`).join('');
         const div = document.createElement('div');
-        div.className = 'info-card';
-        const tags = shops.map(shop => `<span class="tag">${shop}</span>`).join('');
-        div.innerHTML = `<h3><i class="fas fa-map-marker-alt"></i> ${region}</h3><div>${tags}</div>`;
-        foodContainer.appendChild(div);
-    }
-
-    // Mapcode
-    const mapBody = document.getElementById('mapcode-body');
-    mapcodeData.forEach(item => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td>${item.n}</td>
-            <td>
-                <div style="margin-bottom:4px;">${item.c} <button class="copy-btn" onclick="copyText('${item.c}')"><i class="far fa-copy"></i></button></div>
-                <div style="font-size:0.85rem; color:#666;">📞 ${item.p} <button class="copy-btn" onclick="copyText('${item.p}')"><i class="far fa-copy"></i></button></div>
-            </td>
-        `;
-        mapBody.appendChild(tr);
+        div.style.marginBottom = '15px';
+        div.innerHTML = `<h3 style="margin:0 0 5px 0; font-size:1rem; color:var(--plum);"><i class="fas fa-map-marker-alt"></i> ${cat.region}</h3><div>${items}</div>`;
+        foodDiv.appendChild(div);
     });
 
-    function copyText(text) {
-        navigator.clipboard.writeText(text).then(() => {
-            alert('已複製：' + text);
+    // 4. Mapcodes (Split Logic)
+    const splitIndex = mapcodeData.findIndex(item => item.n.includes("阿蘇中岳火山口"));
+    const mapPart1 = mapcodeData.slice(0, splitIndex + 1); // Up to Aso
+    const mapPart2 = mapcodeData.slice(splitIndex + 1);    // After Aso
+
+    function renderMapRows(data, containerId) {
+        const tbody = document.getElementById(containerId);
+        data.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${item.n}</td>
+                <td>
+                    <div style="color:var(--ocean-dark); font-weight:bold; font-family:monospace; font-size:1.1rem;">
+                        ${item.c} <button class="copy-btn" onclick="copy('${item.c}')">複製</button>
+                    </div>
+                    <div style="font-size:0.85rem; color:#666; margin-top:4px;">
+                        📞 ${item.p} <button class="copy-btn" onclick="copy('${item.p}')">複製</button>
+                    </div>
+                </td>
+            `;
+            tbody.appendChild(tr);
         });
     }
 
-    // Reservations
-    const resContainer = document.getElementById('res-container');
+    renderMapRows(mapPart1, 'map-body-1');
+    renderMapRows(mapPart2, 'map-body-2');
+
+    function switchMapTab(page) {
+        document.querySelectorAll('.map-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.map-tab-btn')[page-1].classList.add('active');
+        
+        document.getElementById('map-page-1').style.display = page === 1 ? 'block' : 'none';
+        document.getElementById('map-page-2').style.display = page === 2 ? 'block' : 'none';
+    }
+
+    function copy(txt) {
+        navigator.clipboard.writeText(txt).then(() => alert('已複製：' + txt));
+    }
+
+    // 5. Reservations
+    const resDiv = document.getElementById('res-container');
     reservationData.forEach(res => {
-        const card = document.createElement('div');
-        card.className = 'res-card';
-        card.innerHTML = `
-            <i class="fas ${res.icon} res-icon"></i>
-            <div style="font-weight:bold; font-size:1.1rem; margin-bottom:5px; color:#0277BD;">${res.title}</div>
-            <div style="font-size:0.95rem; line-height:1.6; color:#555;">${res.details}</div>
-        `;
-        resContainer.appendChild(card);
+        const div = document.createElement('div');
+        div.className = 'step-content'; // Reuse style
+        div.style.marginBottom = '10px';
+        div.style.borderLeftColor = 'var(--mountain)';
+        div.innerHTML = `<div style="font-weight:bold; color:var(--ocean-dark)">${res.t}</div><div style="font-size:0.9rem; color:#555;">${res.d}</div>`;
+        resDiv.appendChild(div);
     });
 
-    function openSupermarket() {
-        if(confirm("開啟 Google Maps 搜尋附近超市？")) {
-            window.open("https://www.google.com/maps/search/supermarket/");
-        }
+    // Petals Effect
+    function createPetal() {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.animationDuration = Math.random() * 3 + 4 + 's';
+        document.body.appendChild(petal);
+        setTimeout(() => petal.remove(), 7000);
     }
-
-    // Creating falling petals
-    function createPetals() {
-        const petalCount = 8;
-        for (let i = 0; i < petalCount; i++) {
-            const petal = document.createElement('div');
-            petal.className = 'petal';
-            petal.style.left = Math.random() * 100 + 'vw';
-            petal.style.animationDuration = Math.random() * 5 + 5 + 's';
-            petal.style.width = Math.random() * 10 + 10 + 'px';
-            petal.style.height = petal.style.width;
-            document.body.appendChild(petal);
-        }
-    }
-    createPetals();
+    setInterval(createPetal, 500);
 
 </script>
 </body>
