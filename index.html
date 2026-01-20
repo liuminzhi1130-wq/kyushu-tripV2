@@ -154,6 +154,69 @@
             margin-top: 0;
         }
 
+        /* Calculator Styles */
+        .calc-card {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .calc-input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .calc-label {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+            font-weight: bold;
+        }
+        
+        .calc-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-family: inherit;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.2s;
+        }
+        
+        .calc-input:focus {
+            border-color: var(--ocean);
+        }
+        
+        .rate-display {
+            font-size: 0.9rem;
+            color: var(--ocean-dark);
+            background: #e1f5fe;
+            padding: 5px 10px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .calc-result {
+            background: linear-gradient(135deg, var(--plum-light), #fff0f5);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 10px;
+            border: 2px solid var(--plum);
+        }
+        
+        .twd-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #D81B60;
+            margin: 10px 0;
+        }
+
         /* Food Link Styles */
         .food-tag {
             background: white;
@@ -247,11 +310,9 @@
         .map-tab-btn { flex: 1; padding: 10px; border: none; background: transparent; cursor: pointer; font-weight: bold; color: #888; border-radius: 8px; transition: 0.3s; font-family: inherit; }
         .map-tab-btn.active { background: white; color: var(--ocean-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         
-        /* Map Table */
         .map-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
         .map-table td { background: white; padding: 12px; border: 1px solid #eee; }
         
-        /* Map Link Style */
         .map-link {
             text-decoration: none;
             color: var(--ocean-dark);
@@ -304,6 +365,9 @@
                 <div class="nav-btn" onclick="showSection('reservations')">
                     <i class="fas fa-ticket-alt"></i> 預約憑證
                 </div>
+                <div class="nav-btn" onclick="showSection('calculator')">
+                    <i class="fas fa-calculator"></i> 匯率計算
+                </div>
                 <div class="nav-btn" onclick="window.open('https://www.google.com/maps/search/supermarket/')">
                     <i class="fas fa-shopping-basket"></i> 附近超市
                 </div>
@@ -317,6 +381,29 @@
             <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
             <h2>🎒 出發前檢查</h2>
             <div id="checklist-container"></div>
+        </div>
+
+        <div id="calculator" class="section">
+            <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
+            <h2>💴 購物計算機</h2>
+            <div class="calc-card">
+                <div style="margin-bottom:20px; text-align:left;">
+                    <label class="calc-label">目前匯率 (可手動修改)</label>
+                    <input type="number" id="rate-input" class="calc-input" value="0.22" step="0.001" style="width:100px; padding:8px;"> 
+                    <span style="font-size:0.9rem; color:#888;">(1日幣 = ?台幣)</span>
+                </div>
+                
+                <div class="calc-input-group">
+                    <label class="calc-label">日幣金額 (¥)</label>
+                    <input type="number" id="jpy-input" class="calc-input" placeholder="輸入價格...">
+                </div>
+
+                <div class="calc-result">
+                    <div style="font-size:0.9rem; color:#666;">約合台幣 (TWD)</div>
+                    <div class="twd-amount" id="twd-output">0</div>
+                </div>
+                <p style="font-size:0.8rem; color:#999; margin-top:15px;">*匯率僅供參考，實際請依刷卡/換匯為準</p>
+            </div>
         </div>
 
         <div id="itinerary" class="section">
@@ -444,7 +531,7 @@
     // --- Updated Packing List (Added Power Bank) ---
     const packingList = ["護照 (效期內)", "台灣駕照 (正本)", "駕照日文譯本", "富邦J卡", "日幣現金", "手機 & 充電器", "行動電源", "eSIM", "保溫瓶", "牙刷牙膏", "雨具"];
     
-    // --- Food Data (Collapsible & Google Maps Link) ---
+    // --- Food Data ---
     const foodData = [
         { 
             region: "博多", 
@@ -542,7 +629,34 @@
         window.scrollTo(0, 0);
     }
 
-    // Itinerary Rendering (Accordion)
+    // Calculator Logic
+    const jpyInput = document.getElementById('jpy-input');
+    const rateInput = document.getElementById('rate-input');
+    const twdOutput = document.getElementById('twd-output');
+
+    function calculate() {
+        const jpy = parseFloat(jpyInput.value) || 0;
+        const rate = parseFloat(rateInput.value) || 0;
+        const twd = Math.round(jpy * rate);
+        twdOutput.innerText = twd.toLocaleString();
+    }
+
+    jpyInput.addEventListener('input', calculate);
+    rateInput.addEventListener('input', calculate);
+
+    // Auto-fetch Exchange Rate (API)
+    fetch('https://api.exchangerate-api.com/v4/latest/JPY')
+        .then(response => response.json())
+        .then(data => {
+            if(data && data.rates && data.rates.TWD) {
+                rateInput.value = data.rates.TWD;
+                calculate(); // Update if user already typed something
+            }
+        })
+        .catch(err => console.log('Rate fetch failed, using default'));
+
+
+    // Itinerary Rendering
     const itinDiv = document.getElementById('itinerary-content');
     itineraryData.forEach((day, index) => {
         const btn = document.createElement('button');
@@ -569,7 +683,7 @@
         itinDiv.appendChild(details);
     });
 
-    // Food Rendering (Accordion)
+    // Food Rendering
     const foodDiv = document.getElementById('food-container');
     foodData.forEach((cat, index) => {
         const btn = document.createElement('button');
