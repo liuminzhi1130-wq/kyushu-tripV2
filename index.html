@@ -117,17 +117,17 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- Updated Back Button Style (Added Frame) --- */
+        /* --- Back Button Style --- */
         .back-btn {
             background: white;
-            border: 2px solid var(--ocean-dark); /* 藍色框框 */
+            border: 2px solid var(--ocean-dark);
             color: var(--ocean-dark);
             font-size: 0.95rem;
             font-weight: bold;
             cursor: pointer;
             margin: 15px 0;
             padding: 10px 20px;
-            border-radius: 30px; /* 圓潤外型 */
+            border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -135,7 +135,7 @@
             font-family: inherit;
             box-shadow: 0 3px 6px rgba(0,0,0,0.1);
             transition: all 0.2s;
-            width: 100%; /* 寬度滿版更好按 */
+            width: 100%;
             box-sizing: border-box;
         }
 
@@ -246,9 +246,23 @@
         .map-tabs { display: flex; background: #f0f0f0; border-radius: 10px; padding: 5px; margin-bottom: 20px; }
         .map-tab-btn { flex: 1; padding: 10px; border: none; background: transparent; cursor: pointer; font-weight: bold; color: #888; border-radius: 8px; transition: 0.3s; font-family: inherit; }
         .map-tab-btn.active { background: white; color: var(--ocean-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        
+        /* Map Table */
         .map-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
         .map-table td { background: white; padding: 12px; border: 1px solid #eee; }
-        .map-table td:first-child { border-radius: 10px 0 0 10px; border-right: none; font-weight: bold; color: var(--text); }
+        
+        /* Map Link Style */
+        .map-link {
+            text-decoration: none;
+            color: var(--ocean-dark);
+            font-weight: bold;
+            display: block;
+            transition: color 0.2s;
+        }
+        .map-link:hover { color: var(--plum); }
+        .map-link i { margin-left: 5px; font-size: 0.8rem; color: #aaa; }
+
+        .map-table td:first-child { border-radius: 10px 0 0 10px; border-right: none; }
         .map-table td:last-child { border-radius: 0 10px 10px 0; border-left: none; text-align: right; }
         .copy-btn { background: var(--plum-light); color: var(--plum); border: none; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; cursor: pointer; }
 
@@ -290,7 +304,7 @@
                 <div class="nav-btn" onclick="showSection('reservations')">
                     <i class="fas fa-ticket-alt"></i> 預約憑證
                 </div>
-                <div class="nav-btn" onclick="window.open('https://www.google.com/maps/search/超市')">
+                <div class="nav-btn" onclick="window.open('https://www.google.com/maps/search/supermarket/')">
                     <i class="fas fa-shopping-basket"></i> 附近超市
                 </div>
             </div>
@@ -319,7 +333,7 @@
 
         <div id="mapcodes" class="section">
             <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
-            <h2>🚗 自駕導航</h2>
+            <h2>🚗 點擊地點導航</h2>
             <div class="map-tabs">
                 <button class="map-tab-btn active" onclick="switchMapTab(1)">第一部：山林篇</button>
                 <button class="map-tab-btn" onclick="switchMapTab(2)">第二部：海洋篇</button>
@@ -494,6 +508,7 @@
         }
     ];
     
+    // --- Mapcode Data ---
     const mapcodeData = [
         { n: "Toyota Rent a Car", c: "13 320 188*71", p: "092-472-8388" },
         { n: "ULUU 草莓園", c: "37 491 662*13", p: "080-8956-1030" },
@@ -627,7 +642,7 @@
         localStorage.setItem(`pack_${idx}`, el.checked);
     }
 
-    // Render Mapcodes
+    // Render Mapcodes with Links
     const splitIndex = mapcodeData.findIndex(item => item.n.includes("阿蘇中岳火山口"));
     const mapPart1 = mapcodeData.slice(0, splitIndex + 1);
     const mapPart2 = mapcodeData.slice(splitIndex + 1);
@@ -636,7 +651,24 @@
         const tbody = document.getElementById(containerId);
         data.forEach(item => {
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td>${item.n}</td><td><div style="color:var(--ocean-dark); font-weight:bold; font-family:monospace; font-size:1.1rem;">${item.c} <button class="copy-btn" onclick="copy('${item.c}')">複製</button></div><div style="font-size:0.85rem; color:#666; margin-top:4px;">📞 ${item.p} <button class="copy-btn" onclick="copy('${item.p}')">複製</button></div></td>`;
+            // Create Google Maps Link
+            const query = encodeURIComponent(item.n);
+            const link = `https://www.google.com/maps/search/?api=1&query=${query}`;
+            
+            tr.innerHTML = `
+                <td>
+                    <a href="${link}" target="_blank" class="map-link">
+                        ${item.n} <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </td>
+                <td>
+                    <div style="color:var(--ocean-dark); font-weight:bold; font-family:monospace; font-size:1.1rem;">
+                        ${item.c} <button class="copy-btn" onclick="copy('${item.c}')">複製</button>
+                    </div>
+                    <div style="font-size:0.85rem; color:#666; margin-top:4px;">
+                        📞 ${item.p} <button class="copy-btn" onclick="copy('${item.p}')">複製</button>
+                    </div>
+                </td>`;
             tbody.appendChild(tr);
         });
     }
