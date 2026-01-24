@@ -154,6 +154,54 @@
             margin-top: 0;
         }
 
+        /* Souvenir Card Styles */
+        .parking-card {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border: 2px solid #ffb74d;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .parking-title { font-weight: bold; color: #e65100; margin-bottom: 5px; font-size: 1.1rem; }
+        .parking-info { font-size: 0.9rem; color: #5d4037; line-height: 1.6; }
+
+        .souvenir-category {
+            margin-top: 25px;
+            margin-bottom: 10px;
+            color: var(--ocean-dark);
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .souvenir-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            border-left: 5px solid var(--plum);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: 0.2s;
+            position: relative;
+        }
+
+        .souvenir-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+            background: #fffcfd;
+        }
+
+        .souvenir-name { font-weight: bold; font-size: 1.05rem; color: #333; margin-bottom: 4px; }
+        .souvenir-price { color: #D81B60; font-weight: bold; font-size: 0.9rem; margin-left: 8px; }
+        .souvenir-loc { font-size: 0.85rem; color: #666; margin-bottom: 2px; }
+        .souvenir-note { font-size: 0.8rem; color: #888; font-style: italic; }
+        .souvenir-item::after { content: '\f3c5'; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--plum-light); font-size: 1.2rem; }
+
+
         /* Calculator Styles */
         .calc-card {
             background: white;
@@ -163,45 +211,11 @@
             text-align: center;
         }
         
-        .calc-input-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
+        .calc-input-group { margin-bottom: 20px; text-align: left; }
+        .calc-label { font-size: 0.9rem; color: #888; margin-bottom: 5px; display: block; font-weight: bold; }
+        .calc-input { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 12px; font-size: 1.2rem; font-family: inherit; box-sizing: border-box; outline: none; transition: 0.2s; }
+        .calc-input:focus { border-color: var(--ocean); }
         
-        .calc-label {
-            font-size: 0.9rem;
-            color: #888;
-            margin-bottom: 5px;
-            display: block;
-            font-weight: bold;
-        }
-        
-        .calc-input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #eee;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            font-family: inherit;
-            box-sizing: border-box;
-            outline: none;
-            transition: 0.2s;
-        }
-        
-        .calc-input:focus {
-            border-color: var(--ocean);
-        }
-        
-        .rate-display {
-            font-size: 0.9rem;
-            color: var(--ocean-dark);
-            background: #e1f5fe;
-            padding: 5px 10px;
-            border-radius: 10px;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
         .calc-result {
             background: linear-gradient(135deg, var(--plum-light), #fff0f5);
             padding: 20px;
@@ -209,13 +223,7 @@
             margin-top: 10px;
             border: 2px solid var(--plum);
         }
-        
-        .twd-amount {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #D81B60;
-            margin: 10px 0;
-        }
+        .twd-amount { font-size: 2.5rem; font-weight: 800; color: #D81B60; margin: 10px 0; }
 
         /* Food Link Styles */
         .food-tag {
@@ -233,14 +241,7 @@
             cursor: pointer;
             border-left: 4px solid var(--plum);
         }
-
-        .food-tag:hover {
-            background: var(--plum-light);
-            color: #D81B60;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(240, 98, 146, 0.2);
-        }
-
+        .food-tag:hover { background: var(--plum-light); color: #D81B60; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(240, 98, 146, 0.2); }
         .food-tag i { margin-left: 5px; font-size: 0.8rem; color: #aaa; }
 
         /* Styles for Collapsible Buttons */
@@ -263,26 +264,14 @@
             align-items: center;
             transition: 0.2s;
         }
-
         .date-btn { border-left: 5px solid var(--ocean); }
         .food-region-btn { border-left: 5px solid var(--plum); }
-
         .collapse-btn:hover { background: #f8fcfd; }
         .collapse-btn.active { background: var(--plum-light); color: #D81B60; }
         
-        .collapse-content {
-            display: none;
-            padding: 10px 5px;
-            margin-bottom: 15px;
-            animation: slideDown 0.3s ease;
-        }
-        
+        .collapse-content { display: none; padding: 10px 5px; margin-bottom: 15px; animation: slideDown 0.3s ease; }
         .collapse-content.open { display: block; }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Timeline */
         .timeline-step { display: flex; margin-bottom: 15px; padding-left: 10px; position: relative; }
@@ -313,13 +302,7 @@
         .map-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
         .map-table td { background: white; padding: 12px; border: 1px solid #eee; }
         
-        .map-link {
-            text-decoration: none;
-            color: var(--ocean-dark);
-            font-weight: bold;
-            display: block;
-            transition: color 0.2s;
-        }
+        .map-link { text-decoration: none; color: var(--ocean-dark); font-weight: bold; display: block; transition: color 0.2s; }
         .map-link:hover { color: var(--plum); }
         .map-link i { margin-left: 5px; font-size: 0.8rem; color: #aaa; }
 
@@ -359,6 +342,9 @@
                 <div class="nav-btn" onclick="showSection('food')">
                     <i class="fas fa-utensils"></i> 美食地圖
                 </div>
+                <div class="nav-btn" onclick="showSection('souvenirs')">
+                    <i class="fas fa-gift"></i> 伴手禮推薦
+                </div>
                 <div class="nav-btn" onclick="showSection('mapcodes')">
                     <i class="fas fa-car-side"></i> 導航編碼
                 </div>
@@ -377,6 +363,25 @@
             </p>
         </div>
 
+        <div id="souvenirs" class="section">
+            <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
+            <h2>🎁 必買伴手禮清單</h2>
+            
+            <div class="parking-card">
+                <div class="parking-title"><i class="fas fa-parking"></i> 自駕停車推薦</div>
+                <div class="parking-info">
+                    <div style="font-weight:bold; margin-bottom:5px;">博多車站中央停車場</div>
+                    <div>MapCode: <b>13 320 354*52</b> <button class="copy-btn" onclick="copy('13 320 354*52')">複製</button></div>
+                    <div style="font-size:0.85rem; color:#888; margin:5px 0;">優惠：消費滿3000日圓可抵1小時</div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=$%E5%8D%9A%E5%A4%9A%E9%A7%85%E4%B8%AD%E5%A4%AE%E9%A7%90%E8%BB%8A%E5%A0%B4" target="_blank" class="map-link" style="margin-top:5px; text-align:right;">
+                        Google Map 導航 <i class="fas fa-location-arrow"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div id="souvenir-container"></div>
+        </div>
+
         <div id="packing" class="section">
             <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
             <h2>🎒 出發前檢查</h2>
@@ -392,12 +397,10 @@
                     <input type="number" id="rate-input" class="calc-input" value="0.22" step="0.001" style="width:100px; padding:8px;"> 
                     <span style="font-size:0.9rem; color:#888;">(1日幣 = ?台幣)</span>
                 </div>
-                
                 <div class="calc-input-group">
                     <label class="calc-label">日幣金額 (¥)</label>
                     <input type="number" id="jpy-input" class="calc-input" placeholder="輸入價格...">
                 </div>
-
                 <div class="calc-result">
                     <div style="font-size:0.9rem; color:#666;">約合台幣 (TWD)</div>
                     <div class="twd-amount" id="twd-output">0</div>
@@ -452,8 +455,74 @@
     </div>
 
 <script>
-    // --- Data Configuration ---
+    // --- Souvenir Data ---
+    const souvenirData = [
+        {
+            category: "🧂 調味料 / 鹹食類",
+            items: [
+                { name: "軟管明太子醬", price: "¥756", loc: "Maing 名店街 (やまや/ふくや)", note: "需托運/冷藏，配飯神物" },
+                { name: "茅乃舎高湯包", price: "¥2,268/30入", loc: "Deitos 1F (Miyage-mon市場)", note: "煮湯神器，送禮首選" },
+                { name: "明太子仙貝", price: "¥540/16枚", loc: "Maing / Deitos", note: "經典鹹食，福太郎出品" },
+                { name: "青柚子胡椒", price: "¥432起", loc: "Maing (各土產店/超市)", note: "沾肉絕配" },
+                { name: "Calbee 九州明太子薯條", price: "¥900/8袋", loc: "Maing / 超商", note: "辦公室分食方便" },
+                { name: "八女茶", price: "¥1,080/100g", loc: "Maing (如水庵/茶店)", note: "福岡高級綠茶" }
+            ]
+        },
+        {
+            category: "🍰 甜點 / 蛋糕類",
+            items: [
+                { name: "福砂屋 長崎蛋糕", price: "¥1,458", loc: "Maing / Deitos", note: "底部粗糖顆粒，賞味期限短" },
+                { name: "博多通饅頭", price: "¥730/5入", loc: "Maing (明月堂)", note: "奶香濃郁，連續金賞" },
+                { name: "Sugar Butter Sand Tree", price: "¥993/10入", loc: "博多阪急 B1F", note: "博多限定甘王草莓口味" },
+                { name: "伊都 King 草莓銅鑼燒", price: "¥565/個", loc: "Maing (伊都きんぐ)", note: "含整顆草莓，需冷藏" },
+                { name: "南蠻往來", price: "¥670/4入", loc: "Maing", note: "酥脆杏仁蛋糕，在地人愛" },
+                { name: "筑紫麻糬", price: "¥540/3入", loc: "Maing (如水庵)", note: "附黑糖蜜，精緻包裝" },
+                { name: "治一郎布丁", price: "¥420", loc: "JR博多城 1F いっぴん通り", note: "蛋香濃郁口感綿密，需冷藏" }
+            ]
+        },
+        {
+            category: "🍪 餅乾 / 小點心",
+            items: [
+                { name: "二○加煎餅", price: "¥648/3枚", loc: "Maing (東雲堂)", note: "附搞笑面具" },
+                { name: "Tirolian 捲心酥", price: "¥540/包", loc: "Maing (千鳥屋)", note: "復古鐵罐可愛" },
+                { name: "博多甜薯燒", price: "¥648/4入", loc: "Maing (二鶴堂)", note: "綿密地瓜口感" },
+                { name: "博多紅草莓餅乾", price: "¥777/10入", loc: "Maing", note: "草莓巧克力夾心" },
+                { name: "小雞饅頭", price: "¥1,194/7入", loc: "Maing (ひよ子本舗)", note: "經典伴手禮" },
+                { name: "博多之女", price: "¥389/6入", loc: "Maing (二鶴堂)", note: "小年輪蛋糕" }
+            ]
+        }
+    ];
 
+    // Render Souvenirs
+    const souvenirContainer = document.getElementById('souvenir-container');
+    souvenirData.forEach(cat => {
+        const catDiv = document.createElement('div');
+        catDiv.className = 'souvenir-category';
+        catDiv.innerHTML = cat.category;
+        souvenirContainer.appendChild(catDiv);
+
+        cat.items.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'souvenir-item';
+            
+            // Build Google Maps Link
+            const query = encodeURIComponent(`博多駅 ${item.loc} ${item.name.split('(')[0]}`);
+            const link = `https://www.google.com/maps/search/?api=1&query=${query}`;
+
+            itemDiv.onclick = () => window.open(link, '_blank');
+            itemDiv.innerHTML = `
+                <div>
+                    <span class="souvenir-name">${item.name}</span>
+                    <span class="souvenir-price">${item.price}</span>
+                </div>
+                <div class="souvenir-loc"><i class="fas fa-map-marker-alt"></i> ${item.loc}</div>
+                <div class="souvenir-note">${item.note}</div>
+            `;
+            souvenirContainer.appendChild(itemDiv);
+        });
+    });
+
+    // --- Itinerary Data ---
     const itineraryData = [
         {
             date: "1/29 (四) Day 1",
@@ -528,7 +597,7 @@
         }
     ];
 
-    // --- Updated Packing List (Added Power Bank) ---
+    // --- Updated Packing List ---
     const packingList = ["護照 (效期內)", "台灣駕照 (正本)", "駕照日文譯本", "富邦J卡", "日幣現金", "手機 & 充電器", "行動電源", "eSIM", "保溫瓶", "牙刷牙膏", "雨具"];
     
     // --- Food Data ---
