@@ -416,6 +416,14 @@
             <h2>🎟️ 優惠券專區</h2>
             
             <div class="coupon-card">
+                <img src="coupon_daikoku.jpg" class="coupon-img" onclick="openModal('大國藥妝', 'coupon_daikoku.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_daikoku.jpg';">
+                <div class="coupon-info">
+                    <div class="coupon-title">大國藥妝 (Daikoku Drug)</div>
+                    <div class="coupon-desc">免稅 10% + 3%~7% 折扣</div>
+                </div>
+            </div>
+
+            <div class="coupon-card">
                 <img src="coupon_tsuruha.jpg" class="coupon-img" onclick="openModal('鶴羽藥妝', 'coupon_tsuruha.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_tsuruha.jpg';">
                 <div class="coupon-info">
                     <div class="coupon-title">鶴羽藥妝 (Tsuruha)</div>
@@ -675,7 +683,7 @@
     // --- Updated Packing List (Added Power Bank) ---
     const packingList = ["護照 (效期內)", "台灣駕照 (正本)", "駕照日文譯本", "富邦J卡", "日幣現金", "手機 & 充電器", "行動電源", "eSIM", "保溫瓶", "牙刷牙膏", "雨具"];
     
-    // --- Food Data (Collapsible & Google Maps Link) ---
+    // --- Food Data ---
     const foodData = [
         { 
             region: "博多", 
