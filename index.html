@@ -178,12 +178,13 @@
             border-radius: 5px;
             font-size: 0.7rem;
             font-weight: bold;
+            z-index: 2;
         }
 
         .coupon-img {
             width: 100%;
-            height: 180px;
-            object-fit: contain; /* 完整顯示圖片 */
+            height: 200px;
+            object-fit: contain; /* 確保完整顯示 */
             background: #fafafa;
             display: block;
             cursor: pointer;
@@ -192,6 +193,7 @@
         .coupon-info {
             padding: 15px;
             text-align: center;
+            border-top: 1px solid #eee;
         }
         
         .coupon-title {
@@ -330,7 +332,8 @@
         .modal.open { display: flex; animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         .modal-card { background: white; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.2); position: relative; }
-        .modal-img { width: 100%; height: 100%; max-height: 400px; object-fit: contain; background: #222; display: block; } /* Updated for coupon view */
+        .modal-img { width: 100%; height: 100%; max-height: 400px; object-fit: contain; background: #222; display: block; }
+        .modal-img:after { content: "尚未上傳照片"; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; color: #999; font-size: 0.9rem; }
         .modal-body { padding: 20px; }
         .modal-title { font-size: 1.3rem; color: var(--ocean-dark); margin: 0 0 10px 0; font-weight: bold; }
         .modal-desc { font-size: 0.95rem; line-height: 1.6; color: #555; }
@@ -413,20 +416,42 @@
             <h2>🎟️ 優惠券專區</h2>
             
             <div class="coupon-card">
-                <img src="天草海鮮蔵.png" class="coupon-img" onclick="openModal('天草海鮮蔵', '天草海鮮蔵.png', '請出示此圖片給店員確認')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
+                <img src="coupon_tsuruha.jpg" class="coupon-img" onclick="openModal('鶴羽藥妝', 'coupon_tsuruha.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_tsuruha.jpg';">
                 <div class="coupon-info">
-                    <div class="coupon-title">天草海鮮蔵 預約憑證/優惠</div>
-                    <div class="coupon-desc">點擊圖片可放大檢視</div>
+                    <div class="coupon-title">鶴羽藥妝 (Tsuruha)</div>
+                    <div class="coupon-desc">最高免稅 10% + 7% 折扣</div>
                 </div>
             </div>
 
-            <div class="coupon-card" style="border-color: #ccc;">
-                <div style="height:150px; display:flex; align-items:center; justify-content:center; background:#f0f0f0; color:#999;">
-                    (THE OUTLETS 優惠券預留位) <br> 請放入 outlet_coupon.jpg
-                </div>
+            <div class="coupon-card">
+                <img src="coupon_matsukiyo.jpg" class="coupon-img" onclick="openModal('松本清', 'coupon_matsukiyo.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_matsukiyo.jpg';">
                 <div class="coupon-info">
-                    <div class="coupon-title">其他優惠券</div>
-                    <div class="coupon-desc">將圖片與 index.html 放在同資料夾即可顯示</div>
+                    <div class="coupon-title">松本清 (Matsumoto Kiyoshi)</div>
+                    <div class="coupon-desc">最高免稅 10% + 7% 折扣</div>
+                </div>
+            </div>
+
+            <div class="coupon-card">
+                <img src="coupon_cosmos.jpg" class="coupon-img" onclick="openModal('Cosmos', 'coupon_cosmos.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_cosmos.jpg';">
+                <div class="coupon-info">
+                    <div class="coupon-title">Cosmos 藥妝</div>
+                    <div class="coupon-desc">九州最便宜！部分店鋪可免稅</div>
+                </div>
+            </div>
+
+            <div class="coupon-card">
+                <img src="coupon_bic.jpg" class="coupon-img" onclick="openModal('BicCamera', 'coupon_bic.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_bic.jpg';">
+                <div class="coupon-info">
+                    <div class="coupon-title">BicCamera</div>
+                    <div class="coupon-desc">免稅 10% + 7% / 5% / 3%</div>
+                </div>
+            </div>
+
+            <div class="coupon-card">
+                <img src="coupon_donki.jpg" class="coupon-img" onclick="openModal('唐吉訶德', 'coupon_donki.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_donki.jpg';">
+                <div class="coupon-info">
+                    <div class="coupon-title">唐吉訶德 (Don Quijote)</div>
+                    <div class="coupon-desc">免稅 10% + 5% (需滿萬)</div>
                 </div>
             </div>
         </div>
@@ -650,7 +675,7 @@
     // --- Updated Packing List (Added Power Bank) ---
     const packingList = ["護照 (效期內)", "台灣駕照 (正本)", "駕照日文譯本", "富邦J卡", "日幣現金", "手機 & 充電器", "行動電源", "eSIM", "保溫瓶", "牙刷牙膏", "雨具"];
     
-    // --- Food Data ---
+    // --- Food Data (Collapsible & Google Maps Link) ---
     const foodData = [
         { 
             region: "博多", 
@@ -715,9 +740,9 @@
     ];
     
     // --- Mapcode Data ---
-    // [FIX] Updated Address for ULUU (Fully Corrected)
+    // [FIX] Updated Address for ULUU to Japanese to ensure correct Google Maps query
     const mapcodeData = [
-        { n: "Toyota Rent a Car (博多站東)", c: "13 320 188*71", p: "092-472-8388", addr: "1 Chome-4-10 Toko, Hakata Ward, Fukuoka, 812-0008日本" },
+        { n: "Toyota Rent a Car (博多站東)", c: "13 320 188*71", p: "092-472-8388", addr: "1 Chome-4-10 Toko, Hakata Ward, Fukuoka, 812-0008" },
         { n: "Uluu Gardens SAGA (草莓園)", c: "37 491 662*13", p: "080-8956-1030", addr: "Uluu Gardens SAGA 佐賀県三養基郡みやき町江口7079" },
         { n: "湯布院山水館", c: "269 328 633*45", p: "0977-84-2101", addr: "Yufuin Sansuikan" },
         { n: "金鱗湖停車場", c: "269 359 583*03", p: "0977-84-3111", addr: "Kinrin Lake Parking" },
