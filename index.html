@@ -17,6 +17,7 @@
             --glass: rgba(255, 255, 255, 0.93);
             --gift: #FF9800;        /* 伴手禮橘 */
             --coupon: #E91E63;      /* 優惠券紅 */
+            --res: #673AB7;         /* 預約憑證紫 */
         }
 
         body {
@@ -184,7 +185,7 @@
         .coupon-img {
             width: 100%;
             height: 200px;
-            object-fit: contain; /* 確保完整顯示 */
+            object-fit: contain;
             background: #fafafa;
             display: block;
             cursor: pointer;
@@ -196,17 +197,8 @@
             border-top: 1px solid #eee;
         }
         
-        .coupon-title {
-            font-weight: bold;
-            color: #333;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-        
-        .coupon-desc {
-            font-size: 0.9rem;
-            color: #666;
-        }
+        .coupon-title { font-weight: bold; color: #333; font-size: 1.1rem; margin-bottom: 5px; }
+        .coupon-desc { font-size: 0.9rem; color: #666; }
 
         /* Souvenir Card Styles */
         .parking-card {
@@ -323,9 +315,14 @@
         .timeline-step::before { content: ''; position: absolute; left: 0; top: 8px; bottom: -20px; width: 2px; background: #eee; }
         .timeline-step:last-child::before { display: none; }
         .step-time { font-size: 0.8rem; color: #999; width: 50px; flex-shrink: 0; padding-top: 3px; font-weight: bold; }
+        
+        /* Updated Step Content for Reservation Clickability */
         .step-content { background: white; padding: 12px 15px; border-radius: 12px; flex-grow: 1; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border-left: 4px solid var(--mountain); cursor: pointer; transition: 0.2s; position: relative; }
         .step-content:active { transform: scale(0.98); background: #fafafa; }
         .step-content::after { content: '📸'; font-size: 1rem; position: absolute; right: 10px; top: 12px; opacity: 0.6; }
+        
+        .res-content { border-left: 4px solid var(--res) !important; }
+        .res-content::after { content: '📄'; } /* Icon for reservation docs */
 
         /* Modal */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(5px); }
@@ -766,12 +763,15 @@
         { n: "THE OUTLETS", c: "16 427 590*78", p: "093-663-7251", addr: "THE OUTLETS KITAKYUSHU" }
     ];
     const reservationData = [
-        { t: "機票 (CI138/139)", d: "1/29 08:25 去 | 2/6 11:40 回" },
-        { t: "租車 (Toyota)", d: "1/31 - 2/5 博多站東入口" },
-        { t: "草莓吃到飽 (ULUU)", d: "1/31 11:30" },
-        { t: "藥院燒肉 NIKUICHI", d: "1/29 晚餐" },
-        { t: "天草海豚 (海鮮蔵)", d: "2/2 11:30" },
-        { t: "湯布院山水館", d: "1/31 (需 19:00 前抵達)" }
+        { t: "機票 (CI138/139)", d: "1/29 08:25 去 | 2/6 11:40 回", image: "res_flight.jpg" },
+        { t: "租車 (Toyota)", d: "1/31 - 2/5 博多站東入口", image: "res_car.jpg" },
+        { t: "草莓吃到飽 (ULUU)", d: "1/31 11:30", image: "res_strawberry.jpg" },
+        { t: "藥院燒肉 NIKUICHI", d: "1/29 晚餐", image: "res_yakiniku.jpg" },
+        { t: "天草海豚 (海鮮蔵)", d: "2/2 11:30", image: "res_dolphin.jpg" },
+        { t: "博多飯店 (西鐵)", d: "1/29 - 1/31", image: "res_hotel_hakata.jpg" },
+        { t: "由布院飯店 (山水館)", d: "1/31 (需 19:00 前抵達)", image: "res_hotel_yufuin.jpg" },
+        { t: "熊本飯店 (Dormy)", d: "2/1 - 2/3", image: "res_hotel_kumamoto.jpg" },
+        { t: "中洲飯店 (三井)", d: "2/3 - 2/6", image: "res_hotel_nakasu.jpg" }
     ];
 
     // --- Logic ---
@@ -981,10 +981,11 @@
     const resDiv = document.getElementById('res-container');
     reservationData.forEach(res => {
         const div = document.createElement('div');
-        div.className = 'step-content';
+        div.className = 'step-content res-content'; // Added res-content for styling
+        div.onclick = () => openModal(res.t, res.image, res.d); // Make clickable
+        
         div.style.marginBottom = '10px';
-        div.style.borderLeftColor = 'var(--mountain)';
-        div.innerHTML = `<div style="font-weight:bold; color:var(--ocean-dark)">${res.t}</div><div style="font-size:0.9rem; color:#555;">${res.d}</div>`;
+        div.innerHTML = `<div style="font-weight:bold; color:var(--res)">${res.t}</div><div style="font-size:0.9rem; color:#555;">${res.d}</div>`;
         resDiv.appendChild(div);
     });
 
