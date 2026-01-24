@@ -302,6 +302,7 @@
         .date-btn { border-left: 5px solid var(--ocean); }
         .food-region-btn { border-left: 5px solid var(--plum); }
         .souvenir-btn { border-left: 5px solid var(--gift); }
+        .res-btn { border-left: 5px solid var(--res); } /* 預約憑證按鈕 */
 
         .collapse-btn:hover { background: #f8fcfd; }
         .collapse-btn.active { background: var(--plum-light); color: #D81B60; }
@@ -316,13 +317,13 @@
         .timeline-step:last-child::before { display: none; }
         .step-time { font-size: 0.8rem; color: #999; width: 50px; flex-shrink: 0; padding-top: 3px; font-weight: bold; }
         
-        /* Updated Step Content for Reservation Clickability */
         .step-content { background: white; padding: 12px 15px; border-radius: 12px; flex-grow: 1; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border-left: 4px solid var(--mountain); cursor: pointer; transition: 0.2s; position: relative; }
         .step-content:active { transform: scale(0.98); background: #fafafa; }
         .step-content::after { content: '📸'; font-size: 1rem; position: absolute; right: 10px; top: 12px; opacity: 0.6; }
         
+        /* Specific style for reservation items */
         .res-content { border-left: 4px solid var(--res) !important; }
-        .res-content::after { content: '📄'; } /* Icon for reservation docs */
+        .res-content::after { content: '📄'; }
 
         /* Modal */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(5px); }
@@ -539,7 +540,18 @@
         <div id="reservations" class="section">
             <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
             <h2>🎫 預約確認資料</h2>
-            <div id="res-container"></div>
+            
+            <button class="collapse-btn res-btn" onclick="toggleAccordion(0, 'res-hotel-list', 'res-btn')">
+                <span>🏨 住宿憑證 (Hotels)</span> <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="res-hotel-list-0" class="collapse-content res-hotel-list">
+                </div>
+
+            <button class="collapse-btn res-btn" onclick="toggleAccordion(1, 'res-other-list', 'res-btn')">
+                <span>🎫 交通與活動 (Others)</span> <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="res-other-list-1" class="collapse-content res-other-list">
+                </div>
         </div>
     </div>
 
@@ -762,16 +774,23 @@
         { n: "糸島 夫婦岩", c: "224 788 206*25", p: "092-327-0317", addr: "Sakurai Futamigaura of Itoshima" },
         { n: "THE OUTLETS", c: "16 427 590*78", p: "093-663-7251", addr: "THE OUTLETS KITAKYUSHU" }
     ];
-    const reservationData = [
-        { t: "機票 (CI138/139)", d: "1/29 08:25 去 | 2/6 11:40 回", image: "res_flight.jpg" },
-        { t: "租車 (Toyota)", d: "1/31 - 2/5 博多站東入口", image: "res_car.jpg" },
-        { t: "草莓吃到飽 (ULUU)", d: "1/31 11:30", image: "res_strawberry.jpg" },
-        { t: "藥院燒肉 NIKUICHI", d: "1/29 晚餐", image: "res_yakiniku.jpg" },
-        { t: "天草海豚 (海鮮蔵)", d: "2/2 11:30", image: "res_dolphin.jpg" },
-        { t: "博多飯店 (西鐵)", d: "1/29 - 1/31", image: "res_hotel_hakata.jpg" },
-        { t: "由布院飯店 (山水館)", d: "1/31 (需 19:00 前抵達)", image: "res_hotel_yufuin.jpg" },
-        { t: "熊本飯店 (Dormy)", d: "2/1 - 2/3", image: "res_hotel_kumamoto.jpg" },
-        { t: "中洲飯店 (三井)", d: "2/3 - 2/6", image: "res_hotel_nakasu.jpg" }
+    
+    // --- SPLIT Reservation Data ---
+    // Hotel Data
+    const hotelData = [
+        { t: "博多飯店 (西鐵 Croom)", d: "1/29 - 1/31 (2晚) | 櫛田神社前", image: "res_hotel_hakata.jpg" },
+        { t: "由布院飯店 (山水館)", d: "1/31 (需 19:00 前抵達) | 一泊二食", image: "res_hotel_yufuin.jpg" },
+        { t: "熊本飯店 (Dormy Inn)", d: "2/1 - 2/3 (2晚) | 辛島町", image: "res_hotel_kumamoto.jpg" },
+        { t: "中洲飯店 (三井花園)", d: "2/3 - 2/6 (3晚) | 中洲川端", image: "res_hotel_nakasu.jpg" }
+    ];
+
+    // Other Reservations (Flight, Car, Activities)
+    const otherResData = [
+        { t: "✈️ 機票 (華航)", d: "1/29 08:25 去 | 2/6 11:40 回", image: "res_flight.jpg" },
+        { t: "🚗 租車 (Toyota)", d: "1/31 09:00 - 2/5 18:00 | 博多站東", image: "res_car.jpg" },
+        { t: "🍓 草莓吃到飽 (ULUU)", d: "1/31 11:30 | 佐賀", image: "res_strawberry.jpg" },
+        { t: "🥩 藥院燒肉 NIKUICHI", d: "1/29 晚餐 | 藥院店", image: "res_yakiniku.jpg" },
+        { t: "🐬 天草海豚 (海鮮蔵)", d: "2/2 11:30 | 天草", image: "res_dolphin.jpg" }
     ];
 
     // --- Logic ---
@@ -888,6 +907,24 @@
         souvenirContainer.appendChild(listDiv);
     });
 
+    // --- Reservation Rendering Function ---
+    function renderReservations(data, containerId) {
+        const container = document.getElementById(containerId);
+        data.forEach(res => {
+            const div = document.createElement('div');
+            div.className = 'step-content res-content';
+            div.onclick = () => openModal(res.t, res.image, res.d);
+            div.style.marginBottom = '10px';
+            div.innerHTML = `<div style="font-weight:bold; color:var(--res)">${res.t}</div><div style="font-size:0.9rem; color:#555;">${res.d}</div>`;
+            container.appendChild(div);
+        });
+    }
+
+    // Call Render for Reservations
+    renderReservations(hotelData, 'res-hotel-list-0');
+    renderReservations(otherResData, 'res-other-list-1');
+
+
     // General Accordion Toggle Function
     function toggleAccordion(index, contentClass, btnClass) {
         const targetContent = document.getElementById(`${contentClass}-${index}`);
@@ -976,18 +1013,6 @@
         document.getElementById('map-page-2').style.display = page === 2 ? 'block' : 'none';
     }
     function copy(txt) { navigator.clipboard.writeText(txt).then(() => alert('已複製：' + txt)); }
-
-    // Render Reservations
-    const resDiv = document.getElementById('res-container');
-    reservationData.forEach(res => {
-        const div = document.createElement('div');
-        div.className = 'step-content res-content'; // Added res-content for styling
-        div.onclick = () => openModal(res.t, res.image, res.d); // Make clickable
-        
-        div.style.marginBottom = '10px';
-        div.innerHTML = `<div style="font-weight:bold; color:var(--res)">${res.t}</div><div style="font-size:0.9rem; color:#555;">${res.d}</div>`;
-        resDiv.appendChild(div);
-    });
 
     // Petals
     function createPetal() {
