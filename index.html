@@ -15,6 +15,7 @@
             --mountain: #9CCC65;    /* 阿蘇綠 */
             --text: #37474F;
             --glass: rgba(255, 255, 255, 0.93);
+            --gift: #FF9800;        /* 伴手禮橘 */
         }
 
         body {
@@ -166,23 +167,12 @@
         .parking-title { font-weight: bold; color: #e65100; margin-bottom: 5px; font-size: 1.1rem; }
         .parking-info { font-size: 0.9rem; color: #5d4037; line-height: 1.6; }
 
-        .souvenir-category {
-            margin-top: 25px;
-            margin-bottom: 10px;
-            color: var(--ocean-dark);
-            font-size: 1.2rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
         .souvenir-item {
             background: white;
             padding: 15px;
             margin-bottom: 10px;
             border-radius: 12px;
-            border-left: 5px solid var(--plum);
+            border-left: 5px solid var(--gift);
             box-shadow: 0 2px 6px rgba(0,0,0,0.05);
             cursor: pointer;
             transition: 0.2s;
@@ -199,7 +189,7 @@
         .souvenir-price { color: #D81B60; font-weight: bold; font-size: 0.9rem; margin-left: 8px; }
         .souvenir-loc { font-size: 0.85rem; color: #666; margin-bottom: 2px; }
         .souvenir-note { font-size: 0.8rem; color: #888; font-style: italic; }
-        .souvenir-item::after { content: '\f3c5'; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--plum-light); font-size: 1.2rem; }
+        .souvenir-item::after { content: '\f3c5'; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--gift); font-size: 1.2rem; opacity: 0.5; }
 
 
         /* Calculator Styles */
@@ -266,6 +256,8 @@
         }
         .date-btn { border-left: 5px solid var(--ocean); }
         .food-region-btn { border-left: 5px solid var(--plum); }
+        .souvenir-btn { border-left: 5px solid var(--gift); } /* 橘色邊框 */
+
         .collapse-btn:hover { background: #f8fcfd; }
         .collapse-btn.active { background: var(--plum-light); color: #D81B60; }
         
@@ -455,7 +447,9 @@
     </div>
 
 <script>
-    // --- Souvenir Data ---
+    // --- Data Configuration ---
+
+    // Souvenir Data (Grouped)
     const souvenirData = [
         {
             category: "🧂 調味料 / 鹹食類",
@@ -493,36 +487,6 @@
         }
     ];
 
-    // Render Souvenirs
-    const souvenirContainer = document.getElementById('souvenir-container');
-    souvenirData.forEach(cat => {
-        const catDiv = document.createElement('div');
-        catDiv.className = 'souvenir-category';
-        catDiv.innerHTML = cat.category;
-        souvenirContainer.appendChild(catDiv);
-
-        cat.items.forEach(item => {
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'souvenir-item';
-            
-            // Build Google Maps Link
-            const query = encodeURIComponent(`博多駅 ${item.loc} ${item.name.split('(')[0]}`);
-            const link = `https://www.google.com/maps/search/?api=1&query=${query}`;
-
-            itemDiv.onclick = () => window.open(link, '_blank');
-            itemDiv.innerHTML = `
-                <div>
-                    <span class="souvenir-name">${item.name}</span>
-                    <span class="souvenir-price">${item.price}</span>
-                </div>
-                <div class="souvenir-loc"><i class="fas fa-map-marker-alt"></i> ${item.loc}</div>
-                <div class="souvenir-note">${item.note}</div>
-            `;
-            souvenirContainer.appendChild(itemDiv);
-        });
-    });
-
-    // --- Itinerary Data ---
     const itineraryData = [
         {
             date: "1/29 (四) Day 1",
@@ -710,20 +674,20 @@
         twdOutput.innerText = twd.toLocaleString();
     }
 
-    jpyInput.addEventListener('input', calculate);
-    rateInput.addEventListener('input', calculate);
-
-    // Auto-fetch Exchange Rate (API)
-    fetch('https://api.exchangerate-api.com/v4/latest/JPY')
-        .then(response => response.json())
-        .then(data => {
-            if(data && data.rates && data.rates.TWD) {
-                rateInput.value = data.rates.TWD;
-                calculate(); // Update if user already typed something
-            }
-        })
-        .catch(err => console.log('Rate fetch failed, using default'));
-
+    if(jpyInput) {
+        jpyInput.addEventListener('input', calculate);
+        rateInput.addEventListener('input', calculate);
+        // Auto-fetch Exchange Rate (API)
+        fetch('https://api.exchangerate-api.com/v4/latest/JPY')
+            .then(response => response.json())
+            .then(data => {
+                if(data && data.rates && data.rates.TWD) {
+                    rateInput.value = data.rates.TWD;
+                    calculate();
+                }
+            })
+            .catch(err => console.log('Rate fetch failed, using default'));
+    }
 
     // Itinerary Rendering
     const itinDiv = document.getElementById('itinerary-content');
@@ -774,6 +738,35 @@
         
         listDiv.innerHTML = itemsHtml;
         foodDiv.appendChild(listDiv);
+    });
+
+    // Souvenir Rendering (Accordion)
+    const souvenirContainer = document.getElementById('souvenir-container');
+    souvenirData.forEach((cat, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'collapse-btn souvenir-btn';
+        btn.innerHTML = `<span>${cat.category}</span> <i class="fas fa-chevron-down"></i>`;
+        btn.onclick = () => toggleAccordion(index, 'souvenir-list', 'souvenir-btn');
+        souvenirContainer.appendChild(btn);
+
+        const listDiv = document.createElement('div');
+        listDiv.id = `souvenir-list-${index}`;
+        listDiv.className = 'collapse-content souvenir-list';
+
+        cat.items.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'souvenir-item';
+            const query = encodeURIComponent(`博多駅 ${item.loc} ${item.name.split('(')[0]}`);
+            const link = `https://www.google.com/maps/search/?api=1&query=${query}`;
+            itemDiv.onclick = () => window.open(link, '_blank');
+            itemDiv.innerHTML = `
+                <div><span class="souvenir-name">${item.name}</span><span class="souvenir-price">${item.price}</span></div>
+                <div class="souvenir-loc"><i class="fas fa-map-marker-alt"></i> ${item.loc}</div>
+                <div class="souvenir-note">${item.note}</div>
+            `;
+            listDiv.appendChild(itemDiv);
+        });
+        souvenirContainer.appendChild(listDiv);
     });
 
     // General Accordion Toggle Function
