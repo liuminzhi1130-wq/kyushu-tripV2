@@ -346,7 +346,7 @@
                 <div class="nav-btn" onclick="showSection('calculator')">
                     <i class="fas fa-calculator"></i> 匯率計算
                 </div>
-                <div class="nav-btn" onclick="window.open('https://www.google.com/maps/search/?api=1&query=supermarket')">
+                <div class="nav-btn" onclick="openGoogleMapSearch('超市')">
                     <i class="fas fa-shopping-basket"></i> 附近超市
                 </div>
             </div>
@@ -365,9 +365,11 @@
                     <div style="font-weight:bold; margin-bottom:5px;">博多車站中央停車場</div>
                     <div>MapCode: <b>13 320 354*52</b> <button class="copy-btn" onclick="copy('13 320 354*52')">複製</button></div>
                     <div style="font-size:0.85rem; color:#888; margin:5px 0;">優惠：消費滿3000日圓可抵1小時</div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=博多車站中央停車場" target="_blank" class="map-link" style="margin-top:5px; text-align:right;">
-                        Google Map 導航 <i class="fas fa-location-arrow"></i>
-                    </a>
+                    <div style="margin-top:5px; text-align:right;">
+                        <span class="map-link" onclick="openGoogleMapSearch('博多駅中央駐車場')" style="cursor:pointer;">
+                            Google Map 導航 <i class="fas fa-location-arrow"></i>
+                        </span>
+                    </div>
                 </div>
             </div>
 
@@ -447,6 +449,13 @@
     </div>
 
 <script>
+    // --- Helper for Google Maps Search ---
+    function openGoogleMapSearch(query) {
+        const encodedQuery = encodeURIComponent(query);
+        const url = `https://www.google.com/maps/search/?api=1&query=${encodedQuery}`;
+        window.open(url, '_blank');
+    }
+
     // --- Data Configuration ---
 
     // Souvenir Data (Grouped)
@@ -564,7 +573,7 @@
     // --- Updated Packing List (Added Power Bank) ---
     const packingList = ["護照 (效期內)", "台灣駕照 (正本)", "駕照日文譯本", "富邦J卡", "日幣現金", "手機 & 充電器", "行動電源", "eSIM", "保溫瓶", "牙刷牙膏", "雨具"];
     
-    // --- Food Data (Collapsible & Google Maps Link) ---
+    // --- Food Data ---
     const foodData = [
         { 
             region: "博多", 
@@ -629,21 +638,22 @@
     ];
     
     // --- Mapcode Data ---
+    // [UPDATE] Fixed Toyota Address and ULUU Query
     const mapcodeData = [
         { n: "Toyota Rent a Car", c: "13 320 188*71", p: "092-472-8388", addr: "1 Chome-4-10 Toko, Hakata Ward, Fukuoka, 812-0008日本" },
         { n: "Uluu Gardens SAGA (草莓園)", c: "37 491 662*13", p: "080-8956-1030", addr: "Uluu Gardens SAGA" },
-        { n: "湯布院山水館", c: "269 328 633*45", p: "0977-84-2101" },
-        { n: "金鱗湖停車場", c: "269 359 583*03", p: "0977-84-3111" },
-        { n: "阿蘇草千里", c: "256 456 770*85", p: "0967-34-0131" },
-        { n: "阿蘇中岳火山口", c: "256 458 600*30", p: "0967-34-1600" }, 
-        { n: "Imakin 食堂", c: "256 685 024*41", p: "0967-32-0031" },
-        { n: "Dormy Inn 熊本", c: "29 459 468*88", p: "096-311-5489" },
-        { n: "天草海鮮蔵", c: "474 084 158*44", p: "0969-52-7707" },
-        { n: "熊本城", c: "29 459 342*58", p: "096-352-5900" },
-        { n: "太宰府天滿宮", c: "55 364 128*71", p: "092-922-8225" },
-        { n: "呼子朝市", c: "182 722 104*50", p: "0955-82-3426" },
-        { n: "糸島 夫婦岩", c: "224 788 206*25", p: "092-327-0317" },
-        { n: "THE OUTLETS", c: "16 427 590*78", p: "093-663-7251" }
+        { n: "湯布院山水館", c: "269 328 633*45", p: "0977-84-2101", addr: "Yufuin Sansuikan" },
+        { n: "金鱗湖停車場", c: "269 359 583*03", p: "0977-84-3111", addr: "Kinrin Lake Parking" },
+        { n: "阿蘇草千里", c: "256 456 770*85", p: "0967-34-0131", addr: "Kusasenri Observatory" },
+        { n: "阿蘇中岳火山口", c: "256 458 600*30", p: "0967-34-1600", addr: "Mount Aso Nakadake Crater" }, 
+        { n: "Imakin 食堂", c: "256 685 024*41", p: "0967-32-0031", addr: "Imakin Shokudo" },
+        { n: "Dormy Inn 熊本", c: "29 459 468*88", p: "096-311-5489", addr: "Dormy Inn Kumamoto Natural Hot Spring" },
+        { n: "天草海鮮蔵", c: "474 084 158*44", p: "0969-52-7707", addr: "Amakusa Kaisenkura" },
+        { n: "熊本城", c: "29 459 342*58", p: "096-352-5900", addr: "Kumamoto Castle" },
+        { n: "太宰府天滿宮", c: "55 364 128*71", p: "092-922-8225", addr: "Dazaifu Tenmangu" },
+        { n: "呼子朝市", c: "182 722 104*50", p: "0955-82-3426", addr: "Yobuko Morning Market" },
+        { n: "糸島 夫婦岩", c: "224 788 206*25", p: "092-327-0317", addr: "Sakurai Futamigaura of Itoshima" },
+        { n: "THE OUTLETS", c: "16 427 590*78", p: "093-663-7251", addr: "THE OUTLETS KITAKYUSHU" }
     ];
     const reservationData = [
         { t: "機票 (CI138/139)", d: "1/29 08:25 去 | 2/6 11:40 回" },
@@ -731,9 +741,8 @@
         
         const itemsHtml = cat.items.map(i => {
             const cleanName = i.split('(')[0].trim();
-            const query = encodeURIComponent(`${cat.region} ${cleanName}`);
-            const link = `https://www.google.com/maps/search/?api=1&query=${query}`;
-            return `<a href="${link}" target="_blank" class="food-tag">${i} <i class="fas fa-location-arrow"></i></a>`;
+            const query = `${cat.region} ${cleanName}`;
+            return `<span class="food-tag" onclick="openGoogleMapSearch('${query}')">${i} <i class="fas fa-location-arrow"></i></span>`;
         }).join('');
         
         listDiv.innerHTML = itemsHtml;
@@ -756,9 +765,9 @@
         cat.items.forEach(item => {
             const itemDiv = document.createElement('div');
             itemDiv.className = 'souvenir-item';
-            const query = encodeURIComponent(`博多駅 ${item.loc} ${item.name.split('(')[0]}`);
-            const link = `https://www.google.com/maps/search/?api=1&query=${query}`;
-            itemDiv.onclick = () => window.open(link, '_blank');
+            const query = `博多駅 ${item.loc} ${item.name.split('(')[0]}`;
+            
+            itemDiv.onclick = () => openGoogleMapSearch(query);
             itemDiv.innerHTML = `
                 <div><span class="souvenir-name">${item.name}</span><span class="souvenir-price">${item.price}</span></div>
                 <div class="souvenir-loc"><i class="fas fa-map-marker-alt"></i> ${item.loc}</div>
@@ -827,16 +836,13 @@
         const tbody = document.getElementById(containerId);
         data.forEach(item => {
             const tr = document.createElement('tr');
-            // Create Google Maps Link (Prioritize address)
             const searchKey = item.addr ? item.addr : item.n;
-            const query = encodeURIComponent(searchKey);
-            const link = `https://www.google.com/maps/search/?api=1&query=${query}`;
             
             tr.innerHTML = `
                 <td>
-                    <a href="${link}" target="_blank" class="map-link">
+                    <span class="map-link" onclick="openGoogleMapSearch('${searchKey}')" style="cursor:pointer;">
                         ${item.n} <i class="fas fa-external-link-alt"></i>
-                    </a>
+                    </span>
                 </td>
                 <td>
                     <div style="color:var(--ocean-dark); font-weight:bold; font-family:monospace; font-size:1.1rem;">
