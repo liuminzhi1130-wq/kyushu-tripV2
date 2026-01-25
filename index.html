@@ -497,6 +497,29 @@
         </div>
     `;
 
+    // --- HTML Content for Aquarium Schedule (Day 2) ---
+    const marineWorldHTML = `
+        <div style="text-align:left; font-size:0.95rem;">
+            <p style="background:#e3f2fd; padding:10px; border-radius:8px; margin-bottom:15px;">
+                🐬 <b>1/30 (五) 重點表演時刻</b><br>
+                建議入園後先看 11:00 海豚秀！
+            </p>
+            <table class="timetable">
+                <tr style="background:#eee;"><th>時間</th><th>活動</th><th>地點</th></tr>
+                <tr style="font-weight:bold; color:#d81b60; background:#fff3e0;"><td>11:00</td><td>海豚/海獅秀</td><td>2F 表演池</td></tr>
+                <tr><td>11:30</td><td>企鵝散步</td><td>戶外</td></tr>
+                <tr style="font-weight:bold; color:#0277bd;"><td>12:00</td><td>沙丁魚聲光秀</td><td>1F 大水槽</td></tr>
+                <tr><td>12:15</td><td>海獺餵食</td><td>2F 海獺池</td></tr>
+                <tr><td>13:00</td><td>海豚/海獅秀</td><td>2F 表演池</td></tr>
+                <tr><td>14:00</td><td>沙丁魚聲光秀</td><td>1F 大水槽</td></tr>
+            </table>
+            <div class="warn-text" style="background:#ffebee; padding:10px; border-radius:8px; margin-top:15px;">
+                ⚠️ <b>注意時間：</b><br>
+                15:00 渡輪準時發船，請最晚 14:40 離開水族館前往碼頭。
+            </div>
+        </div>
+    `;
+
     // --- HTML Content for Aso Lunch (New Kusasenri) ---
     const lunchAsoHTML = `
         <div class="lunch-card">
@@ -615,6 +638,7 @@
             { t: "08:00", name: "飯店出發 ➔ 博多站", image: "day2_start.jpg", desc: "步行(12分)或搭【地下鐵七隈線】(往博多) 僅1站至JR博多站。" },
             { t: "08:08", name: "搭乘 JR (查看時刻表)", image: "day2_train.jpg", desc: "點擊查看 08:00-09:00 詳細班次與 ICOCA 攻略", isHtml: true, htmlContent: jrTimetableHTML },
             { t: "09:30", name: "海之中道海濱公園", image: "day2_park.jpg", desc: "★必租腳踏車。推薦：動物之森(水豚/袋鼠)。午餐於園內解決。" },
+            { t: "11:00", name: "水族館 (表演時間表)", image: "day2_aquarium.jpg", desc: "點擊查看【海豚秀/沙丁魚秀】時刻表 (1/30 適用)", isHtml: true, htmlContent: marineWorldHTML },
             { t: "15:00", name: "渡輪 (往百道濱)", image: "day2_ferry.jpg", desc: "【關鍵時刻】15:00發船(安田汽船)。請預留時間還車並走到碼頭。票價¥1200。" },
             { t: "15:30", name: "福岡塔 & 海灘", image: "day2_tower.jpg", desc: "百道濱沙灘拍照 ➔ 登福岡塔(護照有優惠)。" },
             { t: "17:00", name: "MARK IS (晚餐)", image: "day2_dinner.jpg", desc: "位於福岡塔正對面，二樓有空橋連接。<br>推薦：天婦羅Takao、金子半之助、西新初喜。" },
