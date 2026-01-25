@@ -19,7 +19,6 @@
             --coupon: #E91E63;      /* 優惠券紅 */
             --res: #673AB7;         /* 預約憑證紫 */
             --market: #4CAF50;      /* 超市綠 */
-            --rest: #795548;        /* 休息站棕 */
         }
 
         body {
@@ -641,7 +640,7 @@
         { region: "阿蘇/佐賀", items: ["New Kusasenri (景觀餐廳)", "阿蘇路 (高菜飯)", "Imakin 赤牛丼", "河太郎 活花枝", "糸島布丁", "阿蘇とり宮", "佐賀牛 季樂"] }
     ];
 
-    // Mapcodes (Fully Corrected Addresses & Rest Stops)
+    // Mapcodes (Separate Arrays for Tabs with Parking Priority)
     const mapMountain = [
         { n: "大觀峰 (第1停車場)", c: "256 878 352*78", p: "0967-32-1960", addr: "日本〒869-2313 Kumamoto, Aso, Yamada, 大観峰 第1駐車場" },
         { n: "New Kusasenri (景觀餐廳)", c: "256 456 770*13", p: "0967-34-0131", addr: "New Kusasenri" },
@@ -673,11 +672,11 @@
     ];
 
     const mapRest = [
-        { n: "山田SA (高速-下行)", c: "55 330 675*44", p: "-", addr: "Yamada Service Area (Down)" },
-        { n: "道之驛 浮羽 (Ukiha)", c: "166 385 410*55", p: "0943-77-2933", addr: "Michinoeki Ukiha" },
-        { n: "北熊本SA (高速-上行)", c: "29 646 648*14", p: "-", addr: "Kitakumamoto Service Area (Up)" },
-        { n: "廣川SA (高速-上行)", c: "37 021 685*82", p: "-", addr: "Hirokawa Service Area (Up)" },
-        { n: "道之驛 久留米 (Kurume)", c: "37 363 487*44", p: "0942-47-4111", addr: "Michinoeki Kurume" }
+        { n: "山田SA (高速-下行)", c: "55 330 675*44", p: "-", addr: "Yamada Service Area (Down)", desc: "🌻 綠色休息站：人氣麵包店、向日葵田、朝倉蔥油淋雞" },
+        { n: "道之驛 浮羽 (Ukiha)", c: "166 385 410*55", p: "0943-77-2933", addr: "Michinoeki Ukiha", desc: "🥇 九州第一名：水果王國(草莓/柿子)、可俯瞰平原美景" },
+        { n: "北熊本SA (高速-上行)", c: "29 646 648*14", p: "-", addr: "Kitakumamoto Service Area (Up)", desc: "🐻 熊本熊大本營：周邊商品最齊全、熊本拉麵、角煮饅頭" },
+        { n: "廣川SA (高速-上行)", c: "37 021 685*82", p: "-", addr: "Hirokawa Service Area (Up)", desc: "🍵 八女茶產地：抹茶甜點豐富、大型商場級休息站" },
+        { n: "道之驛 久留米 (Kurume)", c: "37 363 487*44", p: "0942-47-4111", addr: "Michinoeki Kurume", desc: "🍇 農業產值最高：久留米拉麵、烤雞肉串、新鮮農產" }
     ];
 
     // Reservations
@@ -828,7 +827,10 @@
         const tbody = document.getElementById(id);
         data.forEach(m => {
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td><span class="map-link" onclick="openGoogleMap('${m.addr}')" style="cursor:pointer">${m.n} <i class="fas fa-external-link-alt"></i></span><div style="font-size:0.8rem; color:#888; margin-top:2px;">${m.n.includes("阿蘇路") ? "推薦：高菜飯、麵疙瘩汁" : ""}</div></td><td><div style="font-weight:bold;color:var(--ocean-dark)">${m.c} <button class="copy-btn" onclick="copy('${m.c}')">複製</button></div><div style="font-size:0.85rem;color:#666">${m.p} <button class="copy-btn" onclick="copy('${m.p}')">複製</button></div></td>`;
+            // If it's a rest stop (has desc property), show description
+            const descHtml = m.desc ? `<div style="font-size:0.8rem; color:#555; margin-top:4px;">${m.desc}</div>` : (m.n.includes("阿蘇路") ? `<div style="font-size:0.8rem; color:#888; margin-top:2px;">推薦：高菜飯、麵疙瘩汁</div>` : "");
+            
+            tr.innerHTML = `<td><span class="map-link" onclick="openGoogleMap('${m.addr}')" style="cursor:pointer">${m.n} <i class="fas fa-external-link-alt"></i></span>${descHtml}</td><td><div style="font-weight:bold;color:var(--ocean-dark)">${m.c} <button class="copy-btn" onclick="copy('${m.c}')">複製</button></div><div style="font-size:0.85rem;color:#666">${m.p} <button class="copy-btn" onclick="copy('${m.p}')">複製</button></div></td>`;
             tbody.appendChild(tr);
         });
     }
