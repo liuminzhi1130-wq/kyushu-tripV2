@@ -19,7 +19,6 @@
             --coupon: #E91E63;      /* 優惠券紅 */
             --res: #673AB7;         /* 預約憑證紫 */
             --market: #4CAF50;      /* 超市綠 */
-            --rest: #795548;        /* 休息站棕 */
         }
 
         body {
@@ -634,7 +633,18 @@
 
     // Food
     const foodData = [
-        { region: "博多", items: ["Full Full 明太子麵包", "藥院燒肉 NIKUICHI", "一雙拉麵", "吉塚鰻魚屋", "努努雞", "博多一口餃子"] },
+        { 
+            region: "🥐 早餐/麵包 (飯店周邊)", 
+            items: [
+                "Full Full (西鐵Croom旁 1分鐘) (9-3 Gionmachi)", 
+                "DACOMECCA (博多站前 網紅店)", 
+                "stock (Pain Stock 天神) (中洲飯店旁)",
+                "bills (水上公園) (世界第一早餐)",
+                "Hakataza Bakery (博多座)",
+                "Komeda's Coffee (博多站前)"
+            ] 
+        },
+        { region: "博多", items: ["藥院燒肉 NIKUICHI", "一雙拉麵", "吉塚鰻魚屋", "努努雞", "博多一口餃子"] },
         { region: "天神", items: ["I'm donut?", "Shin Shin 拉麵", "葫蘆壽司", "元祖博多めんたい重", "壽司郎", "敘敘苑 遊玄亭", "BAKE CHEESE TART"] },
         { region: "由布院", items: ["B-Speak 蛋糕捲", "豐後牛可樂餅", "釜飯心", "Milch 起司蛋糕", "花麴菊家", "金賞可樂餅"] },
         { region: "熊本", items: ["黑亭拉麵", "勝烈亭炸豬排", "蜂樂饅頭", "菅乃屋 馬肉", "紅蘭亭 太平燕", "芥末蓮藕"] },
@@ -801,8 +811,19 @@
         div.id = `food-list-${idx}`;
         div.className = 'collapse-content food-list';
         cat.items.forEach(i => {
-            const name = i.split('(')[0];
-            const query = `${cat.region} ${name}`;
+            let name = i.split('(')[0];
+            let query = `${cat.region} ${name}`;
+            
+            // Special handling for the Breakfast category
+            if(cat.region.includes("早餐")) {
+                if(i.includes("Full Full")) query = "9-3 Gionmachi, Hakata Ward, Fukuoka, 812-0038";
+                if(i.includes("DACOMECCA")) query = "4-14-1 Hakata Ekimae, Hakata Ward, Fukuoka, 812-0011";
+                if(i.includes("stock")) query = "6-17 Nishinakasu, Chuo Ward, Fukuoka, 810-0002";
+                if(i.includes("bills")) query = "13-1 Nishinakasu, Chuo Ward, Fukuoka, 810-0002";
+                if(i.includes("Hakataza")) query = "2-1 Shimokawabatamachi, Hakata Ward, Fukuoka, 812-0027";
+                if(i.includes("Komeda")) query = "1-1 Hakataekichuogai, Hakata Ward, Fukuoka, 812-0012";
+            }
+            
             div.innerHTML += `<span class="food-tag" onclick="openGoogleMap('${query}')">${i} <i class="fas fa-location-arrow"></i></span>`;
         });
         foodDiv.appendChild(div);
