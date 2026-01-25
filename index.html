@@ -14,7 +14,7 @@
             --ocean-dark: #0277BD;
             --mountain: #9CCC65;    /* 阿蘇綠 */
             --text: #37474F;
-            --glass: rgba(255, 255, 255, 0.93);
+            --glass: rgba(255, 255, 255, 0.95);
             --gift: #FF9800;        /* 伴手禮橘 */
             --coupon: #E91E63;      /* 優惠券紅 */
             --res: #673AB7;         /* 預約憑證紫 */
@@ -289,27 +289,27 @@
             <h2>🎟️ 優惠券專區</h2>
             
             <div class="coupon-card">
-                <img src="coupon_daikoku.jpg" class="coupon-img" onclick="openModal('大國藥妝', 'coupon_daikoku.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_daikoku.jpg';">
+                <img src="coupon_daikoku.jpg" class="coupon-img" onclick="openModal('大國藥妝', 'coupon_daikoku.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_daikoku.jpg';">
                 <div class="coupon-info"><div class="coupon-title">大國藥妝 (Daikoku)</div><div class="coupon-desc">免稅10% + 3%~7%</div></div>
             </div>
             <div class="coupon-card">
-                <img src="coupon_tsuruha.jpg" class="coupon-img" onclick="openModal('鶴羽藥妝', 'coupon_tsuruha.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_tsuruha.jpg';">
+                <img src="coupon_tsuruha.jpg" class="coupon-img" onclick="openModal('鶴羽藥妝', 'coupon_tsuruha.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
                 <div class="coupon-info"><div class="coupon-title">鶴羽藥妝 (Tsuruha)</div><div class="coupon-desc">免稅10% + 7%</div></div>
             </div>
             <div class="coupon-card">
-                <img src="coupon_matsukiyo.jpg" class="coupon-img" onclick="openModal('松本清', 'coupon_matsukiyo.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_matsukiyo.jpg';">
+                <img src="coupon_matsukiyo.jpg" class="coupon-img" onclick="openModal('松本清', 'coupon_matsukiyo.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
                 <div class="coupon-info"><div class="coupon-title">松本清 (Matsumoto Kiyoshi)</div><div class="coupon-desc">免稅10% + 7%</div></div>
             </div>
             <div class="coupon-card">
-                <img src="coupon_cosmos.jpg" class="coupon-img" onclick="openModal('Cosmos', 'coupon_cosmos.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_cosmos.jpg';">
+                <img src="coupon_cosmos.jpg" class="coupon-img" onclick="openModal('Cosmos', 'coupon_cosmos.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
                 <div class="coupon-info"><div class="coupon-title">Cosmos 藥妝</div><div class="coupon-desc">九州最便宜</div></div>
             </div>
             <div class="coupon-card">
-                <img src="coupon_bic.jpg" class="coupon-img" onclick="openModal('BicCamera', 'coupon_bic.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_bic.jpg';">
+                <img src="coupon_bic.jpg" class="coupon-img" onclick="openModal('BicCamera', 'coupon_bic.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
                 <div class="coupon-info"><div class="coupon-title">BicCamera</div><div class="coupon-desc">免稅10% + 7%</div></div>
             </div>
             <div class="coupon-card">
-                <img src="coupon_donki.jpg" class="coupon-img" onclick="openModal('唐吉訶德', 'coupon_donki.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_donki.jpg';">
+                <img src="coupon_donki.jpg" class="coupon-img" onclick="openModal('唐吉訶德', 'coupon_donki.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
                 <div class="coupon-info"><div class="coupon-title">唐吉訶德 (Don Quijote)</div><div class="coupon-desc">免稅10% + 5%</div></div>
             </div>
         </div>
@@ -403,24 +403,24 @@
     </div>
 
 <script>
-    // --- 1. Global Helper: Google Maps (Fixed & Robust) ---
+    // --- 1. Global Helper: Google Maps (Accurate Search URL) ---
     function openGoogleMap(query) {
+        // Use standard Google Maps Search URL
         const encodedQuery = encodeURIComponent(query);
-        // Using the standard Google Maps search URL with api=1 parameter
         const url = `https://www.google.com/maps/search/?api=1&query=${encodedQuery}`;
         window.open(url, '_blank');
     }
 
     // --- 2. Data Definitions ---
     
-    // Supermarket Data
+    // Supermarket Data (Fixed query keys for accuracy)
     const supermarketData = [
         {
             hotel: "🏨 住宿1: 三井花園中洲",
             shops: [
                 { name: "Reganet Cute 中洲川端店", addr: "福岡市博多区上川端町 12-20", dist: "步行 2 分", feat: "地鐵共構，回飯店順路" },
                 { name: "Foodway 中洲食小町店", addr: "福岡市博多区中洲 3-7-24", dist: "步行 3 分", feat: "Gate's大樓內，開很晚" },
-                { name: "Don Quijote 唐吉訶德 中洲店", addr: "福岡市博多区中洲 3-7-24", dist: "步行 3 分", feat: "24H，零食雜貨全有" },
+                { name: "Don Quijote 唐吉訶德 中洲店", addr: "ドン・キホーテ 中洲店", dist: "步行 3 分", feat: "24H，零食雜貨全有" },
                 { name: "MaxValu Express 博多祇園店", addr: "福岡市博多区祇園町 7-20", dist: "步行 10 分", feat: "24H 標準超市" },
                 { name: "大丸福岡天神店 地下食品街", addr: "福岡市中央区天神 1-4-1", dist: "步行 8 分", feat: "高級水果、和牛" }
             ]
@@ -431,6 +431,7 @@
                 { name: "MaxValu Express 博多祇園店", addr: "福岡市博多区祇園町 7-20", dist: "步行 3 分", feat: "飯店斜對面，24H最方便" },
                 { name: "Lopia 博多Yodobashi店", addr: "福岡市博多区博多駅中央街 6-12", dist: "步行 12 分", feat: "高CP值，肉便宜 (只收現金)" },
                 { name: "博多阪急 地下食品街", addr: "福岡市博多区博多駅中央街 1-1", dist: "步行 10 分", feat: "高級熟食便當" },
+                { name: "Reganet Cute 中洲川端店", addr: "福岡市博多区上川端町 12-20", dist: "步行 8 分", feat: "位於川端商店街尾端，逛街時可順道採買" },
                 { name: "Bon Repas 百旬館", addr: "福岡市中央区渡辺通 4-6-20", dist: "步行 15 分", feat: "在地高級超市" }
             ]
         },
@@ -543,7 +544,7 @@
 
     // Mapcodes (Fully Corrected Addresses)
     const mapcodeData = [
-        { n: "Toyota Rent a Car (博多站東)", c: "13 320 188*71", p: "092-472-8388", addr: "1 Chome-4-10 Toko, Hakata Ward, Fukuoka, 812-0008" },
+        { n: "Toyota Rent a Car (博多站東)", c: "13 320 188*71", p: "092-472-8388", addr: "1 Chome-4-10 Toko, Hakata Ward, Fukuoka, 812-0008日本" },
         { n: "Uluu Gardens SAGA (草莓園)", c: "37 491 662*13", p: "080-8956-1030", addr: "Uluu Gardens SAGA 佐賀県三養基郡みやき町江口7079" },
         { n: "湯布院山水館", c: "269 328 633*45", p: "0977-84-2101", addr: "Yufuin Sansuikan" },
         { n: "金鱗湖停車場", c: "269 359 583*03", p: "0977-84-3111", addr: "Kinrin Lake Parking" },
@@ -633,7 +634,7 @@
         cat.items.forEach(item => {
             const el = document.createElement('div');
             el.className = 'souvenir-item';
-            el.onclick = () => openGoogleMap(`博多駅 ${item.loc} ${item.name.split('(')[0]}`);
+            el.onclick = () => openGoogleMap(`博多駅 ${item.loc} ${item.name}`);
             el.innerHTML = `<div><span class="souvenir-name">${item.name}</span><span class="souvenir-price">${item.price}</span></div><div class="souvenir-loc">${item.loc}</div><div class="souvenir-note">${item.note}</div>`;
             div.appendChild(el);
         });
@@ -675,7 +676,8 @@
         div.className = 'collapse-content food-list';
         cat.items.forEach(i => {
             const name = i.split('(')[0];
-            div.innerHTML += `<span class="food-tag" onclick="openGoogleMap('${cat.region} ${name}')">${i} <i class="fas fa-location-arrow"></i></span>`;
+            const query = `${cat.region} ${name}`;
+            div.innerHTML += `<span class="food-tag" onclick="openGoogleMap('${query}')">${i} <i class="fas fa-location-arrow"></i></span>`;
         });
         foodDiv.appendChild(div);
     });
