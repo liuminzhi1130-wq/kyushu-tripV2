@@ -14,7 +14,7 @@
             --ocean-dark: #0277BD;
             --mountain: #9CCC65;    /* 阿蘇綠 */
             --text: #37474F;
-            --glass: rgba(255, 255, 255, 0.95);
+            --glass: rgba(255, 255, 255, 0.93);
             --gift: #FF9800;        /* 伴手禮橘 */
             --coupon: #E91E63;      /* 優惠券紅 */
             --res: #673AB7;         /* 預約憑證紫 */
@@ -104,21 +104,13 @@
             gap: 8px;
         }
 
-        .nav-btn:active {
-            transform: scale(0.95);
-            background-color: #f0f0f0;
-        }
-
+        .nav-btn:active { transform: scale(0.95); background-color: #f0f0f0; }
         .nav-btn i { font-size: 1.5rem; color: var(--plum); }
 
         /* Sections */
         .section { display: none; padding: 0 20px; animation: fadeIn 0.3s ease; }
         .section.active { display: block; }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Back Button */
         .back-btn {
@@ -141,73 +133,39 @@
             box-sizing: border-box;
         }
 
-        h2 {
-            font-size: 1.4rem;
-            color: var(--plum);
-            border-bottom: 2px dashed #ddd;
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
+        h2 { font-size: 1.4rem; color: var(--plum); border-bottom: 2px dashed #ddd; padding-bottom: 10px; margin-top: 0; }
 
         /* Collapsible Buttons */
         .collapse-btn {
-            width: 100%;
-            background: white;
-            border: none;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 12px;
-            text-align: left;
-            font-family: inherit;
-            font-size: 1.05rem;
-            font-weight: bold;
-            color: var(--text);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            width: 100%; background: white; border: none; padding: 15px; margin-bottom: 10px; border-radius: 12px;
+            text-align: left; font-family: inherit; font-size: 1.05rem; font-weight: bold; color: var(--text);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); cursor: pointer; display: flex; justify-content: space-between; align-items: center;
             transition: 0.2s;
         }
-        
-        /* Borders for categories */
         .date-btn { border-left: 5px solid var(--ocean); }
         .food-region-btn { border-left: 5px solid var(--plum); }
         .souvenir-btn { border-left: 5px solid var(--gift); }
         .res-btn { border-left: 5px solid var(--res); }
         .market-btn { border-left: 5px solid var(--market); }
-
         .collapse-btn.active { background: #fdf2f7; color: #D81B60; }
-        
         .collapse-content { display: none; padding: 10px 5px; margin-bottom: 15px; }
         .collapse-content.open { display: block; animation: slideDown 0.3s ease; }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Supermarket Items */
         .market-item {
-            background: white;
-            padding: 15px;
-            margin-bottom: 12px;
-            border-radius: 12px;
-            border-left: 5px solid var(--market);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            cursor: pointer;
+            background: white; padding: 15px; margin-bottom: 12px; border-radius: 12px; border-left: 5px solid var(--market);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05); cursor: pointer; position: relative;
         }
         .market-name { font-weight: bold; font-size: 1.05rem; color: #2E7D32; display: block; margin-bottom: 5px; }
         .market-dist { font-size: 0.85rem; color: #FF5722; font-weight: bold; background: #FFEBEE; padding: 2px 6px; border-radius: 4px; margin-right: 5px; }
         .market-feature { font-size: 0.9rem; color: #555; margin-top: 5px; line-height: 1.4; }
         .market-item::after { content: '\f3c5'; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; right: 15px; top: 20px; color: var(--market); opacity: 0.5; }
 
-        /* Souvenir & Coupon Items */
+        /* Souvenir Items */
         .souvenir-item {
-            background: white;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 12px;
-            border-left: 5px solid var(--gift);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            cursor: pointer;
-            position: relative;
+            background: white; padding: 15px; margin-bottom: 10px; border-radius: 12px; border-left: 5px solid var(--gift);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05); cursor: pointer; position: relative;
         }
         .souvenir-name { font-weight: bold; font-size: 1.05rem; color: #333; }
         .souvenir-price { color: #D81B60; font-weight: bold; font-size: 0.9rem; margin-left: 8px; }
@@ -215,15 +173,17 @@
         .souvenir-note { font-size: 0.8rem; color: #888; font-style: italic; }
         .souvenir-item::after { content: '\f3c5'; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--gift); opacity: 0.5; }
 
+        /* Coupon Card */
         .coupon-card {
             background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; border: 2px dashed var(--coupon); position: relative;
         }
         .coupon-card::before {
             content: 'COUPON'; position: absolute; top: 10px; right: 10px; background: var(--coupon); color: white; padding: 3px 8px; border-radius: 5px; font-size: 0.7rem; font-weight: bold; z-index: 2;
         }
-        .coupon-img { width: 100%; height: 180px; object-fit: contain; background: #fafafa; display: block; }
+        .coupon-img { width: 100%; height: 180px; object-fit: contain; background: #fafafa; display: block; cursor: pointer; }
         .coupon-info { padding: 15px; text-align: center; border-top: 1px solid #eee; }
         .coupon-title { font-weight: bold; font-size: 1.1rem; }
+        .coupon-desc { font-size: 0.9rem; color: #666; margin-top: 5px; }
 
         /* Timeline & Steps */
         .timeline-step { display: flex; margin-bottom: 15px; padding-left: 10px; position: relative; }
@@ -243,8 +203,9 @@
         .map-table td { background: white; padding: 12px; border: 1px solid #eee; }
         .map-table td:first-child { border-radius: 10px 0 0 10px; }
         .map-table td:last-child { border-radius: 0 10px 10px 0; text-align: right; }
-        .map-link { font-weight: bold; color: var(--ocean-dark); text-decoration: none; display: block; }
+        .map-link { font-weight: bold; color: var(--ocean-dark); text-decoration: none; display: block; cursor: pointer; }
         .copy-btn { background: var(--plum-light); color: var(--plum); border: none; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; cursor: pointer; margin-left: 5px; }
+        .parking-card { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border: 2px solid #ffb74d; border-radius: 15px; padding: 15px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
         /* Calculator */
         .calc-card { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
@@ -261,7 +222,7 @@
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(5px); }
         .modal.open { display: flex; }
         .modal-card { background: white; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; position: relative; }
-        .modal-img { width: 100%; height: auto; max-height: 50vh; object-fit: contain; background: #333; display: block; }
+        .modal-img { width: 100%; height: auto; max-height: 60vh; object-fit: contain; background: #333; display: block; }
         .modal-body { padding: 20px; }
         .close-modal { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; }
 
@@ -312,6 +273,9 @@
                     <i class="fas fa-shopping-basket"></i> 住宿周邊超市
                 </div>
             </div>
+            <p style="text-align:center; color:#999; font-size:0.8rem; margin-top:10px;">
+                *點擊行程表中的項目可查看照片
+            </p>
         </div>
 
         <div id="supermarkets" class="section">
@@ -325,28 +289,28 @@
             <h2>🎟️ 優惠券專區</h2>
             
             <div class="coupon-card">
-                <img src="coupon_daikoku.jpg" class="coupon-img" onclick="openModal('大國藥妝', 'coupon_daikoku.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
-                <div class="coupon-info"><div class="coupon-title">大國藥妝 (Daikoku)</div></div>
+                <img src="coupon_daikoku.jpg" class="coupon-img" onclick="openModal('大國藥妝', 'coupon_daikoku.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_daikoku.jpg';">
+                <div class="coupon-info"><div class="coupon-title">大國藥妝 (Daikoku)</div><div class="coupon-desc">免稅10% + 3%~7%</div></div>
             </div>
             <div class="coupon-card">
-                <img src="coupon_tsuruha.jpg" class="coupon-img" onclick="openModal('鶴羽藥妝', 'coupon_tsuruha.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
-                <div class="coupon-info"><div class="coupon-title">鶴羽藥妝 (Tsuruha)</div></div>
+                <img src="coupon_tsuruha.jpg" class="coupon-img" onclick="openModal('鶴羽藥妝', 'coupon_tsuruha.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_tsuruha.jpg';">
+                <div class="coupon-info"><div class="coupon-title">鶴羽藥妝 (Tsuruha)</div><div class="coupon-desc">免稅10% + 7%</div></div>
             </div>
             <div class="coupon-card">
-                <img src="coupon_matsukiyo.jpg" class="coupon-img" onclick="openModal('松本清', 'coupon_matsukiyo.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
-                <div class="coupon-info"><div class="coupon-title">松本清 (Matsumoto Kiyoshi)</div></div>
+                <img src="coupon_matsukiyo.jpg" class="coupon-img" onclick="openModal('松本清', 'coupon_matsukiyo.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_matsukiyo.jpg';">
+                <div class="coupon-info"><div class="coupon-title">松本清 (Matsumoto Kiyoshi)</div><div class="coupon-desc">免稅10% + 7%</div></div>
             </div>
             <div class="coupon-card">
-                <img src="coupon_cosmos.jpg" class="coupon-img" onclick="openModal('Cosmos', 'coupon_cosmos.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
-                <div class="coupon-info"><div class="coupon-title">Cosmos 藥妝</div></div>
+                <img src="coupon_cosmos.jpg" class="coupon-img" onclick="openModal('Cosmos', 'coupon_cosmos.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_cosmos.jpg';">
+                <div class="coupon-info"><div class="coupon-title">Cosmos 藥妝</div><div class="coupon-desc">九州最便宜</div></div>
             </div>
             <div class="coupon-card">
-                <img src="coupon_bic.jpg" class="coupon-img" onclick="openModal('BicCamera', 'coupon_bic.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
-                <div class="coupon-info"><div class="coupon-title">BicCamera</div></div>
+                <img src="coupon_bic.jpg" class="coupon-img" onclick="openModal('BicCamera', 'coupon_bic.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_bic.jpg';">
+                <div class="coupon-info"><div class="coupon-title">BicCamera</div><div class="coupon-desc">免稅10% + 7%</div></div>
             </div>
             <div class="coupon-card">
-                <img src="coupon_donki.jpg" class="coupon-img" onclick="openModal('唐吉訶德', 'coupon_donki.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
-                <div class="coupon-info"><div class="coupon-title">唐吉訶德 (Don Quijote)</div></div>
+                <img src="coupon_donki.jpg" class="coupon-img" onclick="openModal('唐吉訶德', 'coupon_donki.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_donki.jpg';">
+                <div class="coupon-info"><div class="coupon-title">唐吉訶德 (Don Quijote)</div><div class="coupon-desc">免稅10% + 5%</div></div>
             </div>
         </div>
 
@@ -439,10 +403,12 @@
     </div>
 
 <script>
-    // --- 1. Global Helper: Google Maps ---
+    // --- 1. Global Helper: Google Maps (Fixed & Robust) ---
     function openGoogleMap(query) {
-        // 使用 Google Maps 標準搜尋格式
-        window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`, '_blank');
+        const encodedQuery = encodeURIComponent(query);
+        // Using the standard Google Maps search URL with api=1 parameter
+        const url = `https://www.google.com/maps/search/?api=1&query=${encodedQuery}`;
+        window.open(url, '_blank');
     }
 
     // --- 2. Data Definitions ---
@@ -575,7 +541,7 @@
         { region: "阿蘇/佐賀", items: ["Imakin 赤牛丼", "河太郎 活花枝", "糸島布丁", "阿蘇とり宮", "佐賀牛 季樂", "嬉野湯豆腐"] }
     ];
 
-    // Mapcodes (Updated Address for ULUU & Toyota)
+    // Mapcodes (Fully Corrected Addresses)
     const mapcodeData = [
         { n: "Toyota Rent a Car (博多站東)", c: "13 320 188*71", p: "092-472-8388", addr: "1 Chome-4-10 Toko, Hakata Ward, Fukuoka, 812-0008" },
         { n: "Uluu Gardens SAGA (草莓園)", c: "37 491 662*13", p: "080-8956-1030", addr: "Uluu Gardens SAGA 佐賀県三養基郡みやき町江口7079" },
