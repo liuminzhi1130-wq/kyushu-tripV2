@@ -613,6 +613,7 @@
         ]},
         { date: "2/3 (二) Day 6", steps: [
             { t: "10:00", name: "熊本城", image: "day6_castle.jpg", desc: "天守閣" },
+            { t: "13:00", name: "Kyoho Winery (巨峰葡萄酒廠)", image: "day6_winery.jpg", desc: "森林中的酒莊，可參觀與試飲。(若時間充裕的選項)" },
             { t: "15:00", name: "太宰府天滿宮", image: "day6_dazaifu.jpg", desc: "梅枝餅" },
             { t: "19:00", name: "三井花園中洲", image: "day6_hotel.jpg", desc: "質感飯店" }
         ]},
@@ -653,6 +654,8 @@
     const mapOcean = [
         { n: "Toyota Rent a Car (博多站東)", c: "13 320 188*71", p: "092-472-8388", addr: "1 Chome-4-10 Toko, Hakata Ward, Fukuoka, 812-0008" },
         { n: "Uluu Gardens SAGA (草莓園)", c: "37 491 662*13", p: "0942-27-6400", addr: "Uluu Gardens SAGA 佐賀県三養基郡みやき町江口7079" },
+        { n: "Kyoho Winery (巨峰葡萄酒廠)", c: "166 548 266*73", p: "0943-72-2382", addr: "246-1 Tanushimarumachi Masuoda, Kurume, Fukuoka 839-1213日本" },
+        { n: "Dormy Inn 熊本", c: "29 459 487*36", p: "096-311-5489", addr: "Dormy Inn Kumamoto Natural Hot Spring" },
         { n: "天草海鮮蔵 (遊客中心)", c: "254 755 461*27", p: "0969-52-7707", addr: "Amakusa Kaisenkura" },
         { n: "熊本城 (城彩苑停車場)", c: "29 459 342*58", p: "096-352-5900", addr: "Sakuranobaba Josaien" },
         { n: "太宰府 (千徳駐車場)", c: "55 364 128*27", p: "092-922-8225", addr: "千徳駐車場" },
@@ -834,7 +837,7 @@
 
     // Checklist
     const packDiv = document.getElementById('checklist-container');
-    const packingList = ["護照", "駕照+譯本", "信用卡(富邦J)", "日幣", "手機+充電器", "行動電源", "eSIM", "保溫瓶", "牙刷", "雨具"];
+    const packingList = ["護照", "駕照+譯本", "信用卡(富邦J)", "日幣", "手機+充電器", "行動電源", "eSIM", "保溫瓶", "水杯", "牙刷", "雨具", "常備藥", "益生菌", "刮鬍刀"];
     packingList.forEach((item, idx) => {
         const div = document.createElement('div');
         div.className = 'checklist-item';
