@@ -18,6 +18,7 @@
             --gift: #FF9800;        /* 伴手禮橘 */
             --coupon: #E91E63;      /* 優惠券紅 */
             --res: #673AB7;         /* 預約憑證紫 */
+            --market: #4CAF50;      /* 超市綠 */
         }
 
         body {
@@ -200,6 +201,30 @@
         .coupon-title { font-weight: bold; color: #333; font-size: 1.1rem; margin-bottom: 5px; }
         .coupon-desc { font-size: 0.9rem; color: #666; }
 
+        /* Supermarket Styles */
+        .market-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            border-left: 5px solid var(--market);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: 0.2s;
+            position: relative;
+        }
+        
+        .market-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+            background: #f1f8e9;
+        }
+
+        .market-name { font-weight: bold; font-size: 1.05rem; color: #2E7D32; margin-bottom: 4px; display: block;}
+        .market-dist { font-size: 0.85rem; color: #FF5722; font-weight: bold; background: #FFEBEE; padding: 2px 6px; border-radius: 4px; margin-right: 5px; }
+        .market-feature { font-size: 0.9rem; color: #555; margin-top: 5px; line-height: 1.4; }
+        .market-item::after { content: '\f3c5'; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--market); font-size: 1.2rem; opacity: 0.5; }
+
         /* Souvenir Card Styles */
         .parking-card {
             background: linear-gradient(135deg, #fff3e0, #ffe0b2);
@@ -302,7 +327,8 @@
         .date-btn { border-left: 5px solid var(--ocean); }
         .food-region-btn { border-left: 5px solid var(--plum); }
         .souvenir-btn { border-left: 5px solid var(--gift); }
-        .res-btn { border-left: 5px solid var(--res); } /* 預約憑證按鈕 */
+        .res-btn { border-left: 5px solid var(--res); }
+        .market-btn { border-left: 5px solid var(--market); } /* 超市按鈕 */
 
         .collapse-btn:hover { background: #f8fcfd; }
         .collapse-btn.active { background: var(--plum-light); color: #D81B60; }
@@ -321,7 +347,6 @@
         .step-content:active { transform: scale(0.98); background: #fafafa; }
         .step-content::after { content: '📸'; font-size: 1rem; position: absolute; right: 10px; top: 12px; opacity: 0.6; }
         
-        /* Specific style for reservation items */
         .res-content { border-left: 4px solid var(--res) !important; }
         .res-content::after { content: '📄'; }
 
@@ -400,13 +425,19 @@
                 <div class="nav-btn" onclick="showSection('calculator')">
                     <i class="fas fa-calculator"></i> 匯率計算
                 </div>
-                <div class="nav-btn" onclick="openGoogleMapSearch('附近超市')">
-                    <i class="fas fa-shopping-basket"></i> 附近超市
+                <div class="nav-btn" onclick="showSection('supermarkets')">
+                    <i class="fas fa-shopping-basket"></i> 住宿周邊超市
                 </div>
             </div>
             <p style="text-align:center; color:#999; font-size:0.8rem; margin-top:10px;">
                 *點擊行程表中的項目可查看照片
             </p>
+        </div>
+
+        <div id="supermarkets" class="section">
+            <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
+            <h2>🛒 住宿周邊超市清單</h2>
+            <div id="supermarket-container"></div>
         </div>
 
         <div id="coupons" class="section">
@@ -576,6 +607,40 @@
     }
 
     // --- Data Configuration ---
+
+    // Supermarket Data (Grouped by Hotel)
+    const supermarketData = [
+        {
+            hotel: "🏨 三井花園福岡中洲",
+            shops: [
+                { name: "Reganet Cute 中洲川端店", addr: "福岡市博多区上川端町 12-20", dist: "步行 2 分鐘", feature: "就在地鐵共構大樓，回飯店最順路，熟食便當多。" },
+                { name: "Foodway 中洲食小町店", addr: "福岡市博多区中洲 3-7-24", dist: "步行 3 分鐘", feature: "位於 gate's 大樓內，營業至深夜，採買消夜方便。" },
+                { name: "Don Quijote 唐吉訶德 中洲店", addr: "福岡市博多区中洲 3-7-24", dist: "步行 3 分鐘", feature: "24小時營業，零食、飲料、雜貨一次買齊。" },
+                { name: "MaxValu Express 博多祇園店", addr: "福岡市博多区祇園町 7-20", dist: "步行 10 分鐘", feature: "24小時營業，價格實惠的標準型超市。" },
+                { name: "大丸福岡天神店 地下食品街", addr: "福岡市中央区天神 1-4-1", dist: "步行 8 分鐘", feature: "過橋即達，適合購買高品質水果、甜點與和牛。" }
+            ]
+        },
+        {
+            hotel: "🏨 西鐵 Croom 博多祇園",
+            shops: [
+                { name: "MaxValu Express 博多祇園店", addr: "福岡市博多区祇園町 7-20", dist: "步行 3 分鐘", feature: "最近的超市，就在飯店斜對面，24小時營業最便利。" },
+                { name: "Lopia 博多Yodobashi店", addr: "福岡市博多区博多駅中央街 6-12", dist: "步行 12 分鐘", feature: "必逛！ 日本現在最紅的高CP值超市，肉類便宜份量大（只收現金）。" },
+                { name: "博多阪急 地下食品街", addr: "福岡市博多区博多駅中央街 1-1", dist: "步行 10 分鐘", feature: "博多車站內，非常適合買回飯店享用的高級熟食。" },
+                { name: "Reganet Cute 中洲川端店", addr: "福岡市博多区上川端町 12-20", dist: "步行 8 分鐘", feature: "位於川端商店街尾端，逛街時可順道採買。" },
+                { name: "Bon Repas 百旬館", addr: "福岡市中央区渡辺通 4-6-20", dist: "步行 15 分鐘", feature: "在地高級超市，食材品質極佳，適合講究的旅客。" }
+            ]
+        },
+        {
+            hotel: "🏨 Dormy Inn 熊本",
+            shops: [
+                { name: "Foodway SAKURA MACHI店", addr: "熊本市中央区桜町 3-10 B1F", dist: "步行 2 分鐘", feature: "最近！ 就在飯店對面購物中心地下1樓，新穎乾淨，晚上會有特價貼紙。" },
+                { name: "業務超市 辛島公園店", addr: "熊本市中央区辛島町 2-1", dist: "步行 1 分鐘", feature: "就在隔壁街區，大包裝零食、調味料最便宜。" },
+                { name: "Miyahara 下通店", addr: "熊本市中央区花畑町 11-14", dist: "步行 5 分鐘", feature: "位於熱鬧的下通商店街，像超商的生鮮超市，營業至深夜。" },
+                { name: "Don Quijote 熊本下通店", addr: "熊本市中央区安政町 5-27", dist: "步行 6 分鐘", feature: "位於商店街核心，24小時營業（食品區），補貨首選。" },
+                { name: "鶴屋百貨店 地下食品街", addr: "熊本市中央区手取本町 6-1", dist: "步行 10 分鐘", feature: "熊本最高級百貨，熊本熊部長辦公室也在這，適合買生魚片和伴手禮。" }
+            ]
+        }
+    ];
 
     // Souvenir Data (Grouped)
     const souvenirData = [
@@ -793,6 +858,40 @@
         { t: "🐬 天草海豚 (海鮮蔵)", d: "2/2 11:30 | 天草", image: "res_dolphin.jpg" }
     ];
 
+    // --- Supermarket Data ---
+    const supermarketData = [
+        {
+            hotel: "🏨 三井花園福岡中洲",
+            shops: [
+                { name: "Reganet Cute 中洲川端店", addr: "福岡市博多区上川端町 12-20", dist: "步行 2 分鐘", feature: "就在地鐵共構大樓，回飯店最順路，熟食便當多。" },
+                { name: "Foodway 中洲食小町店", addr: "福岡市博多区中洲 3-7-24", dist: "步行 3 分鐘", feature: "位於 gate's 大樓內，營業至深夜，採買消夜方便。" },
+                { name: "Don Quijote 唐吉訶德 中洲店", addr: "福岡市博多区中洲 3-7-24", dist: "步行 3 分鐘", feature: "24小時營業，零食、飲料、雜貨一次買齊。" },
+                { name: "MaxValu Express 博多祇園店", addr: "福岡市博多区祇園町 7-20", dist: "步行 10 分鐘", feature: "24小時營業，價格實惠的標準型超市。" },
+                { name: "大丸福岡天神店 地下食品街", addr: "福岡市中央区天神 1-4-1", dist: "步行 8 分鐘", feature: "過橋即達，適合購買高品質水果、甜點與和牛。" }
+            ]
+        },
+        {
+            hotel: "🏨 西鐵 Croom 博多祇園",
+            shops: [
+                { name: "MaxValu Express 博多祇園店", addr: "福岡市博多区祇園町 7-20", dist: "步行 3 分鐘", feature: "最近的超市，就在飯店斜對面，24小時營業最便利。" },
+                { name: "Lopia 博多Yodobashi店", addr: "福岡市博多区博多駅中央街 6-12", dist: "步行 12 分鐘", feature: "必逛！ 日本現在最紅的高CP值超市，肉類便宜份量大（只收現金）。" },
+                { name: "博多阪急 地下食品街", addr: "福岡市博多区博多駅中央街 1-1", dist: "步行 10 分鐘", feature: "博多車站內，非常適合買回飯店享用的高級熟食。" },
+                { name: "Reganet Cute 中洲川端店", addr: "福岡市博多区上川端町 12-20", dist: "步行 8 分鐘", feature: "位於川端商店街尾端，逛街時可順道採買。" },
+                { name: "Bon Repas 百旬館", addr: "福岡市中央区渡辺通 4-6-20", dist: "步行 15 分鐘", feature: "在地高級超市，食材品質極佳，適合講究的旅客。" }
+            ]
+        },
+        {
+            hotel: "🏨 Dormy Inn 熊本",
+            shops: [
+                { name: "Foodway SAKURA MACHI店", addr: "熊本市中央区桜町 3-10 B1F", dist: "步行 2 分鐘", feature: "最近！ 就在飯店對面購物中心地下1樓，新穎乾淨，晚上會有特價貼紙。" },
+                { name: "業務超市 辛島公園店", addr: "熊本市中央区辛島町 2-1", dist: "步行 1 分鐘", feature: "就在隔壁街區，大包裝零食、調味料最便宜。" },
+                { name: "Miyahara 下通店", addr: "熊本市中央区花畑町 11-14", dist: "步行 5 分鐘", feature: "位於熱鬧的下通商店街，像超商的生鮮超市，營業至深夜。" },
+                { name: "Don Quijote 熊本下通店", addr: "熊本市中央区安政町 5-27", dist: "步行 6 分鐘", feature: "位於商店街核心，24小時營業（食品區），補貨首選。" },
+                { name: "鶴屋百貨店 地下食品街", addr: "熊本市中央区手取本町 6-1", dist: "步行 10 分鐘", feature: "熊本最高級百貨，熊本熊部長辦公室也在這，適合買生魚片和伴手禮。" }
+            ]
+        }
+    ];
+
     // --- Logic ---
 
     function showSection(id) {
@@ -905,6 +1004,33 @@
             listDiv.appendChild(itemDiv);
         });
         souvenirContainer.appendChild(listDiv);
+    });
+
+    // Supermarket Rendering
+    const marketContainer = document.getElementById('supermarket-container');
+    supermarketData.forEach((group, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'collapse-btn market-btn';
+        btn.innerHTML = `<span>${group.hotel}</span> <i class="fas fa-chevron-down"></i>`;
+        btn.onclick = () => toggleAccordion(index, 'market-list', 'market-btn');
+        marketContainer.appendChild(btn);
+
+        const listDiv = document.createElement('div');
+        listDiv.id = `market-list-${index}`;
+        listDiv.className = 'collapse-content market-list';
+
+        group.shops.forEach(shop => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'market-item';
+            itemDiv.onclick = () => openGoogleMapSearch(shop.addr); // Ensure navigation uses full address
+            itemDiv.innerHTML = `
+                <span class="market-name">${shop.name}</span>
+                <span class="market-dist">${shop.dist}</span>
+                <div class="market-feature">${shop.feature}</div>
+            `;
+            listDiv.appendChild(itemDiv);
+        });
+        marketContainer.appendChild(listDiv);
     });
 
     // --- Reservation Rendering Function ---
