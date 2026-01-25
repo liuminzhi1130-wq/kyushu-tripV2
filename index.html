@@ -14,7 +14,7 @@
             --ocean-dark: #0277BD;
             --mountain: #9CCC65;    /* 阿蘇綠 */
             --text: #37474F;
-            --glass: rgba(255, 255, 255, 0.93);
+            --glass: rgba(255, 255, 255, 0.95);
             --gift: #FF9800;        /* 伴手禮橘 */
             --coupon: #E91E63;      /* 優惠券紅 */
             --res: #673AB7;         /* 預約憑證紫 */
@@ -44,7 +44,7 @@
             padding-bottom: 30px;
         }
 
-        /* --- Header: 梅花背景 --- */
+        /* --- Header --- */
         header {
             background-image: url('https://images.unsplash.com/photo-1522383225653-ed111181a951?q=80&w=2076&auto=format&fit=crop');
             background-size: cover;
@@ -104,24 +104,15 @@
             gap: 8px;
         }
 
-        .nav-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(240, 98, 146, 0.2);
-            border-color: var(--plum-light);
-        }
-
+        .nav-btn:active { transform: scale(0.95); background-color: #f0f0f0; }
         .nav-btn i { font-size: 1.5rem; color: var(--plum); }
 
         /* Sections */
-        .section { display: none; padding: 0 20px; animation: fadeIn 0.4s ease; }
+        .section { display: none; padding: 0 20px; animation: fadeIn 0.3s ease; }
         .section.active { display: block; }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- Back Button Style --- */
+        /* Back Button */
         .back-btn {
             background: white;
             border: 2px solid var(--ocean-dark);
@@ -138,253 +129,107 @@
             gap: 8px;
             font-family: inherit;
             box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-            transition: all 0.2s;
             width: 100%;
             box-sizing: border-box;
         }
 
-        .back-btn:hover {
-            background: var(--ocean-dark);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-        }
-        
-        h2 {
-            font-size: 1.4rem;
-            color: var(--plum);
-            border-bottom: 2px dashed #ddd;
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
+        h2 { font-size: 1.4rem; color: var(--plum); border-bottom: 2px dashed #ddd; padding-bottom: 10px; margin-top: 0; }
 
-        /* Coupon Styles */
-        .coupon-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            border: 2px dashed var(--coupon);
-            position: relative;
-        }
-        
-        .coupon-card::before {
-            content: 'COUPON';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--coupon);
-            color: white;
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            z-index: 2;
-        }
-
-        .coupon-img {
-            width: 100%;
-            height: 180px;
-            object-fit: contain;
-            background: #fafafa;
-            display: block;
-            cursor: pointer;
-        }
-        
-        .coupon-info {
-            padding: 15px;
-            text-align: center;
-            border-top: 1px solid #eee;
-        }
-        
-        .coupon-title { font-weight: bold; color: #333; font-size: 1.1rem; margin-bottom: 5px; }
-        .coupon-desc { font-size: 0.9rem; color: #666; }
-
-        /* Supermarket Styles */
-        .market-item {
-            background: white;
-            padding: 15px;
-            margin-bottom: 12px;
-            border-radius: 12px;
-            border-left: 5px solid var(--market);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            cursor: pointer;
-            transition: 0.2s;
-            position: relative;
-        }
-        
-        .market-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
-            background: #f1f8e9;
-        }
-
-        .market-name { font-weight: bold; font-size: 1.05rem; color: #2E7D32; margin-bottom: 4px; display: block;}
-        .market-dist { font-size: 0.85rem; color: #FF5722; font-weight: bold; background: #FFEBEE; padding: 2px 6px; border-radius: 4px; margin-right: 5px; }
-        .market-feature { font-size: 0.9rem; color: #555; margin-top: 5px; line-height: 1.4; }
-        .market-item::after { content: '\f3c5'; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--market); font-size: 1.2rem; opacity: 0.5; }
-
-        /* Souvenir Card Styles */
-        .parking-card {
-            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-            border: 2px solid #ffb74d;
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .parking-title { font-weight: bold; color: #e65100; margin-bottom: 5px; font-size: 1.1rem; }
-        .parking-info { font-size: 0.9rem; color: #5d4037; line-height: 1.6; }
-
-        .souvenir-item {
-            background: white;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 12px;
-            border-left: 5px solid var(--gift);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            cursor: pointer;
-            transition: 0.2s;
-            position: relative;
-        }
-
-        .souvenir-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
-            background: #fffcfd;
-        }
-
-        .souvenir-name { font-weight: bold; font-size: 1.05rem; color: #333; margin-bottom: 4px; }
-        .souvenir-price { color: #D81B60; font-weight: bold; font-size: 0.9rem; margin-left: 8px; }
-        .souvenir-loc { font-size: 0.85rem; color: #666; margin-bottom: 2px; }
-        .souvenir-note { font-size: 0.8rem; color: #888; font-style: italic; }
-        .souvenir-item::after { content: '\f3c5'; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--gift); font-size: 1.2rem; opacity: 0.5; }
-
-        /* Calculator Styles */
-        .calc-card {
-            background: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            text-align: center;
-        }
-        
-        .calc-input-group { margin-bottom: 20px; text-align: left; }
-        .calc-label { font-size: 0.9rem; color: #888; margin-bottom: 5px; display: block; font-weight: bold; }
-        .calc-input { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 12px; font-size: 1.2rem; font-family: inherit; box-sizing: border-box; outline: none; transition: 0.2s; }
-        .calc-input:focus { border-color: var(--ocean); }
-        
-        .calc-result {
-            background: linear-gradient(135deg, var(--plum-light), #fff0f5);
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 10px;
-            border: 2px solid var(--plum);
-        }
-        .twd-amount { font-size: 2.5rem; font-weight: 800; color: #D81B60; margin: 10px 0; }
-
-        /* Food Link Styles */
-        .food-tag {
-            background: white;
-            padding: 10px 14px;
-            border-radius: 20px;
-            font-size: 0.95rem;
-            margin: 0 6px 10px 0;
-            display: inline-block;
-            border: 1px solid #eee;
-            text-decoration: none;
-            color: var(--text);
-            transition: all 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            cursor: pointer;
-            border-left: 4px solid var(--plum);
-        }
-        .food-tag:hover { background: var(--plum-light); color: #D81B60; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(240, 98, 146, 0.2); }
-        .food-tag i { margin-left: 5px; font-size: 0.8rem; color: #aaa; }
-
-        /* Styles for Collapsible Buttons */
+        /* Collapsible Buttons */
         .collapse-btn {
-            width: 100%;
-            background: white;
-            border: none;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 12px;
-            text-align: left;
-            font-family: inherit;
-            font-size: 1.05rem;
-            font-weight: bold;
-            color: var(--text);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            width: 100%; background: white; border: none; padding: 15px; margin-bottom: 10px; border-radius: 12px;
+            text-align: left; font-family: inherit; font-size: 1.05rem; font-weight: bold; color: var(--text);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); cursor: pointer; display: flex; justify-content: space-between; align-items: center;
             transition: 0.2s;
         }
         .date-btn { border-left: 5px solid var(--ocean); }
         .food-region-btn { border-left: 5px solid var(--plum); }
         .souvenir-btn { border-left: 5px solid var(--gift); }
         .res-btn { border-left: 5px solid var(--res); }
-        .market-btn { border-left: 5px solid var(--market); } /* 超市按鈕 */
-
-        .collapse-btn:hover { background: #f8fcfd; }
-        .collapse-btn.active { background: var(--plum-light); color: #D81B60; }
-        
-        .collapse-content { display: none; padding: 10px 5px; margin-bottom: 15px; animation: slideDown 0.3s ease; }
-        .collapse-content.open { display: block; }
+        .market-btn { border-left: 5px solid var(--market); }
+        .collapse-btn.active { background: #fdf2f7; color: #D81B60; }
+        .collapse-content { display: none; padding: 10px 5px; margin-bottom: 15px; }
+        .collapse-content.open { display: block; animation: slideDown 0.3s ease; }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Timeline */
+        /* Supermarket Items */
+        .market-item {
+            background: white; padding: 15px; margin-bottom: 12px; border-radius: 12px; border-left: 5px solid var(--market);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05); cursor: pointer; position: relative;
+        }
+        .market-name { font-weight: bold; font-size: 1.05rem; color: #2E7D32; display: block; margin-bottom: 5px; }
+        .market-dist { font-size: 0.85rem; color: #FF5722; font-weight: bold; background: #FFEBEE; padding: 2px 6px; border-radius: 4px; margin-right: 5px; }
+        .market-feature { font-size: 0.9rem; color: #555; margin-top: 5px; line-height: 1.4; }
+        .market-item::after { content: '\f3c5'; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; right: 15px; top: 20px; color: var(--market); opacity: 0.5; }
+
+        /* Souvenir Items */
+        .souvenir-item {
+            background: white; padding: 15px; margin-bottom: 10px; border-radius: 12px; border-left: 5px solid var(--gift);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05); cursor: pointer; position: relative;
+        }
+        .souvenir-name { font-weight: bold; font-size: 1.05rem; color: #333; }
+        .souvenir-price { color: #D81B60; font-weight: bold; font-size: 0.9rem; margin-left: 8px; }
+        .souvenir-loc { font-size: 0.85rem; color: #666; margin-top: 2px; }
+        .souvenir-note { font-size: 0.8rem; color: #888; font-style: italic; }
+        .souvenir-item::after { content: '\f3c5'; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--gift); opacity: 0.5; }
+
+        /* Coupon Card */
+        .coupon-card {
+            background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; border: 2px dashed var(--coupon); position: relative;
+        }
+        .coupon-card::before {
+            content: 'COUPON'; position: absolute; top: 10px; right: 10px; background: var(--coupon); color: white; padding: 3px 8px; border-radius: 5px; font-size: 0.7rem; font-weight: bold; z-index: 2;
+        }
+        .coupon-img { width: 100%; height: 180px; object-fit: contain; background: #fafafa; display: block; cursor: pointer; }
+        .coupon-info { padding: 15px; text-align: center; border-top: 1px solid #eee; }
+        .coupon-title { font-weight: bold; font-size: 1.1rem; }
+        .coupon-desc { font-size: 0.9rem; color: #666; margin-top: 5px; }
+
+        /* Timeline & Steps */
         .timeline-step { display: flex; margin-bottom: 15px; padding-left: 10px; position: relative; }
         .timeline-step::before { content: ''; position: absolute; left: 0; top: 8px; bottom: -20px; width: 2px; background: #eee; }
         .timeline-step:last-child::before { display: none; }
         .step-time { font-size: 0.8rem; color: #999; width: 50px; flex-shrink: 0; padding-top: 3px; font-weight: bold; }
-        
-        .step-content { background: white; padding: 12px 15px; border-radius: 12px; flex-grow: 1; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border-left: 4px solid var(--mountain); cursor: pointer; transition: 0.2s; position: relative; }
-        .step-content:active { transform: scale(0.98); background: #fafafa; }
+        .step-content { background: white; padding: 12px 15px; border-radius: 12px; flex-grow: 1; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border-left: 4px solid var(--mountain); cursor: pointer; position: relative; }
         .step-content::after { content: '📸'; font-size: 1rem; position: absolute; right: 10px; top: 12px; opacity: 0.6; }
-        
-        .res-content { border-left: 4px solid var(--res) !important; }
+        .res-content { border-left: 4px solid var(--res); }
         .res-content::after { content: '📄'; }
 
-        /* Modal */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(5px); }
-        .modal.open { display: flex; animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        .modal-card { background: white; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.2); position: relative; }
-        .modal-img { width: 100%; height: 100%; max-height: 400px; object-fit: contain; background: #222; display: block; }
-        .modal-img:after { content: "尚未上傳照片"; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; color: #999; font-size: 0.9rem; }
-        .modal-body { padding: 20px; }
-        .modal-title { font-size: 1.3rem; color: var(--ocean-dark); margin: 0 0 10px 0; font-weight: bold; }
-        .modal-desc { font-size: 0.95rem; line-height: 1.6; color: #555; }
-        .close-modal { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
-
-        /* Mapcode Pagination */
-        .map-tabs { display: flex; background: #f0f0f0; border-radius: 10px; padding: 5px; margin-bottom: 20px; }
-        .map-tab-btn { flex: 1; padding: 10px; border: none; background: transparent; cursor: pointer; font-weight: bold; color: #888; border-radius: 8px; transition: 0.3s; font-family: inherit; }
-        .map-tab-btn.active { background: white; color: var(--ocean-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        /* Tags */
+        .food-tag { background: white; padding: 10px 14px; border-radius: 20px; font-size: 0.95rem; margin: 0 6px 10px 0; display: inline-block; border: 1px solid #eee; cursor: pointer; border-left: 4px solid var(--plum); }
         
+        /* Mapcode Table */
         .map-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
         .map-table td { background: white; padding: 12px; border: 1px solid #eee; }
-        
-        .map-link { text-decoration: none; color: var(--ocean-dark); font-weight: bold; display: block; transition: color 0.2s; }
-        .map-link:hover { color: var(--plum); }
-        .map-link i { margin-left: 5px; font-size: 0.8rem; color: #aaa; }
+        .map-table td:first-child { border-radius: 10px 0 0 10px; }
+        .map-table td:last-child { border-radius: 0 10px 10px 0; text-align: right; }
+        .map-link { font-weight: bold; color: var(--ocean-dark); text-decoration: none; display: block; cursor: pointer; }
+        .copy-btn { background: var(--plum-light); color: var(--plum); border: none; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; cursor: pointer; margin-left: 5px; }
+        .parking-card { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border: 2px solid #ffb74d; border-radius: 15px; padding: 15px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
-        .map-table td:first-child { border-radius: 10px 0 0 10px; border-right: none; }
-        .map-table td:last-child { border-radius: 0 10px 10px 0; border-left: none; text-align: right; }
-        .copy-btn { background: var(--plum-light); color: var(--plum); border: none; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; cursor: pointer; }
+        /* Calculator */
+        .calc-card { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .calc-input { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 12px; font-size: 1.2rem; box-sizing: border-box; }
+        .calc-result { background: #fff0f5; padding: 20px; border-radius: 15px; margin-top: 10px; border: 2px solid var(--plum); text-align: center; }
+        .twd-amount { font-size: 2.5rem; font-weight: 800; color: #D81B60; }
 
         /* Checklist */
         .checklist-item { background: white; padding: 12px; margin-bottom: 8px; border-radius: 10px; display: flex; align-items: center; border: 1px solid #f0f0f0; }
         .checklist-item input { margin-right: 15px; width: 20px; height: 20px; accent-color: var(--plum); }
         .checklist-item.checked span { text-decoration: line-through; color: #ccc; }
 
-        /* Petals */
-        .petal { position: fixed; background: #FFCDD2; width: 10px; height: 10px; border-radius: 100% 0 100% 0; pointer-events: none; animation: fall linear infinite; z-index: 9999; opacity: 0.6; }
-        @keyframes fall { to { transform: translateY(100vh) rotate(720deg); } }
+        /* Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(5px); }
+        .modal.open { display: flex; }
+        .modal-card { background: white; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; position: relative; }
+        .modal-img { width: 100%; height: auto; max-height: 60vh; object-fit: contain; background: #333; display: block; }
+        .modal-body { padding: 20px; }
+        .close-modal { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; }
+
+        /* Tabs */
+        .map-tabs { display: flex; background: #f0f0f0; border-radius: 10px; padding: 5px; margin-bottom: 20px; }
+        .map-tab-btn { flex: 1; padding: 10px; border: none; background: transparent; cursor: pointer; font-weight: bold; color: #888; border-radius: 8px; }
+        .map-tab-btn.active { background: white; color: var(--ocean-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -561,7 +406,6 @@
     // --- 1. Global Helper: Google Maps (Fixed & Robust) ---
     function openGoogleMap(query) {
         const encodedQuery = encodeURIComponent(query);
-        // Using the standard Google Maps search URL with api=1 parameter
         const url = `https://www.google.com/maps/search/?api=1&query=${encodedQuery}`;
         window.open(url, '_blank');
     }
@@ -650,9 +494,13 @@
             { t: "20:00", name: "西鐵 Croom 博多祇園", image: "day1_hotel.jpg", desc: "大浴場" }
         ]},
         { date: "1/30 (五) Day 2", steps: [
-            { t: "10:35", name: "博多埠頭搭船", image: "day2_ferry.jpg", desc: "往海之中道" },
-            { t: "11:00", name: "海之中道海濱公園", image: "day2_park.jpg", desc: "騎腳踏車" },
-            { t: "18:00", name: "博多運河城", image: "day2_canalcity.jpg", desc: "水舞秀" }
+            { t: "08:00", name: "飯店出發 ➔ 博多站", image: "day2_start.jpg", desc: "步行(12分)或地鐵(1站)至JR博多站。目標：08:02或08:16發車的JR列車。" },
+            { t: "08:39", name: "抵達海之中道 (JR)", image: "day2_train.jpg", desc: "博多➔香椎(轉車)➔海之中道。車資¥480。出站即達公園入口。" },
+            { t: "09:30", name: "海之中道海濱公園", image: "day2_park.jpg", desc: "★必租腳踏車。推薦：動物之森(水豚/袋鼠)。午餐於園內解決。" },
+            { t: "15:00", name: "渡輪 (往百道濱)", image: "day2_ferry.jpg", desc: "【關鍵時刻】15:00發船(安田汽船)。請預留時間還車並走到碼頭。票價¥1200。" },
+            { t: "15:30", name: "福岡塔 & 海灘", image: "day2_tower.jpg", desc: "百道濱沙灘拍照 ➔ 登福岡塔(護照有優惠)。" },
+            { t: "17:00", name: "MARK IS (晚餐)", image: "day2_dinner.jpg", desc: "推薦：天婦羅Takao(明太子吃到飽)、金子半之助(天丼)、西新初喜(和牛)。" },
+            { t: "20:00", name: "計程車回飯店", image: "day2_taxi.jpg", desc: "約¥3000。直達西鐵Croom，避開下班公車人潮。" }
         ]},
         { date: "1/31 (六) Day 3", steps: [
             { t: "09:00", name: "Toyota Rent a Car", image: "day3_car.jpg", desc: "博多站東取車" },
