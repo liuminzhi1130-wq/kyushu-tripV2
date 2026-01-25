@@ -472,6 +472,31 @@
         </div>
     `;
 
+    // --- HTML Content for JPN TAXI Request (Day 3) ---
+    const jpnTaxiRequestHTML = `
+        <div class="taxi-card">
+            <div class="taxi-title">フロントの方へ (To Reception)</div>
+            <div class="taxi-big" style="font-size:1.5rem; color:#d32f2f;">
+                JPN TAXI (ワゴン型)<br>を呼んでください
+            </div>
+            <div class="taxi-sub" style="font-size:1.1rem;">
+                Please call a JPN TAXI (Van Type).
+            </div>
+            <hr style="margin:15px 0; border-top:1px dashed #ccc;">
+            <div class="taxi-big" style="font-size:1.4rem;">
+                荷物が多いです
+            </div>
+            <div class="taxi-sub">
+                I have a lot of luggage.
+            </div>
+            <hr style="margin:15px 0; border-top:2px solid #333;">
+            <div class="taxi-title">行き先 (Destination)</div>
+            <div class="taxi-big" style="font-size:1.3rem;">
+                トヨタレンタカー<br>博多駅東インター店
+            </div>
+        </div>
+    `;
+
     // --- HTML Content for Aso Lunch (New Kusasenri) ---
     const lunchAsoHTML = `
         <div class="lunch-card">
@@ -513,14 +538,14 @@
                 { name: "Reganet Cute 中洲川端店", addr: "12-20 Kamikawabatamachi, Hakata Ward, Fukuoka, 812-0026日本", dist: "步行 2 分", feat: "地鐵共構，回飯店順路" },
                 { name: "Foodway 中洲食小町店", addr: "福岡市博多区中洲 3-7-24", dist: "步行 3 分", feat: "Gate's大樓內，開很晚" },
                 { name: "Don Quijote 唐吉訶德 中洲店", addr: "ドン・キホーテ 中洲店", dist: "步行 3 分", feat: "24H，零食雜貨全有" },
-                { name: "MaxValu Express 博多祇園店", addr: "7-20 Gionmachi, Hakata Ward, Fukuoka, 812-0038日本", dist: "步行 10 分", feat: "24H 標準超市" },
+                { name: "MaxValu Express 博多祇園店", addr: "7-20 Gionmachi, Hakata Ward, Fukuoka, 812-0038日本 1樓博多祇園中央廣場", dist: "步行 10 分", feat: "24H 標準超市" },
                 { name: "大丸福岡天神店 地下食品街", addr: "1 Chome-4-1 Tenjin, Chuo Ward, Fukuoka, 810-8717日本", dist: "步行 8 分", feat: "高級水果、和牛" }
             ]
         },
         {
             hotel: "🏨 住宿2: 西鐵 Croom 祇園",
             shops: [
-                { name: "MaxValu Express 博多祇園店", addr: "7-20 Gionmachi, Hakata Ward, Fukuoka, 812-0038日本", dist: "步行 3 分", feat: "飯店斜對面，24H最方便" },
+                { name: "MaxValu Express 博多祇園店", addr: "7-20 Gionmachi, Hakata Ward, Fukuoka, 812-0038日本 1樓博多祇園中央廣場", dist: "步行 3 分", feat: "飯店斜對面，24H最方便" },
                 { name: "Lopia 博多Yodobashi店", addr: "福岡市博多区博多駅中央街 6-12", dist: "步行 12 分", feat: "高CP值，肉便宜 (只收現金)" },
                 { name: "博多阪急 地下食品街", addr: "1-1 Hakataekichuogai, Hakata Ward, Fukuoka, 812-0012日本", dist: "步行 10 分", feat: "高級熟食便當" },
                 { name: "Reganet Cute 中洲川端店", addr: "12-20 Kamikawabatamachi, Hakata Ward, Fukuoka, 812-0026日本", dist: "步行 8 分", feat: "位於川端商店街尾端，逛街時可順道採買" },
@@ -596,7 +621,7 @@
             { t: "20:00", name: "計程車回飯店 (出示司機)", image: "", desc: "點擊顯示給司機看的【飯店地址卡】(大字體+黑框)", isHtml: true, htmlContent: taxiCardHTML }
         ]},
         { date: "1/31 (六) Day 3", steps: [
-            { t: "09:00", name: "Toyota Rent a Car", image: "day3_car.jpg", desc: "博多站東取車" },
+            { t: "09:00", name: "搭計程車前往租車 (點擊叫車)", image: "day3_car.jpg", desc: "請點擊顯示【JPN TAXI 叫車卡】給飯店櫃檯看，輕鬆直達租車行。", isHtml: true, htmlContent: jpnTaxiRequestHTML },
             { t: "11:30", name: "ULUU 草莓吃到飽", image: "day3_strawberry.jpg", desc: "佐賀" },
             { t: "15:00", name: "由布院 湯之坪", image: "day3_yufuin.jpg", desc: "童話村" },
             { t: "18:30", name: "湯布院山水館", image: "day3_sansuikan.jpg", desc: "露天溫泉" }
@@ -666,7 +691,7 @@
     ];
 
     const mapOcean = [
-        { n: "Toyota Rent a Car (博多站東)", c: "13 320 188*71", p: "092-472-8388", addr: "1 Chome-4-10 Toko, Hakata Ward, Fukuoka, 812-0008" },
+        { n: "Toyota Rent-a-car Toko (還車點)", c: "13 321 700*75", p: "092-472-8388", addr: "Toyota Rent-a-car Toko" },
         { n: "Uluu Gardens SAGA (草莓園)", c: "37 491 662*13", p: "0942-27-6400", addr: "Uluu Gardens SAGA 佐賀県三養基郡みやき町江口7079" },
         { n: "Kyoho Winery (巨峰葡萄酒廠)", c: "166 548 266*73", p: "0943-72-2382", addr: "246-1 Tanushimarumachi Masuoda, Kurume, Fukuoka 839-1213日本" },
         { n: "天草海鮮蔵 (遊客中心)", c: "254 755 461*27", p: "0969-52-7707", addr: "Amakusa Kaisenkura" },
