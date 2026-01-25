@@ -14,7 +14,7 @@
             --ocean-dark: #0277BD;
             --mountain: #9CCC65;    /* 阿蘇綠 */
             --text: #37474F;
-            --glass: rgba(255, 255, 255, 0.93);
+            --glass: rgba(255, 255, 255, 0.95);
             --gift: #FF9800;        /* 伴手禮橘 */
             --coupon: #E91E63;      /* 優惠券紅 */
             --res: #673AB7;         /* 預約憑證紫 */
@@ -44,7 +44,7 @@
             padding-bottom: 30px;
         }
 
-        /* --- Header: 梅花背景 --- */
+        /* --- Header --- */
         header {
             background-image: url('https://images.unsplash.com/photo-1522383225653-ed111181a951?q=80&w=2076&auto=format&fit=crop');
             background-size: cover;
@@ -104,16 +104,15 @@
             gap: 8px;
         }
 
-        .nav-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(240, 98, 146, 0.2);
-            border-color: var(--plum-light);
+        .nav-btn:active {
+            transform: scale(0.95);
+            background-color: #f0f0f0;
         }
 
         .nav-btn i { font-size: 1.5rem; color: var(--plum); }
 
         /* Sections */
-        .section { display: none; padding: 0 20px; animation: fadeIn 0.4s ease; }
+        .section { display: none; padding: 0 20px; animation: fadeIn 0.3s ease; }
         .section.active { display: block; }
         
         @keyframes fadeIn {
@@ -121,7 +120,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- Back Button Style --- */
+        /* Back Button */
         .back-btn {
             background: white;
             border: 2px solid var(--ocean-dark);
@@ -138,18 +137,10 @@
             gap: 8px;
             font-family: inherit;
             box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-            transition: all 0.2s;
             width: 100%;
             box-sizing: border-box;
         }
 
-        .back-btn:hover {
-            background: var(--ocean-dark);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-        }
-        
         h2 {
             font-size: 1.4rem;
             color: var(--plum);
@@ -158,153 +149,7 @@
             margin-top: 0;
         }
 
-        /* Coupon Styles */
-        .coupon-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            border: 2px dashed var(--coupon);
-            position: relative;
-        }
-        
-        .coupon-card::before {
-            content: 'COUPON';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--coupon);
-            color: white;
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            z-index: 2;
-        }
-
-        .coupon-img {
-            width: 100%;
-            height: 200px;
-            object-fit: contain;
-            background: #fafafa;
-            display: block;
-            cursor: pointer;
-        }
-        
-        .coupon-info {
-            padding: 15px;
-            text-align: center;
-            border-top: 1px solid #eee;
-        }
-        
-        .coupon-title { font-weight: bold; color: #333; font-size: 1.1rem; margin-bottom: 5px; }
-        .coupon-desc { font-size: 0.9rem; color: #666; }
-
-        /* Supermarket Styles */
-        .market-item {
-            background: white;
-            padding: 15px;
-            margin-bottom: 12px;
-            border-radius: 12px;
-            border-left: 5px solid var(--market);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            cursor: pointer;
-            transition: 0.2s;
-            position: relative;
-        }
-        
-        .market-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
-            background: #f1f8e9;
-        }
-
-        .market-name { font-weight: bold; font-size: 1.05rem; color: #2E7D32; margin-bottom: 4px; display: block;}
-        .market-dist { font-size: 0.85rem; color: #FF5722; font-weight: bold; background: #FFEBEE; padding: 2px 6px; border-radius: 4px; margin-right: 5px; }
-        .market-feature { font-size: 0.9rem; color: #555; margin-top: 5px; line-height: 1.4; }
-        .market-item::after { content: '\f3c5'; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--market); font-size: 1.2rem; opacity: 0.5; }
-
-        /* Souvenir Card Styles */
-        .parking-card {
-            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-            border: 2px solid #ffb74d;
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .parking-title { font-weight: bold; color: #e65100; margin-bottom: 5px; font-size: 1.1rem; }
-        .parking-info { font-size: 0.9rem; color: #5d4037; line-height: 1.6; }
-
-        .souvenir-item {
-            background: white;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 12px;
-            border-left: 5px solid var(--gift);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            cursor: pointer;
-            transition: 0.2s;
-            position: relative;
-        }
-
-        .souvenir-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
-            background: #fffcfd;
-        }
-
-        .souvenir-name { font-weight: bold; font-size: 1.05rem; color: #333; margin-bottom: 4px; }
-        .souvenir-price { color: #D81B60; font-weight: bold; font-size: 0.9rem; margin-left: 8px; }
-        .souvenir-loc { font-size: 0.85rem; color: #666; margin-bottom: 2px; }
-        .souvenir-note { font-size: 0.8rem; color: #888; font-style: italic; }
-        .souvenir-item::after { content: '\f3c5'; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--gift); font-size: 1.2rem; opacity: 0.5; }
-
-
-        /* Calculator Styles */
-        .calc-card {
-            background: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            text-align: center;
-        }
-        
-        .calc-input-group { margin-bottom: 20px; text-align: left; }
-        .calc-label { font-size: 0.9rem; color: #888; margin-bottom: 5px; display: block; font-weight: bold; }
-        .calc-input { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 12px; font-size: 1.2rem; font-family: inherit; box-sizing: border-box; outline: none; transition: 0.2s; }
-        .calc-input:focus { border-color: var(--ocean); }
-        
-        .calc-result {
-            background: linear-gradient(135deg, var(--plum-light), #fff0f5);
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 10px;
-            border: 2px solid var(--plum);
-        }
-        .twd-amount { font-size: 2.5rem; font-weight: 800; color: #D81B60; margin: 10px 0; }
-
-        /* Food Link Styles */
-        .food-tag {
-            background: white;
-            padding: 10px 14px;
-            border-radius: 20px;
-            font-size: 0.95rem;
-            margin: 0 6px 10px 0;
-            display: inline-block;
-            border: 1px solid #eee;
-            text-decoration: none;
-            color: var(--text);
-            transition: all 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            cursor: pointer;
-            border-left: 4px solid var(--plum);
-        }
-        .food-tag:hover { background: var(--plum-light); color: #D81B60; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(240, 98, 146, 0.2); }
-        .food-tag i { margin-left: 5px; font-size: 0.8rem; color: #aaa; }
-
-        /* Styles for Collapsible Buttons */
+        /* Collapsible Buttons */
         .collapse-btn {
             width: 100%;
             background: white;
@@ -324,68 +169,106 @@
             align-items: center;
             transition: 0.2s;
         }
+        
+        /* Borders for categories */
         .date-btn { border-left: 5px solid var(--ocean); }
         .food-region-btn { border-left: 5px solid var(--plum); }
         .souvenir-btn { border-left: 5px solid var(--gift); }
         .res-btn { border-left: 5px solid var(--res); }
-        .market-btn { border-left: 5px solid var(--market); } /* 超市按鈕 */
+        .market-btn { border-left: 5px solid var(--market); }
 
-        .collapse-btn:hover { background: #f8fcfd; }
-        .collapse-btn.active { background: var(--plum-light); color: #D81B60; }
+        .collapse-btn.active { background: #fdf2f7; color: #D81B60; }
         
-        .collapse-content { display: none; padding: 10px 5px; margin-bottom: 15px; animation: slideDown 0.3s ease; }
-        .collapse-content.open { display: block; }
+        .collapse-content { display: none; padding: 10px 5px; margin-bottom: 15px; }
+        .collapse-content.open { display: block; animation: slideDown 0.3s ease; }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Timeline */
+        /* Supermarket Items */
+        .market-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            border-left: 5px solid var(--market);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+        .market-name { font-weight: bold; font-size: 1.05rem; color: #2E7D32; display: block; margin-bottom: 5px; }
+        .market-dist { font-size: 0.85rem; color: #FF5722; font-weight: bold; background: #FFEBEE; padding: 2px 6px; border-radius: 4px; margin-right: 5px; }
+        .market-feature { font-size: 0.9rem; color: #555; margin-top: 5px; line-height: 1.4; }
+        .market-item::after { content: '\f3c5'; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; right: 15px; top: 20px; color: var(--market); opacity: 0.5; }
+
+        /* Souvenir & Coupon Items */
+        .souvenir-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            border-left: 5px solid var(--gift);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            cursor: pointer;
+            position: relative;
+        }
+        .souvenir-name { font-weight: bold; font-size: 1.05rem; color: #333; }
+        .souvenir-price { color: #D81B60; font-weight: bold; font-size: 0.9rem; margin-left: 8px; }
+        .souvenir-loc { font-size: 0.85rem; color: #666; margin-top: 2px; }
+        .souvenir-note { font-size: 0.8rem; color: #888; font-style: italic; }
+        .souvenir-item::after { content: '\f3c5'; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--gift); opacity: 0.5; }
+
+        .coupon-card {
+            background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; border: 2px dashed var(--coupon); position: relative;
+        }
+        .coupon-card::before {
+            content: 'COUPON'; position: absolute; top: 10px; right: 10px; background: var(--coupon); color: white; padding: 3px 8px; border-radius: 5px; font-size: 0.7rem; font-weight: bold; z-index: 2;
+        }
+        .coupon-img { width: 100%; height: 180px; object-fit: contain; background: #fafafa; display: block; }
+        .coupon-info { padding: 15px; text-align: center; border-top: 1px solid #eee; }
+        .coupon-title { font-weight: bold; font-size: 1.1rem; }
+
+        /* Timeline & Steps */
         .timeline-step { display: flex; margin-bottom: 15px; padding-left: 10px; position: relative; }
         .timeline-step::before { content: ''; position: absolute; left: 0; top: 8px; bottom: -20px; width: 2px; background: #eee; }
         .timeline-step:last-child::before { display: none; }
         .step-time { font-size: 0.8rem; color: #999; width: 50px; flex-shrink: 0; padding-top: 3px; font-weight: bold; }
-        
-        .step-content { background: white; padding: 12px 15px; border-radius: 12px; flex-grow: 1; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border-left: 4px solid var(--mountain); cursor: pointer; transition: 0.2s; position: relative; }
-        .step-content:active { transform: scale(0.98); background: #fafafa; }
+        .step-content { background: white; padding: 12px 15px; border-radius: 12px; flex-grow: 1; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border-left: 4px solid var(--mountain); cursor: pointer; position: relative; }
         .step-content::after { content: '📸'; font-size: 1rem; position: absolute; right: 10px; top: 12px; opacity: 0.6; }
-        
-        .res-content { border-left: 4px solid var(--res) !important; }
+        .res-content { border-left: 4px solid var(--res); }
         .res-content::after { content: '📄'; }
 
-        /* Modal */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(5px); }
-        .modal.open { display: flex; animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        .modal-card { background: white; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.2); position: relative; }
-        .modal-img { width: 100%; height: 100%; max-height: 400px; object-fit: contain; background: #222; display: block; }
-        .modal-img:after { content: "尚未上傳照片"; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; color: #999; font-size: 0.9rem; }
-        .modal-body { padding: 20px; }
-        .modal-title { font-size: 1.3rem; color: var(--ocean-dark); margin: 0 0 10px 0; font-weight: bold; }
-        .modal-desc { font-size: 0.95rem; line-height: 1.6; color: #555; }
-        .close-modal { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
-
-        /* Mapcode Pagination */
-        .map-tabs { display: flex; background: #f0f0f0; border-radius: 10px; padding: 5px; margin-bottom: 20px; }
-        .map-tab-btn { flex: 1; padding: 10px; border: none; background: transparent; cursor: pointer; font-weight: bold; color: #888; border-radius: 8px; transition: 0.3s; font-family: inherit; }
-        .map-tab-btn.active { background: white; color: var(--ocean-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        /* Tags */
+        .food-tag { background: white; padding: 10px 14px; border-radius: 20px; font-size: 0.95rem; margin: 0 6px 10px 0; display: inline-block; border: 1px solid #eee; cursor: pointer; border-left: 4px solid var(--plum); }
         
+        /* Mapcode Table */
         .map-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
         .map-table td { background: white; padding: 12px; border: 1px solid #eee; }
-        
-        .map-link { text-decoration: none; color: var(--ocean-dark); font-weight: bold; display: block; transition: color 0.2s; }
-        .map-link:hover { color: var(--plum); }
-        .map-link i { margin-left: 5px; font-size: 0.8rem; color: #aaa; }
+        .map-table td:first-child { border-radius: 10px 0 0 10px; }
+        .map-table td:last-child { border-radius: 0 10px 10px 0; text-align: right; }
+        .map-link { font-weight: bold; color: var(--ocean-dark); text-decoration: none; display: block; }
+        .copy-btn { background: var(--plum-light); color: var(--plum); border: none; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; cursor: pointer; margin-left: 5px; }
 
-        .map-table td:first-child { border-radius: 10px 0 0 10px; border-right: none; }
-        .map-table td:last-child { border-radius: 0 10px 10px 0; border-left: none; text-align: right; }
-        .copy-btn { background: var(--plum-light); color: var(--plum); border: none; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; cursor: pointer; }
+        /* Calculator */
+        .calc-card { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .calc-input { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 12px; font-size: 1.2rem; box-sizing: border-box; }
+        .calc-result { background: #fff0f5; padding: 20px; border-radius: 15px; margin-top: 10px; border: 2px solid var(--plum); text-align: center; }
+        .twd-amount { font-size: 2.5rem; font-weight: 800; color: #D81B60; }
 
         /* Checklist */
         .checklist-item { background: white; padding: 12px; margin-bottom: 8px; border-radius: 10px; display: flex; align-items: center; border: 1px solid #f0f0f0; }
         .checklist-item input { margin-right: 15px; width: 20px; height: 20px; accent-color: var(--plum); }
         .checklist-item.checked span { text-decoration: line-through; color: #ccc; }
 
-        /* Petals */
-        .petal { position: fixed; background: #FFCDD2; width: 10px; height: 10px; border-radius: 100% 0 100% 0; pointer-events: none; animation: fall linear infinite; z-index: 9999; opacity: 0.6; }
-        @keyframes fall { to { transform: translateY(100vh) rotate(720deg); } }
+        /* Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(5px); }
+        .modal.open { display: flex; }
+        .modal-card { background: white; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; position: relative; }
+        .modal-img { width: 100%; height: auto; max-height: 50vh; object-fit: contain; background: #333; display: block; }
+        .modal-body { padding: 20px; }
+        .close-modal { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; }
+
+        /* Tabs */
+        .map-tabs { display: flex; background: #f0f0f0; border-radius: 10px; padding: 5px; margin-bottom: 20px; }
+        .map-tab-btn { flex: 1; padding: 10px; border: none; background: transparent; cursor: pointer; font-weight: bold; color: #888; border-radius: 8px; }
+        .map-tab-btn.active { background: white; color: var(--ocean-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -429,14 +312,11 @@
                     <i class="fas fa-shopping-basket"></i> 住宿周邊超市
                 </div>
             </div>
-            <p style="text-align:center; color:#999; font-size:0.8rem; margin-top:10px;">
-                *點擊行程表中的項目可查看照片
-            </p>
         </div>
 
         <div id="supermarkets" class="section">
             <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
-            <h2>🛒 住宿周邊超市清單</h2>
+            <h2>🛒 住宿周邊超市</h2>
             <div id="supermarket-container"></div>
         </div>
 
@@ -445,72 +325,46 @@
             <h2>🎟️ 優惠券專區</h2>
             
             <div class="coupon-card">
-                <img src="coupon_daikoku.jpg" class="coupon-img" onclick="openModal('大國藥妝', 'coupon_daikoku.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_daikoku.jpg';">
-                <div class="coupon-info">
-                    <div class="coupon-title">大國藥妝 (Daikoku Drug)</div>
-                    <div class="coupon-desc">免稅 10% + 3%~7% 折扣</div>
-                </div>
+                <img src="coupon_daikoku.jpg" class="coupon-img" onclick="openModal('大國藥妝', 'coupon_daikoku.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
+                <div class="coupon-info"><div class="coupon-title">大國藥妝 (Daikoku)</div></div>
             </div>
-
             <div class="coupon-card">
-                <img src="coupon_tsuruha.jpg" class="coupon-img" onclick="openModal('鶴羽藥妝', 'coupon_tsuruha.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_tsuruha.jpg';">
-                <div class="coupon-info">
-                    <div class="coupon-title">鶴羽藥妝 (Tsuruha)</div>
-                    <div class="coupon-desc">最高免稅 10% + 7% 折扣</div>
-                </div>
+                <img src="coupon_tsuruha.jpg" class="coupon-img" onclick="openModal('鶴羽藥妝', 'coupon_tsuruha.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
+                <div class="coupon-info"><div class="coupon-title">鶴羽藥妝 (Tsuruha)</div></div>
             </div>
-
             <div class="coupon-card">
-                <img src="coupon_matsukiyo.jpg" class="coupon-img" onclick="openModal('松本清', 'coupon_matsukiyo.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_matsukiyo.jpg';">
-                <div class="coupon-info">
-                    <div class="coupon-title">松本清 (Matsumoto Kiyoshi)</div>
-                    <div class="coupon-desc">最高免稅 10% + 7% 折扣</div>
-                </div>
+                <img src="coupon_matsukiyo.jpg" class="coupon-img" onclick="openModal('松本清', 'coupon_matsukiyo.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
+                <div class="coupon-info"><div class="coupon-title">松本清 (Matsumoto Kiyoshi)</div></div>
             </div>
-
             <div class="coupon-card">
-                <img src="coupon_cosmos.jpg" class="coupon-img" onclick="openModal('Cosmos', 'coupon_cosmos.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_cosmos.jpg';">
-                <div class="coupon-info">
-                    <div class="coupon-title">Cosmos 藥妝</div>
-                    <div class="coupon-desc">九州最便宜！部分店鋪可免稅</div>
-                </div>
+                <img src="coupon_cosmos.jpg" class="coupon-img" onclick="openModal('Cosmos', 'coupon_cosmos.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
+                <div class="coupon-info"><div class="coupon-title">Cosmos 藥妝</div></div>
             </div>
-
             <div class="coupon-card">
-                <img src="coupon_bic.jpg" class="coupon-img" onclick="openModal('BicCamera', 'coupon_bic.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_bic.jpg';">
-                <div class="coupon-info">
-                    <div class="coupon-title">BicCamera</div>
-                    <div class="coupon-desc">免稅 10% + 7% / 5% / 3%</div>
-                </div>
+                <img src="coupon_bic.jpg" class="coupon-img" onclick="openModal('BicCamera', 'coupon_bic.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
+                <div class="coupon-info"><div class="coupon-title">BicCamera</div></div>
             </div>
-
             <div class="coupon-card">
-                <img src="coupon_donki.jpg" class="coupon-img" onclick="openModal('唐吉訶德', 'coupon_donki.jpg', '請在結帳時出示此條碼')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_donki.jpg';">
-                <div class="coupon-info">
-                    <div class="coupon-title">唐吉訶德 (Don Quijote)</div>
-                    <div class="coupon-desc">免稅 10% + 5% (需滿萬)</div>
-                </div>
+                <img src="coupon_donki.jpg" class="coupon-img" onclick="openModal('唐吉訶德', 'coupon_donki.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
+                <div class="coupon-info"><div class="coupon-title">唐吉訶德 (Don Quijote)</div></div>
             </div>
         </div>
 
         <div id="souvenirs" class="section">
             <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
-            <h2>🎁 必買伴手禮清單</h2>
-            
+            <h2>🎁 必買伴手禮</h2>
             <div class="parking-card">
-                <div class="parking-title"><i class="fas fa-parking"></i> 自駕停車推薦</div>
+                <div class="parking-title"><i class="fas fa-parking"></i> 博多車站中央停車場</div>
                 <div class="parking-info">
-                    <div style="font-weight:bold; margin-bottom:5px;">博多車站中央停車場</div>
                     <div>MapCode: <b>13 320 354*52</b> <button class="copy-btn" onclick="copy('13 320 354*52')">複製</button></div>
-                    <div style="font-size:0.85rem; color:#888; margin:5px 0;">優惠：消費滿3000日圓可抵1小時</div>
+                    <div style="margin-top:5px; color:#888;">優惠：滿3000日圓抵1小時</div>
                     <div style="margin-top:5px; text-align:right;">
-                        <span class="map-link" onclick="openGoogleMapSearch('博多駅中央駐車場')" style="cursor:pointer;">
+                        <span class="map-link" onclick="openGoogleMap('博多駅中央駐車場')" style="cursor:pointer; color:#e65100;">
                             Google Map 導航 <i class="fas fa-location-arrow"></i>
                         </span>
                     </div>
                 </div>
             </div>
-
             <div id="souvenir-container"></div>
         </div>
 
@@ -525,304 +379,203 @@
             <h2>💴 購物計算機</h2>
             <div class="calc-card">
                 <div style="margin-bottom:20px; text-align:left;">
-                    <label class="calc-label">目前匯率 (可手動修改)</label>
-                    <input type="number" id="rate-input" class="calc-input" value="0.22" step="0.001" style="width:100px; padding:8px;"> 
-                    <span style="font-size:0.9rem; color:#888;">(1日幣 = ?台幣)</span>
+                    <label style="color:#888; font-size:0.9rem;">匯率 (可修改)</label>
+                    <input type="number" id="rate-input" class="calc-input" value="0.22" step="0.001" style="width:80px; padding:5px;">
                 </div>
-                <div class="calc-input-group">
-                    <label class="calc-label">日幣金額 (¥)</label>
+                <div style="margin-bottom:20px; text-align:left;">
+                    <label style="color:#888; font-size:0.9rem;">日幣金額 (¥)</label>
                     <input type="number" id="jpy-input" class="calc-input" placeholder="輸入價格...">
                 </div>
                 <div class="calc-result">
                     <div style="font-size:0.9rem; color:#666;">約合台幣 (TWD)</div>
                     <div class="twd-amount" id="twd-output">0</div>
                 </div>
-                <p style="font-size:0.8rem; color:#999; margin-top:15px;">*匯率僅供參考，實際請依刷卡/換匯為準</p>
             </div>
         </div>
 
         <div id="itinerary" class="section">
             <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
-            <h2>📅 點擊日期展開行程</h2>
+            <h2>📅 每日行程</h2>
             <div id="itinerary-content"></div>
         </div>
 
         <div id="food" class="section">
             <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
-            <h2>🍜 點擊店家導航</h2>
+            <h2>🍜 美食地圖</h2>
             <div id="food-container"></div>
         </div>
 
         <div id="mapcodes" class="section">
             <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
-            <h2>🚗 點擊地點導航</h2>
+            <h2>🚗 導航編碼</h2>
             <div class="map-tabs">
-                <button class="map-tab-btn active" onclick="switchMapTab(1)">第一部：山林篇</button>
-                <button class="map-tab-btn" onclick="switchMapTab(2)">第二部：海洋篇</button>
+                <button class="map-tab-btn active" onclick="switchMapTab(1)">山林篇</button>
+                <button class="map-tab-btn" onclick="switchMapTab(2)">海洋篇</button>
             </div>
-            <div id="map-page-1">
-                <table class="map-table"><tbody id="map-body-1"></tbody></table>
-            </div>
-            <div id="map-page-2" style="display:none;">
-                <table class="map-table"><tbody id="map-body-2"></tbody></table>
-            </div>
+            <div id="map-page-1"><table class="map-table"><tbody id="map-body-1"></tbody></table></div>
+            <div id="map-page-2" style="display:none;"><table class="map-table"><tbody id="map-body-2"></tbody></table></div>
         </div>
 
         <div id="reservations" class="section">
             <button class="back-btn" onclick="showSection('home')"><i class="fas fa-chevron-left"></i> 返回首頁</button>
-            <h2>🎫 預約確認資料</h2>
+            <h2>🎫 預約憑證</h2>
+            <button class="collapse-btn res-btn" onclick="toggleAccordion(0, 'res-hotel', 'res-btn')"><span>🏨 住宿憑證</span><i class="fas fa-chevron-down"></i></button>
+            <div id="res-hotel-0" class="collapse-content res-hotel"></div>
             
-            <button class="collapse-btn res-btn" onclick="toggleAccordion(0, 'res-hotel-list', 'res-btn')">
-                <span>🏨 住宿憑證 (Hotels)</span> <i class="fas fa-chevron-down"></i>
-            </button>
-            <div id="res-hotel-list-0" class="collapse-content res-hotel-list">
-                </div>
-
-            <button class="collapse-btn res-btn" onclick="toggleAccordion(1, 'res-other-list', 'res-btn')">
-                <span>🎫 交通與活動 (Others)</span> <i class="fas fa-chevron-down"></i>
-            </button>
-            <div id="res-other-list-1" class="collapse-content res-other-list">
-                </div>
+            <button class="collapse-btn res-btn" onclick="toggleAccordion(1, 'res-other', 'res-btn')"><span>🎫 交通與活動</span><i class="fas fa-chevron-down"></i></button>
+            <div id="res-other-1" class="collapse-content res-other"></div>
         </div>
     </div>
 
     <div id="location-modal" class="modal" onclick="closeModal(event)">
         <div class="modal-card">
             <button class="close-modal" onclick="closeModal(event)">×</button>
-            <img id="modal-img" class="modal-img" src="" alt="Location" onerror="this.style.display='none'">
+            <img id="modal-img" class="modal-img" src="">
             <div class="modal-body">
-                <h3 id="modal-title" class="modal-title"></h3>
-                <p id="modal-desc" class="modal-desc"></p>
+                <h3 id="modal-title"></h3>
+                <p id="modal-desc" style="color:#666;"></p>
             </div>
         </div>
     </div>
 
 <script>
-    // --- Helper for Google Maps Search (Fix for Android/iOS) ---
-    function openGoogleMapSearch(query) {
-        const encodedQuery = encodeURIComponent(query);
-        // Using the standard Google Maps search URL which works best on mobile & desktop
-        const url = `https://www.google.com/maps/search/?api=1&query=${encodedQuery}`;
-        window.open(url, '_blank');
+    // --- 1. Global Helper: Google Maps ---
+    function openGoogleMap(query) {
+        // 使用 Google Maps 標準搜尋格式
+        window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`, '_blank');
     }
 
-    // --- Data Configuration ---
-
-    // Supermarket Data (Grouped by Hotel)
+    // --- 2. Data Definitions ---
+    
+    // Supermarket Data
     const supermarketData = [
         {
-            hotel: "🏨 三井花園福岡中洲",
+            hotel: "🏨 住宿1: 三井花園中洲",
             shops: [
-                { name: "Reganet Cute 中洲川端店", addr: "福岡市博多区上川端町 12-20", dist: "步行 2 分鐘", feature: "就在地鐵共構大樓，回飯店最順路，熟食便當多。" },
-                { name: "Foodway 中洲食小町店", addr: "福岡市博多区中洲 3-7-24", dist: "步行 3 分鐘", feature: "位於 gate's 大樓內，營業至深夜，採買消夜方便。" },
-                { name: "Don Quijote 唐吉訶德 中洲店", addr: "福岡市博多区中洲 3-7-24", dist: "步行 3 分鐘", feature: "24小時營業，零食、飲料、雜貨一次買齊。" },
-                { name: "MaxValu Express 博多祇園店", addr: "福岡市博多区祇園町 7-20", dist: "步行 10 分鐘", feature: "24小時營業，價格實惠的標準型超市。" },
-                { name: "大丸福岡天神店 地下食品街", addr: "福岡市中央区天神 1-4-1", dist: "步行 8 分鐘", feature: "過橋即達，適合購買高品質水果、甜點與和牛。" }
+                { name: "Reganet Cute 中洲川端店", addr: "福岡市博多区上川端町 12-20", dist: "步行 2 分", feat: "地鐵共構，回飯店順路" },
+                { name: "Foodway 中洲食小町店", addr: "福岡市博多区中洲 3-7-24", dist: "步行 3 分", feat: "Gate's大樓內，開很晚" },
+                { name: "Don Quijote 唐吉訶德 中洲店", addr: "福岡市博多区中洲 3-7-24", dist: "步行 3 分", feat: "24H，零食雜貨全有" },
+                { name: "MaxValu Express 博多祇園店", addr: "福岡市博多区祇園町 7-20", dist: "步行 10 分", feat: "24H 標準超市" },
+                { name: "大丸福岡天神店 地下食品街", addr: "福岡市中央区天神 1-4-1", dist: "步行 8 分", feat: "高級水果、和牛" }
             ]
         },
         {
-            hotel: "🏨 西鐵 Croom 博多祇園",
+            hotel: "🏨 住宿2: 西鐵 Croom 祇園",
             shops: [
-                { name: "MaxValu Express 博多祇園店", addr: "福岡市博多区祇園町 7-20", dist: "步行 3 分鐘", feature: "最近的超市，就在飯店斜對面，24小時營業最便利。" },
-                { name: "Lopia 博多Yodobashi店", addr: "福岡市博多区博多駅中央街 6-12", dist: "步行 12 分鐘", feature: "必逛！ 日本現在最紅的高CP值超市，肉類便宜份量大（只收現金）。" },
-                { name: "博多阪急 地下食品街", addr: "福岡市博多区博多駅中央街 1-1", dist: "步行 10 分鐘", feature: "博多車站內，非常適合買回飯店享用的高級熟食。" },
-                { name: "Reganet Cute 中洲川端店", addr: "福岡市博多区上川端町 12-20", dist: "步行 8 分鐘", feature: "位於川端商店街尾端，逛街時可順道採買。" },
-                { name: "Bon Repas 百旬館", addr: "福岡市中央区渡辺通 4-6-20", dist: "步行 15 分鐘", feature: "在地高級超市，食材品質極佳，適合講究的旅客。" }
+                { name: "MaxValu Express 博多祇園店", addr: "福岡市博多区祇園町 7-20", dist: "步行 3 分", feat: "飯店斜對面，24H最方便" },
+                { name: "Lopia 博多Yodobashi店", addr: "福岡市博多区博多駅中央街 6-12", dist: "步行 12 分", feat: "高CP值，肉便宜 (只收現金)" },
+                { name: "博多阪急 地下食品街", addr: "福岡市博多区博多駅中央街 1-1", dist: "步行 10 分", feat: "高級熟食便當" },
+                { name: "Bon Repas 百旬館", addr: "福岡市中央区渡辺通 4-6-20", dist: "步行 15 分", feat: "在地高級超市" }
             ]
         },
         {
-            hotel: "🏨 Dormy Inn 熊本",
+            hotel: "🏨 住宿3: Dormy Inn 熊本",
             shops: [
-                { name: "Foodway SAKURA MACHI店", addr: "熊本市中央区桜町 3-10 B1F", dist: "步行 2 分鐘", feature: "最近！ 就在飯店對面購物中心地下1樓，新穎乾淨，晚上會有特價貼紙。" },
-                { name: "業務超市 辛島公園店", addr: "熊本市中央区辛島町 2-1", dist: "步行 1 分鐘", feature: "就在隔壁街區，大包裝零食、調味料最便宜。" },
-                { name: "Miyahara 下通店", addr: "熊本市中央区花畑町 11-14", dist: "步行 5 分鐘", feature: "位於熱鬧的下通商店街，像超商的生鮮超市，營業至深夜。" },
-                { name: "Don Quijote 熊本下通店", addr: "熊本市中央区安政町 5-27", dist: "步行 6 分鐘", feature: "位於商店街核心，24小時營業（食品區），補貨首選。" },
-                { name: "鶴屋百貨店 地下食品街", addr: "熊本市中央区手取本町 6-1", dist: "步行 10 分鐘", feature: "熊本最高級百貨，熊本熊部長辦公室也在這，適合買生魚片和伴手禮。" }
+                { name: "Foodway SAKURA MACHI店", addr: "熊本市中央区桜町 3-10", dist: "步行 2 分", feat: "飯店對面地下1樓，新穎" },
+                { name: "業務超市 辛島公園店", addr: "熊本市中央区辛島町 2-1", dist: "步行 1 分", feat: "大包裝零食便宜" },
+                { name: "Miyahara 下通店", addr: "熊本市中央区花畑町 11-14", dist: "步行 5 分", feat: "像超商的生鮮超市" },
+                { name: "Don Quijote 熊本下通店", addr: "熊本市中央区安政町 5-27", dist: "步行 6 分", feat: "24H 補貨首選" },
+                { name: "鶴屋百貨店 地下食品街", addr: "熊本市中央区手取本町 6-1", dist: "步行 10 分", feat: "熊本最高級百貨" }
             ]
         }
     ];
 
-    // Souvenir Data (Grouped)
+    // Souvenir Data
     const souvenirData = [
         {
             category: "🧂 調味料 / 鹹食類",
             items: [
-                { name: "軟管明太子醬", price: "¥756", loc: "Maing 名店街 (やまや/ふくや)", note: "需托運/冷藏，配飯神物" },
-                { name: "茅乃舎高湯包", price: "¥2,268/30入", loc: "Deitos 1F (Miyage-mon市場)", note: "煮湯神器，送禮首選" },
-                { name: "明太子仙貝", price: "¥540/16枚", loc: "Maing / Deitos", note: "經典鹹食，福太郎出品" },
-                { name: "青柚子胡椒", price: "¥432起", loc: "Maing (各土產店/超市)", note: "沾肉絕配" },
-                { name: "Calbee 九州明太子薯條", price: "¥900/8袋", loc: "Maing / 超商", note: "辦公室分食方便" },
-                { name: "八女茶", price: "¥1,080/100g", loc: "Maing (如水庵/茶店)", note: "福岡高級綠茶" }
+                { name: "軟管明太子醬", price: "¥756", loc: "Maing 名店街", note: "配飯神物" },
+                { name: "茅乃舎高湯包", price: "¥2,268", loc: "Deitos 1F", note: "送禮首選" },
+                { name: "明太子仙貝", price: "¥540", loc: "Maing", note: "經典鹹食" },
+                { name: "青柚子胡椒", price: "¥432", loc: "Maing", note: "沾肉絕配" },
+                { name: "Calbee 明太子薯條", price: "¥900", loc: "Maing", note: "分食方便" },
+                { name: "八女茶", price: "¥1,080", loc: "Maing", note: "高級綠茶" }
             ]
         },
         {
             category: "🍰 甜點 / 蛋糕類",
             items: [
-                { name: "福砂屋 長崎蛋糕", price: "¥1,458", loc: "Maing / Deitos", note: "底部粗糖顆粒，賞味期限短" },
-                { name: "博多通饅頭", price: "¥730/5入", loc: "Maing (明月堂)", note: "奶香濃郁，連續金賞" },
-                { name: "Sugar Butter Sand Tree", price: "¥993/10入", loc: "博多阪急 B1F", note: "博多限定甘王草莓口味" },
-                { name: "伊都 King 草莓銅鑼燒", price: "¥565/個", loc: "Maing (伊都きんぐ)", note: "含整顆草莓，需冷藏" },
-                { name: "南蠻往來", price: "¥670/4入", loc: "Maing", note: "酥脆杏仁蛋糕，在地人愛" },
-                { name: "筑紫麻糬", price: "¥540/3入", loc: "Maing (如水庵)", note: "附黑糖蜜，精緻包裝" },
-                { name: "治一郎布丁", price: "¥420", loc: "JR博多城 1F いっぴん通り", note: "蛋香濃郁口感綿密，需冷藏" }
+                { name: "福砂屋 長崎蛋糕", price: "¥1,458", loc: "Maing", note: "底部粗糖" },
+                { name: "博多通饅頭", price: "¥730", loc: "Maing", note: "奶香濃郁" },
+                { name: "Sugar Butter Sand Tree", price: "¥993", loc: "博多阪急 B1F", note: "甘王草莓口味" },
+                { name: "伊都 King 草莓銅鑼燒", price: "¥565", loc: "Maing", note: "含整顆草莓" },
+                { name: "南蠻往來", price: "¥670", loc: "Maing", note: "酥脆杏仁" },
+                { name: "筑紫麻糬", price: "¥540", loc: "Maing", note: "附黑糖蜜" },
+                { name: "治一郎布丁", price: "¥420", loc: "JR博多城 1F", note: "蛋香濃郁" }
             ]
         },
         {
             category: "🍪 餅乾 / 小點心",
             items: [
-                { name: "二○加煎餅", price: "¥648/3枚", loc: "Maing (東雲堂)", note: "附搞笑面具" },
-                { name: "Tirolian 捲心酥", price: "¥540/包", loc: "Maing (千鳥屋)", note: "復古鐵罐可愛" },
-                { name: "博多甜薯燒", price: "¥648/4入", loc: "Maing (二鶴堂)", note: "綿密地瓜口感" },
-                { name: "博多紅草莓餅乾", price: "¥777/10入", loc: "Maing", note: "草莓巧克力夾心" },
-                { name: "小雞饅頭", price: "¥1,194/7入", loc: "Maing (ひよ子本舗)", note: "經典伴手禮" },
-                { name: "博多之女", price: "¥389/6入", loc: "Maing (二鶴堂)", note: "小年輪蛋糕" }
+                { name: "二○加煎餅", price: "¥648", loc: "Maing", note: "附搞笑面具" },
+                { name: "Tirolian 捲心酥", price: "¥540", loc: "Maing", note: "復古鐵罐" },
+                { name: "博多甜薯燒", price: "¥648", loc: "Maing", note: "綿密地瓜" },
+                { name: "博多紅草莓餅乾", price: "¥777", loc: "Maing", note: "草莓夾心" },
+                { name: "小雞饅頭", price: "¥1,194", loc: "Maing", note: "經典" },
+                { name: "博多之女", price: "¥389", loc: "Maing", note: "年輪蛋糕" }
             ]
         }
     ];
 
+    // Itinerary
     const itineraryData = [
-        {
-            date: "1/29 (四) Day 1",
-            steps: [
-                { t: "12:00", name: "福岡機場 (FUK)", image: "day1_airport.jpg", desc: "抵達福岡！CI138 航班。出關後搭計程車或地鐵前往博多市區。" },
-                { t: "14:00", name: "川端通商店街", image: "day1_kawabata.jpg", desc: "博多最古老的商店街，有各式小吃與伴手禮。必逛！" },
-                { t: "15:00", name: "Full Full 明太子麵包", image: "day1_fullfull.jpg", desc: "雖然本店人多，但這家明太子法棍是傳說中的美味，外酥內軟。" },
-                { t: "18:00", name: "藥院燒肉 NIKUICHI", image: "day1_nikuichi.jpg", desc: "【已預約】CP值超高的黑毛和牛燒肉，肉質鮮嫩，記得出示預約信。" },
-                { t: "20:00", name: "西鐵 Croom 博多祇園", image: "day1_hotel.jpg", desc: "【住宿】位於櫛田神社前，交通方便，有大浴場可以泡湯。" }
-            ]
-        },
-        {
-            date: "1/30 (五) Day 2",
-            steps: [
-                { t: "10:35", name: "博多埠頭搭船", image: "day2_ferry.jpg", desc: "搭乘渡輪前往海之中道，享受博多灣的海風，船程約20分鐘。" },
-                { t: "11:00", name: "海之中道海濱公園", image: "day2_park.jpg", desc: "租腳踏車漫遊！有水豚君、袋鼠，還有一望無際的花海與草地。" },
-                { t: "18:00", name: "博多運河城", image: "day2_canalcity.jpg", desc: "大型購物中心，每半小時有水舞秀。晚餐推薦拉麵競技場或牛舌。" }
-            ]
-        },
-        {
-            date: "1/31 (六) Day 3",
-            steps: [
-                { t: "09:00", name: "Toyota Rent a Car", image: "day3_car.jpg", desc: "【取車】博多站東入口店。方案含雪胎與ETC。記得檢查車況。" },
-                { t: "11:30", name: "ULUU 草莓吃到飽", image: "day3_strawberry.jpg", desc: "【已預約】佐賀的夢幻草莓園，多品種草莓現採現吃，煉乳無限加！" },
-                { t: "15:00", name: "由布院 湯之坪街道", image: "day3_yufuin.jpg", desc: "童話般的街道，有史努比茶屋、B-Speak蛋糕捲、豐後牛可樂餅。" },
-                { t: "18:30", name: "湯布院山水館", image: "day3_sansuikan.jpg", desc: "【住宿】19:00前必須Check-in！享受露天溫泉與會席料理，還能看見由布岳。" }
-            ]
-        },
-        {
-            date: "2/1 (日) Day 4",
-            steps: [
-                { t: "08:00", name: "金鱗湖", image: "day4_lake.jpg", desc: "清晨必來！湖面飄著夢幻的晨霧，溫泉水與冷空氣交織的奇景。" },
-                { t: "11:00", name: "阿蘇草千里", image: "day4_kusasenri.jpg", desc: "廣闊的草原與馬匹，背景是冒煙的阿蘇火山，風景壯麗。" },
-                { t: "13:00", name: "阿蘇赤牛丼", image: "day4_beef.jpg", desc: "午餐推薦 Imakin 食堂或休息站，半熟紅牛肉鋪滿整碗飯！" },
-                { t: "19:00", name: "Dormy Inn Kumamoto", image: "day4_dormy.jpg", desc: "【住宿】位於熊本市區辛島町，頂樓有天然溫泉，宵夜有免費拉麵。" }
-            ]
-        },
-        {
-            date: "2/2 (一) Day 5",
-            steps: [
-                { t: "11:30", name: "天草海鮮蔵 (海豚)", image: "day5_dolphin.jpg", desc: "【已預約】搭船出海看野生海豚，機率高達98%！午餐享用海鮮BBQ。" },
-                { t: "18:00", name: "熊本 下通商店街", image: "day5_shopping.jpg", desc: "熊本最熱鬧的逛街聖地，藥妝、服飾、餐廳應有盡有。" }
-            ]
-        },
-        {
-            date: "2/3 (二) Day 6",
-            steps: [
-                { t: "10:00", name: "熊本城 & 城彩苑", image: "day6_castle.jpg", desc: "日本三大名城之一，黑色天守閣非常帥氣。城彩苑有很多熊本特色小吃。" },
-                { t: "15:00", name: "太宰府天滿宮", image: "day6_dazaifu.jpg", desc: "學問之神，參道上有隈研吾設計的星巴克，必吃現烤梅枝餅。" },
-                { t: "19:00", name: "三井花園飯店中洲", image: "day6_hotel.jpg", desc: "【住宿】最後三晚的家，質感設計，交通方便，近中洲屋台。" }
-            ]
-        },
-        {
-            date: "2/4 (三) Day 7",
-            steps: [
-                { t: "09:00", name: "呼子朝市", image: "day7_squid.jpg", desc: "日本三大朝市之一，必吃「透明活花枝刺身」，口感脆甜！" },
-                { t: "14:00", name: "糸島 夫婦岩", image: "day7_itoshima.jpg", desc: "海中白色鳥居與夫婦岩，福岡最紅的網美打卡點，海景無敵。" }
-            ]
-        },
-        {
-            date: "2/5 (四) Day 8",
-            steps: [
-                { t: "All Day", name: "THE OUTLETS", image: "day8_outlets.jpg", desc: "北九州最大Outlet，各式品牌瘋狂採購，為旅程畫下完美句點。" },
-                { t: "18:00", name: "還車 (Toyota)", image: "day8_returncar.jpg", desc: "回到博多站東入口還車，記得加滿油並保留收據。" }
-            ]
-        },
-        {
-            date: "2/6 (五) Day 9",
-            steps: [
-                { t: "上午", name: "前往機場", image: "day9_home.jpg", desc: "搭計程車前往福岡機場，準備搭乘 CI139 回家。" }
-            ]
-        }
+        { date: "1/29 (四) Day 1", steps: [
+            { t: "12:00", name: "福岡機場抵達", image: "day1_airport.jpg", desc: "CI138 抵達" },
+            { t: "14:00", name: "川端通商店街", image: "day1_kawabata.jpg", desc: "古老商店街" },
+            { t: "15:00", name: "Full Full 明太子麵包", image: "day1_fullfull.jpg", desc: "必吃法棍" },
+            { t: "18:00", name: "藥院燒肉 NIKUICHI", image: "day1_nikuichi.jpg", desc: "已預約 CP值高" },
+            { t: "20:00", name: "西鐵 Croom 博多祇園", image: "day1_hotel.jpg", desc: "大浴場" }
+        ]},
+        { date: "1/30 (五) Day 2", steps: [
+            { t: "10:35", name: "博多埠頭搭船", image: "day2_ferry.jpg", desc: "往海之中道" },
+            { t: "11:00", name: "海之中道海濱公園", image: "day2_park.jpg", desc: "騎腳踏車" },
+            { t: "18:00", name: "博多運河城", image: "day2_canalcity.jpg", desc: "水舞秀" }
+        ]},
+        { date: "1/31 (六) Day 3", steps: [
+            { t: "09:00", name: "Toyota Rent a Car", image: "day3_car.jpg", desc: "博多站東取車" },
+            { t: "11:30", name: "ULUU 草莓吃到飽", image: "day3_strawberry.jpg", desc: "佐賀" },
+            { t: "15:00", name: "由布院 湯之坪", image: "day3_yufuin.jpg", desc: "童話村" },
+            { t: "18:30", name: "湯布院山水館", image: "day3_sansuikan.jpg", desc: "露天溫泉" }
+        ]},
+        { date: "2/1 (日) Day 4", steps: [
+            { t: "08:00", name: "金鱗湖", image: "day4_lake.jpg", desc: "晨霧" },
+            { t: "11:00", name: "阿蘇草千里", image: "day4_kusasenri.jpg", desc: "火山景觀" },
+            { t: "13:00", name: "阿蘇赤牛丼", image: "day4_beef.jpg", desc: "Imakin食堂" },
+            { t: "19:00", name: "Dormy Inn 熊本", image: "day4_dormy.jpg", desc: "免費拉麵" }
+        ]},
+        { date: "2/2 (一) Day 5", steps: [
+            { t: "11:30", name: "天草海鮮蔵", image: "day5_dolphin.jpg", desc: "看海豚 + BBQ" },
+            { t: "18:00", name: "熊本下通商店街", image: "day5_shopping.jpg", desc: "逛街" }
+        ]},
+        { date: "2/3 (二) Day 6", steps: [
+            { t: "10:00", name: "熊本城", image: "day6_castle.jpg", desc: "天守閣" },
+            { t: "15:00", name: "太宰府天滿宮", image: "day6_dazaifu.jpg", desc: "梅枝餅" },
+            { t: "19:00", name: "三井花園中洲", image: "day6_hotel.jpg", desc: "質感飯店" }
+        ]},
+        { date: "2/4 (三) Day 7", steps: [
+            { t: "09:00", name: "呼子朝市", image: "day7_squid.jpg", desc: "活花枝" },
+            { t: "14:00", name: "糸島 夫婦岩", image: "day7_itoshima.jpg", desc: "白色鳥居" }
+        ]},
+        { date: "2/5 (四) Day 8", steps: [
+            { t: "All Day", name: "THE OUTLETS", image: "day8_outlets.jpg", desc: "北九州最大" },
+            { t: "18:00", name: "還車", image: "day8_returncar.jpg", desc: "博多站東" }
+        ]},
+        { date: "2/6 (五) Day 9", steps: [
+            { t: "上午", name: "前往機場", image: "day9_home.jpg", desc: "CI139 回家" }
+        ]}
     ];
 
-    // --- Updated Packing List (Added Power Bank) ---
-    const packingList = ["護照 (效期內)", "台灣駕照 (正本)", "駕照日文譯本", "富邦J卡", "日幣現金", "手機 & 充電器", "行動電源", "eSIM", "保溫瓶", "牙刷牙膏", "雨具"];
-    
-    // --- Food Data ---
+    // Food
     const foodData = [
-        { 
-            region: "博多", 
-            items: [
-                "Full Full 明太子麵包", 
-                "藥院燒肉 NIKUICHI", 
-                "一雙拉麵 (泡系豚骨)",
-                "吉塚鰻魚屋 (必吃老店)",
-                "努努雞 (冷炸雞)",
-                "博多一口餃子 宝雲亭",
-                "とりかわ大臣 (雞皮串燒)"
-            ] 
-        },
-        { 
-            region: "天神", 
-            items: [
-                "I'm donut? (生甜甜圈)", 
-                "Shin Shin 拉麵", 
-                "葫蘆壽司 (迴轉壽司)",
-                "元祖博多めんたい重 (明太子飯)",
-                "壽司郎 天神店 (高CP值)",
-                "敘敘苑 遊玄亭 (景觀燒肉)",
-                "BAKE CHEESE TART 天神地下街"
-            ] 
-        },
-        { 
-            region: "由布院", 
-            items: [
-                "B-Speak 蛋糕捲", 
-                "豐後牛可樂餅", 
-                "釜飯心 (排隊名店)",
-                "Milch 由布院 (半熟起司蛋糕)",
-                "花麴菊家 (布丁銅鑼燒)",
-                "金賞可樂餅",
-                "telato (濃抹茶冰淇淋)"
-            ] 
-        },
-        { 
-            region: "熊本", 
-            items: [
-                "黑亭拉麵 (焦蒜油)", 
-                "勝烈亭炸豬排 (鹿兒島黑豚)", 
-                "蜂樂饅頭 (在地甜點)",
-                "菅乃屋 (馬肉料理專門店)",
-                "紅蘭亭 (太平燕)",
-                "村上カラシレンコン (芥末蓮藕)",
-                "長壽庵 (いきなり団子)"
-            ] 
-        },
-        { 
-            region: "阿蘇/佐賀", 
-            items: [
-                "Imakin 食堂 (赤牛丼)", 
-                "呼子活花枝刺身 (河太郎)", 
-                "糸島布丁 (海邊咖啡廳)",
-                "阿蘇とり宮 (馬肉可樂餅)",
-                "佐賀牛餐廳 季樂 (高級佐賀牛)",
-                "高森田楽保存会 (圍爐裏燒烤)",
-                "嬉野溫泉 宗庵橫長 (湯豆腐)"
-            ] 
-        }
+        { region: "博多", items: ["Full Full 明太子麵包", "藥院燒肉 NIKUICHI", "一雙拉麵", "吉塚鰻魚屋", "努努雞", "博多一口餃子"] },
+        { region: "天神", items: ["I'm donut?", "Shin Shin 拉麵", "葫蘆壽司", "元祖博多めんたい重", "壽司郎", "敘敘苑 遊玄亭", "BAKE CHEESE TART"] },
+        { region: "由布院", items: ["B-Speak 蛋糕捲", "豐後牛可樂餅", "釜飯心", "Milch 起司蛋糕", "花麴菊家", "金賞可樂餅"] },
+        { region: "熊本", items: ["黑亭拉麵", "勝烈亭炸豬排", "蜂樂饅頭", "菅乃屋 馬肉", "紅蘭亭 太平燕", "芥末蓮藕"] },
+        { region: "阿蘇/佐賀", items: ["Imakin 赤牛丼", "河太郎 活花枝", "糸島布丁", "阿蘇とり宮", "佐賀牛 季樂", "嬉野湯豆腐"] }
     ];
-    
-    // --- Mapcode Data ---
-    // [FIX] Updated Address for ULUU to Japanese to ensure correct Google Maps query
+
+    // Mapcodes (Updated Address for ULUU & Toyota)
     const mapcodeData = [
         { n: "Toyota Rent a Car (博多站東)", c: "13 320 188*71", p: "092-472-8388", addr: "1 Chome-4-10 Toko, Hakata Ward, Fukuoka, 812-0008" },
         { n: "Uluu Gardens SAGA (草莓園)", c: "37 491 662*13", p: "080-8956-1030", addr: "Uluu Gardens SAGA 佐賀県三養基郡みやき町江口7079" },
@@ -839,60 +592,23 @@
         { n: "糸島 夫婦岩", c: "224 788 206*25", p: "092-327-0317", addr: "Sakurai Futamigaura of Itoshima" },
         { n: "THE OUTLETS", c: "16 427 590*78", p: "093-663-7251", addr: "THE OUTLETS KITAKYUSHU" }
     ];
-    
-    // --- SPLIT Reservation Data ---
-    // Hotel Data
-    const hotelData = [
-        { t: "博多飯店 (西鐵 Croom)", d: "1/29 - 1/31 (2晚) | 櫛田神社前", image: "res_hotel_hakata.jpg" },
-        { t: "由布院飯店 (山水館)", d: "1/31 (需 19:00 前抵達) | 一泊二食", image: "res_hotel_yufuin.jpg" },
-        { t: "熊本飯店 (Dormy Inn)", d: "2/1 - 2/3 (2晚) | 辛島町", image: "res_hotel_kumamoto.jpg" },
-        { t: "中洲飯店 (三井花園)", d: "2/3 - 2/6 (3晚) | 中洲川端", image: "res_hotel_nakasu.jpg" }
+
+    // Reservations
+    const hotelRes = [
+        { t: "博多飯店 (西鐵)", d: "1/29 - 1/31", image: "res_hotel_hakata.jpg" },
+        { t: "由布院飯店 (山水館)", d: "1/31", image: "res_hotel_yufuin.jpg" },
+        { t: "熊本飯店 (Dormy)", d: "2/1 - 2/3", image: "res_hotel_kumamoto.jpg" },
+        { t: "中洲飯店 (三井)", d: "2/3 - 2/6", image: "res_hotel_nakasu.jpg" }
+    ];
+    const otherRes = [
+        { t: "✈️ 機票 (華航)", d: "1/29 & 2/6", image: "res_flight.jpg" },
+        { t: "🚗 租車 (Toyota)", d: "1/31 - 2/5", image: "res_car.jpg" },
+        { t: "🍓 草莓吃到飽", d: "1/31 11:30", image: "res_strawberry.jpg" },
+        { t: "🥩 藥院燒肉", d: "1/29 晚餐", image: "res_yakiniku.jpg" },
+        { t: "🐬 天草海豚", d: "2/2 11:30", image: "res_dolphin.jpg" }
     ];
 
-    // Other Reservations (Flight, Car, Activities)
-    const otherResData = [
-        { t: "✈️ 機票 (華航)", d: "1/29 08:25 去 | 2/6 11:40 回", image: "res_flight.jpg" },
-        { t: "🚗 租車 (Toyota)", d: "1/31 09:00 - 2/5 18:00 | 博多站東", image: "res_car.jpg" },
-        { t: "🍓 草莓吃到飽 (ULUU)", d: "1/31 11:30 | 佐賀", image: "res_strawberry.jpg" },
-        { t: "🥩 藥院燒肉 NIKUICHI", d: "1/29 晚餐 | 藥院店", image: "res_yakiniku.jpg" },
-        { t: "🐬 天草海豚 (海鮮蔵)", d: "2/2 11:30 | 天草", image: "res_dolphin.jpg" }
-    ];
-
-    // --- Supermarket Data ---
-    const supermarketData = [
-        {
-            hotel: "🏨 三井花園福岡中洲",
-            shops: [
-                { name: "Reganet Cute 中洲川端店", addr: "福岡市博多区上川端町 12-20", dist: "步行 2 分鐘", feature: "就在地鐵共構大樓，回飯店最順路，熟食便當多。" },
-                { name: "Foodway 中洲食小町店", addr: "福岡市博多区中洲 3-7-24", dist: "步行 3 分鐘", feature: "位於 gate's 大樓內，營業至深夜，採買消夜方便。" },
-                { name: "Don Quijote 唐吉訶德 中洲店", addr: "福岡市博多区中洲 3-7-24", dist: "步行 3 分鐘", feature: "24小時營業，零食、飲料、雜貨一次買齊。" },
-                { name: "MaxValu Express 博多祇園店", addr: "福岡市博多区祇園町 7-20", dist: "步行 10 分鐘", feature: "24小時營業，價格實惠的標準型超市。" },
-                { name: "大丸福岡天神店 地下食品街", addr: "福岡市中央区天神 1-4-1", dist: "步行 8 分鐘", feature: "過橋即達，適合購買高品質水果、甜點與和牛。" }
-            ]
-        },
-        {
-            hotel: "🏨 西鐵 Croom 博多祇園",
-            shops: [
-                { name: "MaxValu Express 博多祇園店", addr: "福岡市博多区祇園町 7-20", dist: "步行 3 分鐘", feature: "最近的超市，就在飯店斜對面，24小時營業最便利。" },
-                { name: "Lopia 博多Yodobashi店", addr: "福岡市博多区博多駅中央街 6-12", dist: "步行 12 分鐘", feature: "必逛！ 日本現在最紅的高CP值超市，肉類便宜份量大（只收現金）。" },
-                { name: "博多阪急 地下食品街", addr: "福岡市博多区博多駅中央街 1-1", dist: "步行 10 分鐘", feature: "博多車站內，非常適合買回飯店享用的高級熟食。" },
-                { name: "Reganet Cute 中洲川端店", addr: "福岡市博多区上川端町 12-20", dist: "步行 8 分鐘", feature: "位於川端商店街尾端，逛街時可順道採買。" },
-                { name: "Bon Repas 百旬館", addr: "福岡市中央区渡辺通 4-6-20", dist: "步行 15 分鐘", feature: "在地高級超市，食材品質極佳，適合講究的旅客。" }
-            ]
-        },
-        {
-            hotel: "🏨 Dormy Inn 熊本",
-            shops: [
-                { name: "Foodway SAKURA MACHI店", addr: "熊本市中央区桜町 3-10 B1F", dist: "步行 2 分鐘", feature: "最近！ 就在飯店對面購物中心地下1樓，新穎乾淨，晚上會有特價貼紙。" },
-                { name: "業務超市 辛島公園店", addr: "熊本市中央区辛島町 2-1", dist: "步行 1 分鐘", feature: "就在隔壁街區，大包裝零食、調味料最便宜。" },
-                { name: "Miyahara 下通店", addr: "熊本市中央区花畑町 11-14", dist: "步行 5 分鐘", feature: "位於熱鬧的下通商店街，像超商的生鮮超市，營業至深夜。" },
-                { name: "Don Quijote 熊本下通店", addr: "熊本市中央区安政町 5-27", dist: "步行 6 分鐘", feature: "位於商店街核心，24小時營業（食品區），補貨首選。" },
-                { name: "鶴屋百貨店 地下食品街", addr: "熊本市中央区手取本町 6-1", dist: "步行 10 分鐘", feature: "熊本最高級百貨，熊本熊部長辦公室也在這，適合買生魚片和伴手禮。" }
-            ]
-        }
-    ];
-
-    // --- Logic ---
+    // --- 3. Rendering Functions ---
 
     function showSection(id) {
         document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
@@ -900,257 +616,182 @@
         window.scrollTo(0, 0);
     }
 
-    // Calculator Logic
-    const jpyInput = document.getElementById('jpy-input');
-    const rateInput = document.getElementById('rate-input');
-    const twdOutput = document.getElementById('twd-output');
+    function toggleAccordion(idx, className, btnClass) {
+        const content = document.getElementById(`${className}-${idx}`);
+        const btn = document.getElementsByClassName(btnClass)[idx];
+        const isOpen = content.classList.contains('open');
+        
+        document.querySelectorAll('.' + className).forEach(e => e.classList.remove('open'));
+        document.querySelectorAll('.' + btnClass).forEach(e => e.classList.remove('active'));
 
-    function calculate() {
-        const jpy = parseFloat(jpyInput.value) || 0;
-        const rate = parseFloat(rateInput.value) || 0;
-        const twd = Math.round(jpy * rate);
-        twdOutput.innerText = twd.toLocaleString();
+        if(!isOpen) {
+            content.classList.add('open');
+            btn.classList.add('active');
+        }
     }
 
-    if(jpyInput) {
-        jpyInput.addEventListener('input', calculate);
-        rateInput.addEventListener('input', calculate);
-        // Auto-fetch Exchange Rate (API)
-        fetch('https://api.exchangerate-api.com/v4/latest/JPY')
-            .then(response => response.json())
-            .then(data => {
-                if(data && data.rates && data.rates.TWD) {
-                    rateInput.value = data.rates.TWD;
-                    calculate();
-                }
-            })
-            .catch(err => console.log('Rate fetch failed, using default'));
-    }
-
-    // Itinerary Rendering
-    const itinDiv = document.getElementById('itinerary-content');
-    itineraryData.forEach((day, index) => {
+    // Render Supermarkets
+    const marketContainer = document.getElementById('supermarket-container');
+    supermarketData.forEach((grp, idx) => {
         const btn = document.createElement('button');
-        btn.className = 'collapse-btn date-btn';
-        btn.innerHTML = `<span>${day.date}</span> <i class="fas fa-chevron-down"></i>`;
-        btn.onclick = () => toggleAccordion(index, 'day-details', 'date-btn');
-        itinDiv.appendChild(btn);
+        btn.className = 'collapse-btn market-btn';
+        btn.innerHTML = `<span>${grp.hotel}</span> <i class="fas fa-chevron-down"></i>`;
+        btn.onclick = () => toggleAccordion(idx, 'market-list', 'market-btn');
+        marketContainer.appendChild(btn);
 
-        const details = document.createElement('div');
-        details.id = `day-details-${index}`;
-        details.className = 'collapse-content day-details';
-        
-        const stepsHtml = day.steps.map(s => `
-            <div class="timeline-step">
-                <div class="step-time">${s.t}</div>
-                <div class="step-content" onclick="openModal('${s.name}', '${s.image}', '${s.desc}')">
-                    <div style="font-weight:bold; color:var(--text)">${s.name}</div>
-                    <div style="font-size:0.85rem; color:#666; margin-top:2px;">${s.desc}</div>
-                </div>
-            </div>
-        `).join('');
-        
-        details.innerHTML = stepsHtml;
-        itinDiv.appendChild(details);
+        const div = document.createElement('div');
+        div.id = `market-list-${idx}`;
+        div.className = 'collapse-content market-list';
+        grp.shops.forEach(shop => {
+            const item = document.createElement('div');
+            item.className = 'market-item';
+            item.onclick = () => openGoogleMap(shop.addr);
+            item.innerHTML = `<span class="market-name">${shop.name}</span><span class="market-dist">${shop.dist}</span><div class="market-feature">${shop.feat}</div>`;
+            div.appendChild(item);
+        });
+        marketContainer.appendChild(div);
     });
 
-    // Food Rendering
-    const foodDiv = document.getElementById('food-container');
-    foodData.forEach((cat, index) => {
-        const btn = document.createElement('button');
-        btn.className = 'collapse-btn food-region-btn';
-        btn.innerHTML = `<span><i class="fas fa-map-marker-alt"></i> ${cat.region}</span> <i class="fas fa-chevron-down"></i>`;
-        btn.onclick = () => toggleAccordion(index, 'food-list', 'food-region-btn');
-        foodDiv.appendChild(btn);
-
-        const listDiv = document.createElement('div');
-        listDiv.id = `food-list-${index}`;
-        listDiv.className = 'collapse-content food-list';
-        
-        const itemsHtml = cat.items.map(i => {
-            const cleanName = i.split('(')[0].trim();
-            const query = `${cat.region} ${cleanName}`;
-            return `<span class="food-tag" onclick="openGoogleMapSearch('${query}')">${i} <i class="fas fa-location-arrow"></i></span>`;
-        }).join('');
-        
-        listDiv.innerHTML = itemsHtml;
-        foodDiv.appendChild(listDiv);
-    });
-
-    // Souvenir Rendering (Accordion)
+    // Render Souvenirs
     const souvenirContainer = document.getElementById('souvenir-container');
-    souvenirData.forEach((cat, index) => {
+    souvenirData.forEach((cat, idx) => {
         const btn = document.createElement('button');
         btn.className = 'collapse-btn souvenir-btn';
         btn.innerHTML = `<span>${cat.category}</span> <i class="fas fa-chevron-down"></i>`;
-        btn.onclick = () => toggleAccordion(index, 'souvenir-list', 'souvenir-btn');
+        btn.onclick = () => toggleAccordion(idx, 'souvenir-list', 'souvenir-btn');
         souvenirContainer.appendChild(btn);
 
-        const listDiv = document.createElement('div');
-        listDiv.id = `souvenir-list-${index}`;
-        listDiv.className = 'collapse-content souvenir-list';
-
-        cat.items.forEach(item => {
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'souvenir-item';
-            const query = `博多駅 ${item.loc} ${item.name.split('(')[0]}`;
-            
-            itemDiv.onclick = () => openGoogleMapSearch(query);
-            itemDiv.innerHTML = `
-                <div><span class="souvenir-name">${item.name}</span><span class="souvenir-price">${item.price}</span></div>
-                <div class="souvenir-loc"><i class="fas fa-map-marker-alt"></i> ${item.loc}</div>
-                <div class="souvenir-note">${item.note}</div>
-            `;
-            listDiv.appendChild(itemDiv);
-        });
-        souvenirContainer.appendChild(listDiv);
-    });
-
-    // Supermarket Rendering
-    const marketContainer = document.getElementById('supermarket-container');
-    supermarketData.forEach((group, index) => {
-        const btn = document.createElement('button');
-        btn.className = 'collapse-btn market-btn';
-        btn.innerHTML = `<span>${group.hotel}</span> <i class="fas fa-chevron-down"></i>`;
-        btn.onclick = () => toggleAccordion(index, 'market-list', 'market-btn');
-        marketContainer.appendChild(btn);
-
-        const listDiv = document.createElement('div');
-        listDiv.id = `market-list-${index}`;
-        listDiv.className = 'collapse-content market-list';
-
-        group.shops.forEach(shop => {
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'market-item';
-            itemDiv.onclick = () => openGoogleMapSearch(shop.addr); // Ensure navigation uses full address
-            itemDiv.innerHTML = `
-                <span class="market-name">${shop.name}</span>
-                <span class="market-dist">${shop.dist}</span>
-                <div class="market-feature">${shop.feature}</div>
-            `;
-            listDiv.appendChild(itemDiv);
-        });
-        marketContainer.appendChild(listDiv);
-    });
-
-    // --- Reservation Rendering Function ---
-    function renderReservations(data, containerId) {
-        const container = document.getElementById(containerId);
-        data.forEach(res => {
-            const div = document.createElement('div');
-            div.className = 'step-content res-content';
-            div.onclick = () => openModal(res.t, res.image, res.d);
-            div.style.marginBottom = '10px';
-            div.innerHTML = `<div style="font-weight:bold; color:var(--res)">${res.t}</div><div style="font-size:0.9rem; color:#555;">${res.d}</div>`;
-            container.appendChild(div);
-        });
-    }
-
-    // Call Render for Reservations
-    renderReservations(hotelData, 'res-hotel-list-0');
-    renderReservations(otherResData, 'res-other-list-1');
-
-
-    // General Accordion Toggle Function
-    function toggleAccordion(index, contentClass, btnClass) {
-        const targetContent = document.getElementById(`${contentClass}-${index}`);
-        const targetBtn = document.getElementsByClassName(btnClass)[index];
-        const isOpen = targetContent.classList.contains('open');
-
-        // Close all of the same type
-        document.querySelectorAll(`.${contentClass}`).forEach(el => el.classList.remove('open'));
-        document.querySelectorAll(`.${btnClass}`).forEach(el => el.classList.remove('active'));
-
-        // Toggle clicked
-        if (!isOpen) {
-            targetContent.classList.add('open');
-            targetBtn.classList.add('active');
-        }
-    }
-
-    // Modal Logic
-    const modal = document.getElementById('location-modal');
-    function openModal(title, imgSrc, desc) {
-        document.getElementById('modal-title').innerText = title;
-        document.getElementById('modal-desc').innerText = desc;
-        const imgEl = document.getElementById('modal-img');
-        imgEl.style.display = 'block';
-        imgEl.src = imgSrc;
-        modal.classList.add('open');
-    }
-    
-    function closeModal(e) {
-        if(e.target === modal || e.target.classList.contains('close-modal')) {
-            modal.classList.remove('open');
-        }
-    }
-
-    // Render Checklist
-    const checklistDiv = document.getElementById('checklist-container');
-    packingList.forEach((item, idx) => {
         const div = document.createElement('div');
-        div.className = 'checklist-item';
-        const isChecked = localStorage.getItem(`pack_${idx}`) === 'true';
-        if(isChecked) div.classList.add('checked');
-        div.innerHTML = `<input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleCheck(this, ${idx})"><span>${item}</span>`;
-        checklistDiv.appendChild(div);
+        div.id = `souvenir-list-${idx}`;
+        div.className = 'collapse-content souvenir-list';
+        cat.items.forEach(item => {
+            const el = document.createElement('div');
+            el.className = 'souvenir-item';
+            el.onclick = () => openGoogleMap(`博多駅 ${item.loc} ${item.name.split('(')[0]}`);
+            el.innerHTML = `<div><span class="souvenir-name">${item.name}</span><span class="souvenir-price">${item.price}</span></div><div class="souvenir-loc">${item.loc}</div><div class="souvenir-note">${item.note}</div>`;
+            div.appendChild(el);
+        });
+        souvenirContainer.appendChild(div);
     });
-    function toggleCheck(el, idx) {
-        el.parentElement.classList.toggle('checked');
-        localStorage.setItem(`pack_${idx}`, el.checked);
+
+    // Render Itinerary
+    const itinDiv = document.getElementById('itinerary-content');
+    itineraryData.forEach((day, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'collapse-btn date-btn';
+        btn.innerHTML = `<span>${day.date}</span> <i class="fas fa-chevron-down"></i>`;
+        btn.onclick = () => toggleAccordion(idx, 'day-details', 'date-btn');
+        itinDiv.appendChild(btn);
+
+        const div = document.createElement('div');
+        div.id = `day-details-${idx}`;
+        div.className = 'collapse-content day-details';
+        day.steps.forEach(s => {
+            const step = document.createElement('div');
+            step.className = 'timeline-step';
+            step.innerHTML = `<div class="step-time">${s.t}</div><div class="step-content" onclick="openModal('${s.name}', '${s.image}', '${s.desc}')"><div style="font-weight:bold;color:var(--text)">${s.name}</div><div style="font-size:0.85rem;color:#666;">${s.desc}</div></div>`;
+            div.appendChild(step);
+        });
+        itinDiv.appendChild(div);
+    });
+
+    // Render Food
+    const foodDiv = document.getElementById('food-container');
+    foodData.forEach((cat, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'collapse-btn food-region-btn';
+        btn.innerHTML = `<span>${cat.region}</span> <i class="fas fa-chevron-down"></i>`;
+        btn.onclick = () => toggleAccordion(idx, 'food-list', 'food-region-btn');
+        foodDiv.appendChild(btn);
+
+        const div = document.createElement('div');
+        div.id = `food-list-${idx}`;
+        div.className = 'collapse-content food-list';
+        cat.items.forEach(i => {
+            const name = i.split('(')[0];
+            div.innerHTML += `<span class="food-tag" onclick="openGoogleMap('${cat.region} ${name}')">${i} <i class="fas fa-location-arrow"></i></span>`;
+        });
+        foodDiv.appendChild(div);
+    });
+
+    // Render Reservations
+    function renderRes(data, id) {
+        const div = document.getElementById(id);
+        data.forEach(r => {
+            const el = document.createElement('div');
+            el.className = 'step-content res-content';
+            el.style.marginBottom = '10px';
+            el.onclick = () => openModal(r.t, r.image, r.d);
+            el.innerHTML = `<div style="font-weight:bold;color:var(--res)">${r.t}</div><div style="font-size:0.9rem;color:#555;">${r.d}</div>`;
+            div.appendChild(el);
+        });
     }
+    renderRes(hotelRes, 'res-hotel-0');
+    renderRes(otherRes, 'res-other-1');
 
-    // Render Mapcodes with Links
-    const splitIndex = mapcodeData.findIndex(item => item.n.includes("阿蘇中岳火山口"));
-    const mapPart1 = mapcodeData.slice(0, splitIndex + 1);
-    const mapPart2 = mapcodeData.slice(splitIndex + 1);
-
-    function renderMapRows(data, containerId) {
-        const tbody = document.getElementById(containerId);
-        data.forEach(item => {
+    // Render Mapcodes
+    const mapPart1 = mapcodeData.slice(0, 6);
+    const mapPart2 = mapcodeData.slice(6);
+    
+    function renderMaps(data, id) {
+        const tbody = document.getElementById(id);
+        data.forEach(m => {
             const tr = document.createElement('tr');
-            // Prioritize specific Japanese address if available, else name
-            const searchKey = item.addr ? item.addr : item.n;
-            
-            tr.innerHTML = `
-                <td>
-                    <span class="map-link" onclick="openGoogleMapSearch('${searchKey}')" style="cursor:pointer;">
-                        ${item.n} <i class="fas fa-external-link-alt"></i>
-                    </span>
-                </td>
-                <td>
-                    <div style="color:var(--ocean-dark); font-weight:bold; font-family:monospace; font-size:1.1rem;">
-                        ${item.c} <button class="copy-btn" onclick="copy('${item.c}')">複製</button>
-                    </div>
-                    <div style="font-size:0.85rem; color:#666; margin-top:4px;">
-                        📞 ${item.p} <button class="copy-btn" onclick="copy('${item.p}')">複製</button>
-                    </div>
-                </td>`;
+            tr.innerHTML = `<td><span class="map-link" onclick="openGoogleMap('${m.addr}')" style="cursor:pointer">${m.n} <i class="fas fa-external-link-alt"></i></span></td><td><div style="font-weight:bold;color:var(--ocean-dark)">${m.c} <button class="copy-btn" onclick="copy('${m.c}')">複製</button></div><div style="font-size:0.85rem;color:#666">${m.p} <button class="copy-btn" onclick="copy('${m.p}')">複製</button></div></td>`;
             tbody.appendChild(tr);
         });
     }
-    renderMapRows(mapPart1, 'map-body-1');
-    renderMapRows(mapPart2, 'map-body-2');
+    renderMaps(mapPart1, 'map-body-1');
+    renderMaps(mapPart2, 'map-body-2');
 
-    function switchMapTab(page) {
+    function switchMapTab(p) {
         document.querySelectorAll('.map-tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.map-tab-btn')[page-1].classList.add('active');
-        document.getElementById('map-page-1').style.display = page === 1 ? 'block' : 'none';
-        document.getElementById('map-page-2').style.display = page === 2 ? 'block' : 'none';
+        document.querySelectorAll('.map-tab-btn')[p-1].classList.add('active');
+        document.getElementById('map-page-1').style.display = p===1 ? 'block' : 'none';
+        document.getElementById('map-page-2').style.display = p===2 ? 'block' : 'none';
     }
-    function copy(txt) { navigator.clipboard.writeText(txt).then(() => alert('已複製：' + txt)); }
 
-    // Petals
-    function createPetal() {
-        const petal = document.createElement('div');
-        petal.className = 'petal';
-        petal.style.left = Math.random() * 100 + 'vw';
-        petal.style.animationDuration = Math.random() * 3 + 4 + 's';
-        document.body.appendChild(petal);
-        setTimeout(() => petal.remove(), 7000);
+    // Checklist
+    const packDiv = document.getElementById('checklist-container');
+    const packingList = ["護照", "駕照+譯本", "信用卡(富邦J)", "日幣", "手機+充電器", "行動電源", "eSIM", "保溫瓶", "牙刷", "雨具"];
+    packingList.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'checklist-item';
+        if(localStorage.getItem('pack_'+idx) === 'true') div.classList.add('checked');
+        div.innerHTML = `<input type="checkbox" ${div.classList.contains('checked')?'checked':''} onchange="toggleCheck(this,${idx})"><span>${item}</span>`;
+        packDiv.appendChild(div);
+    });
+    function toggleCheck(el, idx) {
+        el.parentElement.classList.toggle('checked');
+        localStorage.setItem('pack_'+idx, el.checked);
     }
-    setInterval(createPetal, 600);
 
+    // Modal
+    const modal = document.getElementById('location-modal');
+    function openModal(t, src, d) {
+        document.getElementById('modal-title').innerText = t;
+        document.getElementById('modal-desc').innerText = d;
+        document.getElementById('modal-img').src = src;
+        modal.classList.add('open');
+    }
+    function closeModal(e) {
+        if(e.target === modal || e.target.classList.contains('close-modal')) modal.classList.remove('open');
+    }
+
+    // Calculator
+    const jpyIn = document.getElementById('jpy-input');
+    const rateIn = document.getElementById('rate-input');
+    const twdOut = document.getElementById('twd-output');
+    function calc() {
+        twdOut.innerText = Math.round((parseFloat(jpyIn.value)||0) * (parseFloat(rateIn.value)||0)).toLocaleString();
+    }
+    if(jpyIn) {
+        jpyIn.addEventListener('input', calc);
+        rateIn.addEventListener('input', calc);
+        fetch('https://api.exchangerate-api.com/v4/latest/JPY').then(r=>r.json()).then(d=>{ if(d.rates.TWD) { rateIn.value=d.rates.TWD; calc(); }});
+    }
+
+    function copy(txt) { navigator.clipboard.writeText(txt).then(() => alert('已複製: '+txt)); }
 </script>
 </body>
 </html>
