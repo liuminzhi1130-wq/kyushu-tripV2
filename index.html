@@ -226,7 +226,7 @@
         .modal-body { padding: 20px; }
         .close-modal { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; }
 
-        /* Styles for Timetable & Taxi Card in Modal */
+        /* Styles for Timetable & Taxi Card & Lunch Info */
         .timetable { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; }
         .timetable th { background: #f0f0f0; padding: 8px; text-align: center; border: 1px solid #ddd; }
         .timetable td { padding: 8px; text-align: center; border: 1px solid #ddd; }
@@ -236,6 +236,12 @@
         .taxi-title { font-size: 1.1rem; color: #555; margin-bottom: 15px; font-weight: bold; border-bottom: 2px dashed #ccc; padding-bottom: 10px; }
         .taxi-big { font-size: 1.8rem; font-weight: 900; line-height: 1.4; color: #000; margin: 15px 0; }
         .taxi-sub { font-size: 0.95rem; color: #333; font-weight: bold; }
+
+        .lunch-card { background: #fff8e1; border: 1px solid #ffe0b2; padding: 15px; border-radius: 10px; text-align:left; }
+        .lunch-item { margin-bottom: 10px; }
+        .lunch-tag { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; margin-right: 5px; font-weight: bold; }
+        .tag-beef { background: #ffebee; color: #c62828; }
+        .tag-no-beef { background: #e8f5e9; color: #2e7d32; }
 
         /* Tabs */
         .map-tabs { display: flex; background: #f0f0f0; border-radius: 10px; padding: 5px; margin-bottom: 20px; }
@@ -460,6 +466,37 @@
         </div>
     `;
 
+    // --- HTML Content for Aso Lunch (New Kusasenri) ---
+    const lunchAsoHTML = `
+        <div class="lunch-card">
+            <h4 style="margin-top:0; color:#333;">New Kusasenri 景觀餐廳</h4>
+            <p style="font-size:0.9rem; color:#666;">位於草千里停車場正前方，空間大。</p>
+            <hr style="border:0; border-top:1px dashed #ccc; margin:10px 0;">
+            
+            <div class="lunch-item">
+                <span class="lunch-tag tag-beef">吃牛推薦</span>
+                <span style="font-weight:bold;">阿蘇赤牛丼 (Akaushi Don)</span>
+                <div style="font-size:0.85rem; color:#555;">必吃名物！半熟紅牛肉鋪滿。</div>
+            </div>
+
+            <div class="lunch-item">
+                <span class="lunch-tag tag-no-beef">不吃牛推薦</span>
+                <span style="font-weight:bold;">炸豬排咖哩 (Tonkatsu Curry)</span>
+                <div style="font-size:0.85rem; color:#555;">份量足夠，日式口味。</div>
+            </div>
+
+            <div class="lunch-item">
+                <span class="lunch-tag tag-no-beef">不吃牛推薦</span>
+                <span style="font-weight:bold;">太平燕 (Tai-pi-en)</span>
+                <div style="font-size:0.85rem; color:#555;">熊本特色海鮮冬粉湯，清爽好吃。</div>
+            </div>
+            
+            <div style="margin-top:15px; font-size:0.85rem; color:#888;">
+                備案：若人太多，可改去山下的「阿蘇路」吃高菜飯定食。
+            </div>
+        </div>
+    `;
+
     // --- 2. Data Definitions ---
     
     // Supermarket Data (Fixed query keys for accuracy)
@@ -534,7 +571,7 @@
         }
     ];
 
-    // Itinerary (Updated with Taxi Card, removing image URL)
+    // Itinerary
     const itineraryData = [
         { date: "1/29 (四) Day 1", steps: [
             { t: "12:00", name: "福岡機場抵達", image: "day1_airport.jpg", desc: "CI138 抵達" },
@@ -550,7 +587,7 @@
             { t: "15:00", name: "渡輪 (往百道濱)", image: "day2_ferry.jpg", desc: "【關鍵時刻】15:00發船(安田汽船)。請預留時間還車並走到碼頭。票價¥1200。" },
             { t: "15:30", name: "福岡塔 & 海灘", image: "day2_tower.jpg", desc: "百道濱沙灘拍照 ➔ 登福岡塔(護照有優惠)。" },
             { t: "17:00", name: "MARK IS (晚餐)", image: "day2_dinner.jpg", desc: "位於福岡塔正對面，二樓有空橋連接。<br>推薦：天婦羅Takao、金子半之助、西新初喜。" },
-            { t: "20:00", name: "計程車回飯店 (出示司機)", image: "", desc: "點擊顯示給司機看的【飯店地址卡】", isHtml: true, htmlContent: taxiCardHTML }
+            { t: "20:00", name: "計程車回飯店 (出示司機)", image: "", desc: "點擊顯示給司機看的【飯店地址卡】(大字體+黑框)", isHtml: true, htmlContent: taxiCardHTML }
         ]},
         { date: "1/31 (六) Day 3", steps: [
             { t: "09:00", name: "Toyota Rent a Car", image: "day3_car.jpg", desc: "博多站東取車" },
@@ -559,10 +596,13 @@
             { t: "18:30", name: "湯布院山水館", image: "day3_sansuikan.jpg", desc: "露天溫泉" }
         ]},
         { date: "2/1 (日) Day 4", steps: [
-            { t: "08:00", name: "金鱗湖", image: "day4_lake.jpg", desc: "晨霧" },
-            { t: "11:00", name: "阿蘇草千里", image: "day4_kusasenri.jpg", desc: "火山景觀" },
-            { t: "13:00", name: "阿蘇赤牛丼", image: "day4_beef.jpg", desc: "Imakin食堂" },
-            { t: "19:00", name: "Dormy Inn 熊本", image: "day4_dormy.jpg", desc: "免費拉麵" }
+            { t: "08:00", name: "金鱗湖", image: "day4_lake.jpg", desc: "晨霧與鳥居" },
+            { t: "09:30", name: "大觀峰", image: "day4_daikanbo.jpg", desc: "360度俯瞰阿蘇火山" },
+            { t: "11:00", name: "草千里 (午餐)", image: "day4_lunch.jpg", desc: "點擊查看【New Kusasenri 菜單攻略】(含不吃牛建議)", isHtml: true, htmlContent: lunchAsoHTML },
+            { t: "13:00", name: "阿蘇中岳火口", image: "day4_crater.jpg", desc: "活火山口冒煙 (視瓦斯濃度開放)" },
+            { t: "14:30", name: "白川水源", image: "day4_water.jpg", desc: "清澈湧泉，可裝水" },
+            { t: "15:30", name: "上色見熊野座神社", image: "day4_shrine.jpg", desc: "通往異世界的入口 (需爬樓梯)" },
+            { t: "18:00", name: "Dormy Inn 熊本", image: "day4_dormy.jpg", desc: "抵達飯店，晚上有免費拉麵" }
         ]},
         { date: "2/2 (一) Day 5", steps: [
             { t: "11:30", name: "天草海鮮蔵", image: "day5_dolphin.jpg", desc: "看海豚 + BBQ" },
@@ -592,19 +632,22 @@
         { region: "天神", items: ["I'm donut?", "Shin Shin 拉麵", "葫蘆壽司", "元祖博多めんたい重", "壽司郎", "敘敘苑 遊玄亭", "BAKE CHEESE TART"] },
         { region: "由布院", items: ["B-Speak 蛋糕捲", "豐後牛可樂餅", "釜飯心", "Milch 起司蛋糕", "花麴菊家", "金賞可樂餅"] },
         { region: "熊本", items: ["黑亭拉麵", "勝烈亭炸豬排", "蜂樂饅頭", "菅乃屋 馬肉", "紅蘭亭 太平燕", "芥末蓮藕"] },
-        { region: "阿蘇/佐賀", items: ["Imakin 赤牛丼", "河太郎 活花枝", "糸島布丁", "阿蘇とり宮", "佐賀牛 季樂", "嬉野湯豆腐"] }
+        { region: "阿蘇/佐賀", items: ["New Kusasenri (景觀餐廳)", "阿蘇路 (高菜飯)", "Imakin 赤牛丼", "河太郎 活花枝", "糸島布丁", "阿蘇とり宮", "佐賀牛 季樂"] }
     ];
 
     // Mapcodes (Fully Corrected Addresses)
     const mapcodeData = [
+        { n: "大觀峰 (Daikanbo)", c: "256 878 130*41", p: "0967-32-1960", addr: "Daikanbo" },
+        { n: "New Kusasenri (景觀餐廳)", c: "256 456 770*13", p: "0967-34-0131", addr: "New Kusasenri" },
+        { n: "阿蘇中岳火山口", c: "256 427 493*15", p: "0967-34-1600", addr: "Mount Aso Nakadake Crater" }, 
+        { n: "白川水源", c: "256 117 403*82", p: "0967-62-0318", addr: "Shirakawa Source" },
+        { n: "上色見熊野座神社", c: "256 221 723*74", p: "-", addr: "Kamishikimi Kumanoimasu Shrine" },
+        { n: "阿蘇路 (備用午餐)", c: "256 657 512*44", p: "0967-35-0924", addr: "Asoji" },
         { n: "Toyota Rent a Car (博多站東)", c: "13 320 188*71", p: "092-472-8388", addr: "1 Chome-4-10 Toko, Hakata Ward, Fukuoka, 812-0008" },
         { n: "Uluu Gardens SAGA (草莓園)", c: "37 491 662*13", p: "080-8956-1030", addr: "Uluu Gardens SAGA 佐賀県三養基郡みやき町江口7079" },
         { n: "湯布院山水館", c: "269 328 633*45", p: "0977-84-2101", addr: "Yufuin Sansuikan" },
         { n: "金鱗湖停車場", c: "269 359 583*03", p: "0977-84-3111", addr: "Kinrin Lake Parking" },
-        { n: "阿蘇草千里", c: "256 456 770*85", p: "0967-34-0131", addr: "Kusasenri Observatory" },
-        { n: "阿蘇中岳火山口", c: "256 458 600*30", p: "0967-34-1600", addr: "Mount Aso Nakadake Crater" }, 
-        { n: "Imakin 食堂", c: "256 685 024*41", p: "0967-32-0031", addr: "Imakin Shokudo" },
-        { n: "Dormy Inn 熊本", c: "29 459 468*88", p: "096-311-5489", addr: "Dormy Inn Kumamoto Natural Hot Spring" },
+        { n: "Dormy Inn 熊本", c: "29 459 487*36", p: "096-311-5489", addr: "Dormy Inn Kumamoto Natural Hot Spring" },
         { n: "天草海鮮蔵", c: "474 084 158*44", p: "0969-52-7707", addr: "Amakusa Kaisenkura" },
         { n: "熊本城", c: "29 459 342*58", p: "096-352-5900", addr: "Kumamoto Castle" },
         { n: "太宰府天滿宮", c: "55 364 128*71", p: "092-922-8225", addr: "Dazaifu Tenmangu" },
