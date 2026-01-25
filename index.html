@@ -221,10 +221,16 @@
         /* Modal */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(5px); }
         .modal.open { display: flex; }
-        .modal-card { background: white; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; position: relative; }
-        .modal-img { width: 100%; height: auto; max-height: 60vh; object-fit: contain; background: #333; display: block; }
+        .modal-card { background: white; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; position: relative; max-height: 80vh; overflow-y: auto; }
+        .modal-img { width: 100%; height: auto; max-height: 50vh; object-fit: contain; background: #333; display: block; }
         .modal-body { padding: 20px; }
         .close-modal { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; }
+
+        /* Styles for Timetable in Modal */
+        .timetable { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; }
+        .timetable th { background: #f0f0f0; padding: 8px; text-align: center; border: 1px solid #ddd; }
+        .timetable td { padding: 8px; text-align: center; border: 1px solid #ddd; }
+        .warn-text { color: #d32f2f; font-size: 0.9rem; margin-top: 5px; line-height: 1.5; }
 
         /* Tabs */
         .map-tabs { display: flex; background: #f0f0f0; border-radius: 10px; padding: 5px; margin-bottom: 20px; }
@@ -397,7 +403,7 @@
             <img id="modal-img" class="modal-img" src="">
             <div class="modal-body">
                 <h3 id="modal-title"></h3>
-                <p id="modal-desc" style="color:#666;"></p>
+                <div id="modal-desc" style="color:#666;"></div>
             </div>
         </div>
     </div>
@@ -409,6 +415,32 @@
         const url = `https://www.google.com/maps/search/?api=1&query=${encodedQuery}`;
         window.open(url, '_blank');
     }
+
+    // --- HTML Content for 1/30 Train Timetable ---
+    const jrTimetableHTML = `
+        <div style="text-align:left; font-size:0.95rem;">
+            <p style="background:#e3f2fd; padding:10px; border-radius:8px; margin-bottom:15px;">
+                ✅ <b>使用 ICOCA 直接刷卡進站</b><br>
+                ✨ <b>目標班次：08:08 快速</b>
+            </p>
+            <table class="timetable">
+                <tr style="background:#eee;"><th>博多發</th><th>香椎抵</th><th>車種</th></tr>
+                <tr><td>07:59</td><td>08:13</td><td>普通 (慢)</td></tr>
+                <tr style="background:#e8f5e9; font-weight:bold; color:#2e7d32; font-size:1.1rem;"><td>08:08</td><td>08:20</td><td>快速 (推)</td></tr>
+                <tr><td>08:14</td><td>08:28</td><td>普通</td></tr>
+                <tr><td>08:17</td><td>08:31</td><td>普通</td></tr>
+            </table>
+            <div class="warn-text" style="background:#ffebee; padding:10px; border-radius:8px; margin-top:15px;">
+                ⚠️ <b>避開陷阱車次：</b><br>
+                ❌ 08:02 特急 Sonic (需加錢)<br>
+                ❌ 08:05, 08:26 (只到吉塚)
+            </div>
+            <p style="margin-top:15px; font-size:0.9rem;">
+                <b>🔄 香椎站轉乘：</b><br>
+                抵達香椎後，請換月台搭乘「JR香椎線 (往西戶崎)」。08:08那班接08:39的小火車，轉乘時間約19分鐘，非常充裕。
+            </p>
+        </div>
+    `;
 
     // --- 2. Data Definitions ---
     
@@ -484,7 +516,7 @@
         }
     ];
 
-    // Itinerary
+    // Itinerary (Updated Day 2 with HTML content support)
     const itineraryData = [
         { date: "1/29 (四) Day 1", steps: [
             { t: "12:00", name: "福岡機場抵達", image: "day1_airport.jpg", desc: "CI138 抵達" },
@@ -494,12 +526,12 @@
             { t: "20:00", name: "西鐵 Croom 博多祇園", image: "day1_hotel.jpg", desc: "大浴場" }
         ]},
         { date: "1/30 (五) Day 2", steps: [
-            { t: "08:00", name: "飯店出發 ➔ 博多站", image: "day2_start.jpg", desc: "步行(12分)或地鐵(1站)至JR博多站。目標：08:02或08:16發車的JR列車。" },
-            { t: "08:39", name: "抵達海之中道 (JR)", image: "day2_train.jpg", desc: "博多➔香椎(轉車)➔海之中道。車資¥480。出站即達公園入口。" },
+            { t: "08:00", name: "飯店出發 ➔ 博多站", image: "day2_start.jpg", desc: "步行(12分)或地鐵(1站)至JR博多站。" },
+            { t: "08:08", name: "搭乘 JR (查看時刻表)", image: "day2_train.jpg", desc: "點擊查看 08:00-09:00 詳細班次與 ICOCA 攻略", isHtml: true, htmlContent: jrTimetableHTML },
             { t: "09:30", name: "海之中道海濱公園", image: "day2_park.jpg", desc: "★必租腳踏車。推薦：動物之森(水豚/袋鼠)。午餐於園內解決。" },
             { t: "15:00", name: "渡輪 (往百道濱)", image: "day2_ferry.jpg", desc: "【關鍵時刻】15:00發船(安田汽船)。請預留時間還車並走到碼頭。票價¥1200。" },
             { t: "15:30", name: "福岡塔 & 海灘", image: "day2_tower.jpg", desc: "百道濱沙灘拍照 ➔ 登福岡塔(護照有優惠)。" },
-            { t: "17:00", name: "MARK IS (晚餐)", image: "day2_dinner.jpg", desc: "推薦：天婦羅Takao(明太子吃到飽)、金子半之助(天丼)、西新初喜(和牛)。" },
+            { t: "17:00", name: "MARK IS (晚餐)", image: "day2_dinner.jpg", desc: "位於福岡塔正對面，二樓有空橋連接。<br>推薦：天婦羅Takao、金子半之助、西新初喜。" },
             { t: "20:00", name: "計程車回飯店", image: "day2_taxi.jpg", desc: "約¥3000。直達西鐵Croom，避開下班公車人潮。" }
         ]},
         { date: "1/31 (六) Day 3", steps: [
@@ -659,7 +691,13 @@
         day.steps.forEach(s => {
             const step = document.createElement('div');
             step.className = 'timeline-step';
-            step.innerHTML = `<div class="step-time">${s.t}</div><div class="step-content" onclick="openModal('${s.name}', '${s.image}', '${s.desc}')"><div style="font-weight:bold;color:var(--text)">${s.name}</div><div style="font-size:0.85rem;color:#666;">${s.desc}</div></div>`;
+            
+            // Check if step has custom HTML content (for Timetable)
+            if (s.isHtml) {
+                step.innerHTML = `<div class="step-time">${s.t}</div><div class="step-content" onclick="openHtmlModal('${s.name}', this)" data-html="${encodeURIComponent(s.htmlContent)}"><div style="font-weight:bold;color:var(--text)">${s.name}</div><div style="font-size:0.85rem;color:#666;">${s.desc}</div></div>`;
+            } else {
+                step.innerHTML = `<div class="step-time">${s.t}</div><div class="step-content" onclick="openModal('${s.name}', '${s.image}', '${s.desc}')"><div style="font-weight:bold;color:var(--text)">${s.name}</div><div style="font-size:0.85rem;color:#666;">${s.desc}</div></div>`;
+            }
             div.appendChild(step);
         });
         itinDiv.appendChild(div);
@@ -679,7 +717,8 @@
         div.className = 'collapse-content food-list';
         cat.items.forEach(i => {
             const name = i.split('(')[0];
-            div.innerHTML += `<span class="food-tag" onclick="openGoogleMap('${cat.region} ${name}')">${i} <i class="fas fa-location-arrow"></i></span>`;
+            const query = `${cat.region} ${name}`;
+            div.innerHTML += `<span class="food-tag" onclick="openGoogleMap('${query}')">${i} <i class="fas fa-location-arrow"></i></span>`;
         });
         foodDiv.appendChild(div);
     });
@@ -740,10 +779,22 @@
     const modal = document.getElementById('location-modal');
     function openModal(t, src, d) {
         document.getElementById('modal-title').innerText = t;
-        document.getElementById('modal-desc').innerText = d;
-        document.getElementById('modal-img').src = src;
+        document.getElementById('modal-desc').innerHTML = d; // Use innerHTML to allow breaks
+        const img = document.getElementById('modal-img');
+        img.style.display = 'block';
+        img.src = src;
         modal.classList.add('open');
     }
+    
+    // New function for HTML content modal (Timetable)
+    function openHtmlModal(t, el) {
+        const htmlContent = decodeURIComponent(el.getAttribute('data-html'));
+        document.getElementById('modal-title').innerText = t;
+        document.getElementById('modal-desc').innerHTML = htmlContent;
+        document.getElementById('modal-img').style.display = 'none'; // Hide image for text-only modal
+        modal.classList.add('open');
+    }
+
     function closeModal(e) {
         if(e.target === modal || e.target.classList.contains('close-modal')) modal.classList.remove('open');
     }
