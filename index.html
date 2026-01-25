@@ -635,24 +635,28 @@
         { region: "阿蘇/佐賀", items: ["New Kusasenri (景觀餐廳)", "阿蘇路 (高菜飯)", "Imakin 赤牛丼", "河太郎 活花枝", "糸島布丁", "阿蘇とり宮", "佐賀牛 季樂"] }
     ];
 
-    // Mapcodes (Fully Corrected Addresses)
-    const mapcodeData = [
+    // Mapcodes (Separate Arrays for Tabs with Parking Priority)
+    const mapMountain = [
         { n: "大觀峰 (第1停車場)", c: "256 878 352*78", p: "0967-32-1960", addr: "日本〒869-2313 Kumamoto, Aso, Yamada, 大観峰 第1駐車場" },
         { n: "New Kusasenri (景觀餐廳)", c: "256 456 770*13", p: "0967-34-0131", addr: "New Kusasenri" },
         { n: "阿蘇火山口 (避難休憩所停車場)", c: "256 427 493*15", p: "0967-34-1600", addr: "阿蘇火山火口避難休憩所停車場" }, 
-        { n: "白川水源 (停車場)", c: "256 117 403*82", p: "0967-62-0318", addr: "白川水源 第１駐車場" },
+        { n: "白川水源 (第1駐車場)", c: "256 251 380*16", p: "0967-62-0318", addr: "白川水源 第１駐車場" },
         { n: "上色見熊野座神社 (參拜者停車場)", c: "256 221 723*74", p: "-", addr: "上色見熊野座神社 参拝者駐車場" },
         { n: "阿蘇路 (備用午餐)", c: "256 657 512*44", p: "0967-35-0924", addr: "Asoji" },
-        { n: "Toyota Rent a Car (博多站東)", c: "13 320 188*71", p: "092-472-8388", addr: "1 Chome-4-10 Toko, Hakata Ward, Fukuoka, 812-0008" },
-        { n: "Uluu Gardens SAGA (草莓園)", c: "37 491 662*13", p: "080-8956-1030", addr: "Uluu Gardens SAGA 佐賀県三養基郡みやき町江口7079" },
         { n: "湯布院山水館", c: "269 328 633*45", p: "0977-84-2101", addr: "Yufuin Sansuikan" },
         { n: "金鱗湖停車場", c: "269 359 583*03", p: "0977-84-3111", addr: "Kinrin Lake Parking" },
+        { n: "Imakin 食堂", c: "256 685 024*41", p: "0967-32-0031", addr: "Imakin Shokudo" }
+    ];
+
+    const mapOcean = [
+        { n: "Toyota Rent a Car (博多站東)", c: "13 320 188*71", p: "092-472-8388", addr: "1 Chome-4-10 Toko, Hakata Ward, Fukuoka, 812-0008" },
+        { n: "Uluu Gardens SAGA (草莓園)", c: "37 491 662*13", p: "0942-27-6400", addr: "Uluu Gardens SAGA 佐賀県三養基郡みやき町江口7079" },
         { n: "Dormy Inn 熊本", c: "29 459 487*36", p: "096-311-5489", addr: "Dormy Inn Kumamoto Natural Hot Spring" },
-        { n: "天草海鮮蔵", c: "474 084 158*44", p: "0969-52-7707", addr: "Amakusa Kaisenkura" },
-        { n: "熊本城", c: "29 459 342*58", p: "096-352-5900", addr: "Kumamoto Castle" },
-        { n: "太宰府天滿宮", c: "55 364 128*71", p: "092-922-8225", addr: "Dazaifu Tenmangu" },
-        { n: "呼子朝市", c: "182 722 104*50", p: "0955-82-3426", addr: "Yobuko Morning Market" },
-        { n: "糸島 夫婦岩", c: "224 788 206*25", p: "092-327-0317", addr: "Sakurai Futamigaura of Itoshima" },
+        { n: "天草海鮮蔵 (遊客中心)", c: "254 755 461*27", p: "0969-52-7707", addr: "Amakusa Kaisenkura" },
+        { n: "熊本城 (城彩苑停車場)", c: "29 459 342*58", p: "096-352-5900", addr: "Sakuranobaba Josaien" },
+        { n: "太宰府 (千徳駐車場)", c: "55 364 128*27", p: "092-922-8225", addr: "千徳駐車場" },
+        { n: "呼子朝市 (Yobukofureai P)", c: "182 692 890*43", p: "0955-82-3426", addr: "Yobuko Morning Market" },
+        { n: "糸島 夫婦岩 (停車場)", c: "224 788 206*25", p: "092-327-0317", addr: "Sakurai Futamigaura of Itoshima" },
         { n: "THE OUTLETS", c: "16 427 590*78", p: "093-663-7251", addr: "THE OUTLETS KITAKYUSHU" }
     ];
 
@@ -800,19 +804,16 @@
     renderRes(otherRes, 'res-other-1');
 
     // Render Mapcodes
-    const mapPart1 = mapcodeData.slice(0, 6);
-    const mapPart2 = mapcodeData.slice(6);
-    
     function renderMaps(data, id) {
         const tbody = document.getElementById(id);
         data.forEach(m => {
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td><span class="map-link" onclick="openGoogleMap('${m.addr}')" style="cursor:pointer">${m.n} <i class="fas fa-external-link-alt"></i></span><div style="font-size:0.8rem; color:#888; margin-top:2px;">${m.n === "阿蘇路 (備用午餐)" ? "推薦：高菜飯、麵疙瘩汁" : ""}</div></td><td><div style="font-weight:bold;color:var(--ocean-dark)">${m.c} <button class="copy-btn" onclick="copy('${m.c}')">複製</button></div><div style="font-size:0.85rem;color:#666">${m.p} <button class="copy-btn" onclick="copy('${m.p}')">複製</button></div></td>`;
+            tr.innerHTML = `<td><span class="map-link" onclick="openGoogleMap('${m.addr}')" style="cursor:pointer">${m.n} <i class="fas fa-external-link-alt"></i></span><div style="font-size:0.8rem; color:#888; margin-top:2px;">${m.n.includes("阿蘇路") ? "推薦：高菜飯、麵疙瘩汁" : ""}</div></td><td><div style="font-weight:bold;color:var(--ocean-dark)">${m.c} <button class="copy-btn" onclick="copy('${m.c}')">複製</button></div><div style="font-size:0.85rem;color:#666">${m.p} <button class="copy-btn" onclick="copy('${m.p}')">複製</button></div></td>`;
             tbody.appendChild(tr);
         });
     }
-    renderMaps(mapPart1, 'map-body-1');
-    renderMaps(mapPart2, 'map-body-2');
+    renderMaps(mapMountain, 'map-body-1');
+    renderMaps(mapOcean, 'map-body-2');
 
     function switchMapTab(p) {
         document.querySelectorAll('.map-tab-btn').forEach(b => b.classList.remove('active'));
