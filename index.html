@@ -19,7 +19,7 @@
             --coupon: #E91E63;      /* 優惠券紅 */
             --res: #673AB7;         /* 預約憑證紫 */
             --market: #4CAF50;      /* 超市綠 */
-            --hotel: #795548;       /* 飯店棕 */
+            --rest: #795548;        /* 休息站棕 */
         }
 
         body {
@@ -394,10 +394,12 @@
                 <button class="map-tab-btn active" onclick="switchMapTab(1)">山林篇</button>
                 <button class="map-tab-btn" onclick="switchMapTab(2)">海洋篇</button>
                 <button class="map-tab-btn" onclick="switchMapTab(3)">住宿篇</button>
+                <button class="map-tab-btn" onclick="switchMapTab(4)">休息站</button>
             </div>
             <div id="map-page-1"><table class="map-table"><tbody id="map-body-1"></tbody></table></div>
             <div id="map-page-2" style="display:none;"><table class="map-table"><tbody id="map-body-2"></tbody></table></div>
             <div id="map-page-3" style="display:none;"><table class="map-table"><tbody id="map-body-3"></tbody></table></div>
+            <div id="map-page-4" style="display:none;"><table class="map-table"><tbody id="map-body-4"></tbody></table></div>
         </div>
 
         <div id="reservations" class="section">
@@ -639,7 +641,7 @@
         { region: "阿蘇/佐賀", items: ["New Kusasenri (景觀餐廳)", "阿蘇路 (高菜飯)", "Imakin 赤牛丼", "河太郎 活花枝", "糸島布丁", "阿蘇とり宮", "佐賀牛 季樂"] }
     ];
 
-    // Mapcodes (Separate Arrays for Tabs with Parking Priority)
+    // Mapcodes (Fully Corrected Addresses & Rest Stops)
     const mapMountain = [
         { n: "大觀峰 (第1停車場)", c: "256 878 352*78", p: "0967-32-1960", addr: "日本〒869-2313 Kumamoto, Aso, Yamada, 大観峰 第1駐車場" },
         { n: "New Kusasenri (景觀餐廳)", c: "256 456 770*13", p: "0967-34-0131", addr: "New Kusasenri" },
@@ -655,7 +657,6 @@
         { n: "Toyota Rent a Car (博多站東)", c: "13 320 188*71", p: "092-472-8388", addr: "1 Chome-4-10 Toko, Hakata Ward, Fukuoka, 812-0008" },
         { n: "Uluu Gardens SAGA (草莓園)", c: "37 491 662*13", p: "0942-27-6400", addr: "Uluu Gardens SAGA 佐賀県三養基郡みやき町江口7079" },
         { n: "Kyoho Winery (巨峰葡萄酒廠)", c: "166 548 266*73", p: "0943-72-2382", addr: "246-1 Tanushimarumachi Masuoda, Kurume, Fukuoka 839-1213日本" },
-        { n: "Dormy Inn 熊本", c: "29 459 487*36", p: "096-311-5489", addr: "Dormy Inn Kumamoto Natural Hot Spring" },
         { n: "天草海鮮蔵 (遊客中心)", c: "254 755 461*27", p: "0969-52-7707", addr: "Amakusa Kaisenkura" },
         { n: "熊本城 (城彩苑停車場)", c: "29 459 342*58", p: "096-352-5900", addr: "Sakuranobaba Josaien" },
         { n: "太宰府 (千徳駐車場)", c: "55 364 128*27", p: "092-922-8225", addr: "千徳駐車場" },
@@ -669,6 +670,14 @@
         { n: "湯布院山水館", c: "269 328 633*45", p: "0977-84-2101", addr: "Yufuin Sansuikan" },
         { n: "Dormy Inn 熊本", c: "29 459 487*36", p: "096-311-5489", addr: "Dormy Inn Kumamoto Natural Hot Spring" },
         { n: "三井花園飯店福岡中洲", c: "13 318 803*40", p: "092-263-5531", addr: "日本〒810-0801 Fukuoka, Hakata Ward, Nakasu, 5 Chome−5−1 三井ガーデンホテル福岡中州 １F" }
+    ];
+
+    const mapRest = [
+        { n: "山田SA (高速-下行)", c: "55 330 675*44", p: "-", addr: "Yamada Service Area (Down)" },
+        { n: "道之驛 浮羽 (Ukiha)", c: "166 385 410*55", p: "0943-77-2933", addr: "Michinoeki Ukiha" },
+        { n: "北熊本SA (高速-上行)", c: "29 646 648*14", p: "-", addr: "Kitakumamoto Service Area (Up)" },
+        { n: "廣川SA (高速-上行)", c: "37 021 685*82", p: "-", addr: "Hirokawa Service Area (Up)" },
+        { n: "道之驛 久留米 (Kurume)", c: "37 363 487*44", p: "0942-47-4111", addr: "Michinoeki Kurume" }
     ];
 
     // Reservations
@@ -826,6 +835,7 @@
     renderMaps(mapMountain, 'map-body-1');
     renderMaps(mapOcean, 'map-body-2');
     renderMaps(mapHotels, 'map-body-3');
+    renderMaps(mapRest, 'map-body-4');
 
     function switchMapTab(p) {
         document.querySelectorAll('.map-tab-btn').forEach(b => b.classList.remove('active'));
@@ -833,6 +843,7 @@
         document.getElementById('map-page-1').style.display = p===1 ? 'block' : 'none';
         document.getElementById('map-page-2').style.display = p===2 ? 'block' : 'none';
         document.getElementById('map-page-3').style.display = p===3 ? 'block' : 'none';
+        document.getElementById('map-page-4').style.display = p===4 ? 'block' : 'none';
     }
 
     // Checklist
