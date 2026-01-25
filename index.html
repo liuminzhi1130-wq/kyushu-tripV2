@@ -19,6 +19,7 @@
             --coupon: #E91E63;      /* 優惠券紅 */
             --res: #673AB7;         /* 預約憑證紫 */
             --market: #4CAF50;      /* 超市綠 */
+            --hotel: #795548;       /* 飯店棕 */
         }
 
         body {
@@ -392,9 +393,11 @@
             <div class="map-tabs">
                 <button class="map-tab-btn active" onclick="switchMapTab(1)">山林篇</button>
                 <button class="map-tab-btn" onclick="switchMapTab(2)">海洋篇</button>
+                <button class="map-tab-btn" onclick="switchMapTab(3)">住宿篇</button>
             </div>
             <div id="map-page-1"><table class="map-table"><tbody id="map-body-1"></tbody></table></div>
             <div id="map-page-2" style="display:none;"><table class="map-table"><tbody id="map-body-2"></tbody></table></div>
+            <div id="map-page-3" style="display:none;"><table class="map-table"><tbody id="map-body-3"></tbody></table></div>
         </div>
 
         <div id="reservations" class="section">
@@ -643,7 +646,6 @@
         { n: "白川水源 (第1駐車場)", c: "256 251 380*16", p: "0967-62-0318", addr: "白川水源 第１駐車場" },
         { n: "上色見熊野座神社 (參拜者停車場)", c: "256 221 723*74", p: "-", addr: "上色見熊野座神社 参拝者駐車場" },
         { n: "阿蘇路 (備用午餐)", c: "256 657 512*44", p: "0967-35-0924", addr: "Asoji" },
-        { n: "湯布院山水館", c: "269 328 633*45", p: "0977-84-2101", addr: "Yufuin Sansuikan" },
         { n: "金鱗湖停車場", c: "269 359 583*03", p: "0977-84-3111", addr: "Kinrin Lake Parking" },
         { n: "Imakin 食堂", c: "256 685 024*41", p: "0967-32-0031", addr: "Imakin Shokudo" }
     ];
@@ -651,13 +653,19 @@
     const mapOcean = [
         { n: "Toyota Rent a Car (博多站東)", c: "13 320 188*71", p: "092-472-8388", addr: "1 Chome-4-10 Toko, Hakata Ward, Fukuoka, 812-0008" },
         { n: "Uluu Gardens SAGA (草莓園)", c: "37 491 662*13", p: "0942-27-6400", addr: "Uluu Gardens SAGA 佐賀県三養基郡みやき町江口7079" },
-        { n: "Dormy Inn 熊本", c: "29 459 487*36", p: "096-311-5489", addr: "Dormy Inn Kumamoto Natural Hot Spring" },
         { n: "天草海鮮蔵 (遊客中心)", c: "254 755 461*27", p: "0969-52-7707", addr: "Amakusa Kaisenkura" },
         { n: "熊本城 (城彩苑停車場)", c: "29 459 342*58", p: "096-352-5900", addr: "Sakuranobaba Josaien" },
         { n: "太宰府 (千徳駐車場)", c: "55 364 128*27", p: "092-922-8225", addr: "千徳駐車場" },
         { n: "呼子朝市 (Yobukofureai P)", c: "182 692 890*43", p: "0955-82-3426", addr: "Yobuko Morning Market" },
         { n: "糸島 夫婦岩 (停車場)", c: "224 788 206*25", p: "092-327-0317", addr: "Sakurai Futamigaura of Itoshima" },
         { n: "THE OUTLETS", c: "16 427 590*78", p: "093-663-7251", addr: "THE OUTLETS KITAKYUSHU" }
+    ];
+
+    const mapHotels = [
+        { n: "西鐵飯店 Croom 博多祇園", c: "13 318 624*25", p: "092-235-5050", addr: "6-30 Gionmachi, Hakata Ward, Fukuoka, 812-0038" },
+        { n: "湯布院山水館", c: "269 328 633*45", p: "0977-84-2101", addr: "Yufuin Sansuikan" },
+        { n: "Dormy Inn 熊本", c: "29 459 487*36", p: "096-311-5489", addr: "Dormy Inn Kumamoto Natural Hot Spring" },
+        { n: "三井花園飯店福岡中洲", c: "13 318 803*40", p: "092-263-5531", addr: "5-5-1, Nakasu, Hakata-ku, Fukuoka, 810-0801" }
     ];
 
     // Reservations
@@ -814,12 +822,14 @@
     }
     renderMaps(mapMountain, 'map-body-1');
     renderMaps(mapOcean, 'map-body-2');
+    renderMaps(mapHotels, 'map-body-3');
 
     function switchMapTab(p) {
         document.querySelectorAll('.map-tab-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.map-tab-btn')[p-1].classList.add('active');
         document.getElementById('map-page-1').style.display = p===1 ? 'block' : 'none';
         document.getElementById('map-page-2').style.display = p===2 ? 'block' : 'none';
+        document.getElementById('map-page-3').style.display = p===3 ? 'block' : 'none';
     }
 
     // Checklist
@@ -841,7 +851,7 @@
     const modal = document.getElementById('location-modal');
     function openModal(t, src, d) {
         document.getElementById('modal-title').innerText = t;
-        document.getElementById('modal-desc').innerHTML = d;
+        document.getElementById('modal-desc').innerText = d;
         const img = document.getElementById('modal-img');
         img.style.display = 'block';
         img.src = src;
