@@ -497,25 +497,38 @@
         </div>
     `;
 
-    // --- HTML Content for Aquarium Schedule (Day 2) ---
-    const marineWorldHTML = `
+    // --- HTML Content for 1/29 Dinner Transport (Yakiniku) ---
+    const yakinikuTransportHTML = `
         <div style="text-align:left; font-size:0.95rem;">
-            <p style="background:#e3f2fd; padding:10px; border-radius:8px; margin-bottom:15px;">
-                🐬 <b>1/30 (五) 重點表演時刻</b><br>
-                建議入園後先看 11:00 海豚秀！
+            <p style="background:#e1f5fe; padding:10px; border-radius:8px; margin-bottom:15px;">
+                🚇 <b>去程：地下鐵七隈線</b><br>
+                飯店樓下就是地鐵站，這是最快方式！
             </p>
-            <table class="timetable">
-                <tr style="background:#eee;"><th>時間</th><th>活動</th><th>地點</th></tr>
-                <tr style="font-weight:bold; color:#d81b60; background:#fff3e0;"><td>11:00</td><td>海豚/海獅秀</td><td>2F 表演池</td></tr>
-                <tr><td>11:30</td><td>企鵝散步</td><td>戶外</td></tr>
-                <tr style="font-weight:bold; color:#0277bd;"><td>12:00</td><td>沙丁魚聲光秀</td><td>1F 大水槽</td></tr>
-                <tr><td>12:15</td><td>海獺餵食</td><td>2F 海獺池</td></tr>
-                <tr><td>13:00</td><td>海豚/海獅秀</td><td>2F 表演池</td></tr>
-                <tr><td>14:00</td><td>沙丁魚聲光秀</td><td>1F 大水槽</td></tr>
-            </table>
-            <div class="warn-text" style="background:#ffebee; padding:10px; border-radius:8px; margin-top:15px;">
-                ⚠️ <b>注意時間：</b><br>
-                15:00 渡輪準時發船，請最晚 14:40 離開水族館前往碼頭。
+            <ul style="line-height:1.6;">
+                <li><b>起點：</b>櫛田神社前站 (N17)</li>
+                <li><b>方向：</b>往 橋本 (Hashimoto)</li>
+                <li><b>終點：</b>藥院站 (N14) (搭乘3站)</li>
+                <li><b>出站：</b>2號出口</li>
+                <li><b>步行：</b>約 3-4 分鐘抵達</li>
+            </ul>
+        </div>
+    `;
+
+    // --- HTML Content for 2/5 Hotel Transport (Mitsui Garden) ---
+    const mitsuiTransportHTML = `
+        <div style="text-align:left; font-size:0.95rem;">
+            <p style="background:#fff3e0; padding:10px; border-radius:8px; margin-bottom:15px;">
+                🚶 <b>步行 + 🚇 地下鐵空港線</b>
+            </p>
+            <ol style="padding-left:20px; line-height:1.6;">
+                <li><b>步行：</b>還車後，走約 12 分鐘回到 JR 博多站。</li>
+                <li><b>搭車：</b>轉乘【地下鐵空港線】(橘色線)<br>
+                    方向：往 天神/姪濱/福岡機場</li>
+                <li><b>區間：</b>博多 (K11) ➔ 中洲川端 (K09) (搭乘2站)</li>
+                <li><b>抵達：</b>從 <b>2號出口</b> 上來，走路 2 分鐘即達飯店。</li>
+            </ol>
+            <div style="background:#f5f5f5; padding:8px; border-radius:5px; font-size:0.85rem; margin-top:10px;">
+                🚕 <b>備案：</b>若行李太重，建議直接從還車行請店員幫忙叫計程車，車資約 ¥1000-¥1200。
             </div>
         </div>
     `;
@@ -547,6 +560,29 @@
             
             <div style="margin-top:15px; font-size:0.85rem; color:#888;">
                 備案：若人太多，可改去山下的「阿蘇路」吃高菜飯定食。
+            </div>
+        </div>
+    `;
+
+    // --- HTML Content for Aquarium Schedule (Day 2) ---
+    const marineWorldHTML = `
+        <div style="text-align:left; font-size:0.95rem;">
+            <p style="background:#e3f2fd; padding:10px; border-radius:8px; margin-bottom:15px;">
+                🐬 <b>1/30 (五) 重點表演時刻</b><br>
+                建議入園後先看 11:00 海豚秀！
+            </p>
+            <table class="timetable">
+                <tr style="background:#eee;"><th>時間</th><th>活動</th><th>地點</th></tr>
+                <tr style="font-weight:bold; color:#d81b60; background:#fff3e0;"><td>11:00</td><td>海豚/海獅秀</td><td>2F 表演池</td></tr>
+                <tr><td>11:30</td><td>企鵝散步</td><td>戶外</td></tr>
+                <tr style="font-weight:bold; color:#0277bd;"><td>12:00</td><td>沙丁魚聲光秀</td><td>1F 大水槽</td></tr>
+                <tr><td>12:15</td><td>海獺餵食</td><td>2F 海獺池</td></tr>
+                <tr><td>13:00</td><td>海豚/海獅秀</td><td>2F 表演池</td></tr>
+                <tr><td>14:00</td><td>沙丁魚聲光秀</td><td>1F 大水槽</td></tr>
+            </table>
+            <div class="warn-text" style="background:#ffebee; padding:10px; border-radius:8px; margin-top:15px;">
+                ⚠️ <b>注意時間：</b><br>
+                15:00 渡輪準時發船，請最晚 14:40 離開水族館前往碼頭。
             </div>
         </div>
     `;
@@ -625,13 +661,13 @@
         }
     ];
 
-    // Itinerary (Updated with Taxi Card)
+    // Itinerary (Updated with Transport Info)
     const itineraryData = [
         { date: "1/29 (四) Day 1", steps: [
             { t: "12:00", name: "福岡機場抵達", image: "day1_airport.jpg", desc: "CI138 抵達" },
             { t: "14:00", name: "川端通商店街", image: "day1_kawabata.jpg", desc: "古老商店街" },
             { t: "15:00", name: "Full Full 明太子麵包", image: "day1_fullfull.jpg", desc: "必吃法棍" },
-            { t: "18:00", name: "藥院燒肉 NIKUICHI", image: "day1_nikuichi.jpg", desc: "已預約 CP值高" },
+            { t: "18:00", name: "藥院燒肉 NIKUICHI", image: "day1_nikuichi.jpg", desc: "點擊查看【地下鐵七隈線】交通指引", isHtml: true, htmlContent: yakinikuTransportHTML },
             { t: "20:00", name: "西鐵 Croom 博多祇園", image: "day1_hotel.jpg", desc: "大浴場" }
         ]},
         { date: "1/30 (五) Day 2", steps: [
@@ -675,7 +711,8 @@
         ]},
         { date: "2/5 (四) Day 8", steps: [
             { t: "All Day", name: "THE OUTLETS", image: "day8_outlets.jpg", desc: "北九州最大" },
-            { t: "18:00", name: "還車", image: "day8_returncar.jpg", desc: "博多站東" }
+            { t: "18:00", name: "還車", image: "day8_returncar.jpg", desc: "博多站東" },
+            { t: "18:30", name: "前往三井花園飯店", image: "day8_hotel.jpg", desc: "點擊查看交通方式 (步行+地鐵空港線)", isHtml: true, htmlContent: mitsuiTransportHTML }
         ]},
         { date: "2/6 (五) Day 9", steps: [
             { t: "上午", name: "前往機場", image: "day9_home.jpg", desc: "CI139 回家" }
