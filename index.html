@@ -497,6 +497,45 @@
         </div>
     `;
 
+    // --- HTML Content for Airport Taxi Request (Day 9) ---
+    const airportTaxiRequestHTML = `
+        <div class="taxi-card">
+            <div class="taxi-title">フロントの方へ (To Reception)</div>
+            <div class="taxi-big" style="font-size:1.5rem; color:#d32f2f;">
+                タクシーを呼んでください
+            </div>
+            <div class="taxi-sub">
+                Please call a taxi for us.
+            </div>
+            
+            <hr style="margin:15px 0; border-top:1px dashed #ccc;">
+            
+            <div class="taxi-title" style="text-align:left; margin-bottom:5px;">目的地 (Destination):</div>
+            <div class="taxi-big" style="font-size:1.8rem; margin:0 0 15px 0;">
+                福岡空港 国際線
+            </div>
+            
+            <hr style="margin:15px 0; border-top:1px dashed #ccc;">
+
+            <div class="taxi-title" style="text-align:left; color:#d32f2f;">重要 (Important):</div>
+            <div style="font-weight:bold; font-size:1.1rem; text-align:left; margin-bottom:10px;">
+                荷物がとても多いです<br>
+                (We have a lot of luggage)
+            </div>
+            <div style="background:#eee; padding:10px; border-radius:8px; text-align:left; margin-bottom:10px;">
+                🧳 29インチ x 3<br>
+                🧳 20インチ x 1
+            </div>
+            <div class="taxi-big" style="font-size:1.3rem; line-height:1.5;">
+                ワゴン車 (ジャンボ)、<br>
+                または <span style="color:#d32f2f; font-size:1.6rem;">2台</span> お願いします
+            </div>
+            <div class="taxi-sub">
+                Please get a Van/Wagon or 2 taxis.
+            </div>
+        </div>
+    `;
+
     // --- HTML Content for 1/29 Dinner Transport (Yakiniku) ---
     const yakinikuTransportHTML = `
         <div style="text-align:left; font-size:0.95rem;">
@@ -661,7 +700,7 @@
         }
     ];
 
-    // Itinerary (Updated with Transport Info)
+    // Itinerary (Updated with Taxi Card)
     const itineraryData = [
         { date: "1/29 (四) Day 1", steps: [
             { t: "12:00", name: "福岡機場抵達", image: "day1_airport.jpg", desc: "CI138 抵達" },
@@ -715,7 +754,7 @@
             { t: "18:30", name: "前往三井花園飯店", image: "day8_hotel.jpg", desc: "點擊查看交通方式 (步行+地鐵空港線)", isHtml: true, htmlContent: mitsuiTransportHTML }
         ]},
         { date: "2/6 (五) Day 9", steps: [
-            { t: "上午", name: "前往機場", image: "day9_home.jpg", desc: "CI139 回家" }
+            { t: "上午", name: "前往機場 (點擊叫車)", image: "day9_home.jpg", desc: "請點擊顯示【機場送機卡】給飯店櫃檯看，確保大行李有車載。", isHtml: true, htmlContent: airportTaxiRequestHTML }
         ]}
     ];
 
