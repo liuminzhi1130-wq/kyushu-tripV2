@@ -220,13 +220,24 @@
         .checklist-item input { margin-right: 15px; width: 20px; height: 20px; accent-color: var(--plum); }
         .checklist-item.checked span { text-decoration: line-through; color: #ccc; }
 
-        /* Modal */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(5px); }
-        .modal.open { display: flex; }
-        .modal-card { background: white; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; position: relative; max-height: 80vh; overflow-y: auto; }
-        .modal-img { width: 100%; height: auto; max-height: 50vh; object-fit: contain; background: #333; display: block; }
-        .modal-body { padding: 20px; }
-        .close-modal { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; }
+        /* --- 2 Modals Logic --- */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(5px); }
+        .modal.open { display: flex; animation: popIn 0.3s ease; }
+        @keyframes popIn { from {opacity: 0; transform: scale(0.95);} to {opacity: 1; transform: scale(1);} }
+        
+        .close-modal { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.6); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; z-index:10; }
+
+        /* Photo Modal */
+        .photo-card { background: transparent; width: 100%; max-width: 600px; text-align: center; }
+        .modal-img { width: 100%; max-height: 70vh; object-fit: contain; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .modal-caption { color: white; margin-top: 15px; font-size: 1.2rem; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .modal-desc { color: #ddd; font-size: 0.95rem; margin-top: 5px; }
+
+        /* Info/Card Modal (White Box) */
+        .info-card { background: white; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; position: relative; max-height: 85vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .info-header { background: var(--plum-light); padding: 15px 20px; border-bottom: 1px solid #eee; display: flex; align-items: center; justify-content: space-between; }
+        .info-title { font-weight: bold; font-size: 1.2rem; color: #D81B60; margin: 0; }
+        .info-body { padding: 20px; }
 
         /* Styles for Timetable & Taxi Card & Lunch Info */
         .timetable { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; }
@@ -234,10 +245,10 @@
         .timetable td { padding: 8px; text-align: center; border: 1px solid #ddd; }
         .warn-text { color: #d32f2f; font-size: 0.9rem; margin-top: 5px; line-height: 1.5; }
         
-        .taxi-card { border: 5px solid #000; border-radius: 12px; padding: 25px; background: #fff; text-align: center; margin-top: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .taxi-title { font-size: 1.1rem; color: #555; margin-bottom: 15px; font-weight: bold; border-bottom: 2px dashed #ccc; padding-bottom: 10px; }
-        .taxi-big { font-size: 1.8rem; font-weight: 900; line-height: 1.4; color: #000; margin: 15px 0; }
-        .taxi-sub { font-size: 0.95rem; color: #333; font-weight: bold; }
+        .taxi-card { border: 4px solid #333; border-radius: 12px; padding: 20px; background: #fff; text-align: center; margin-top: 0; }
+        .taxi-title { font-size: 1rem; color: #555; margin-bottom: 10px; font-weight: bold; border-bottom: 1px dashed #ccc; padding-bottom: 5px; display: block; }
+        .taxi-big { font-size: 1.6rem; font-weight: 900; line-height: 1.4; color: #000; margin: 10px 0; }
+        .taxi-sub { font-size: 0.9rem; color: #444; font-weight: bold; }
 
         .lunch-card { background: #fff8e1; border: 1px solid #ffe0b2; padding: 15px; border-radius: 10px; text-align:left; }
         .lunch-item { margin-bottom: 10px; }
@@ -308,27 +319,27 @@
             <h2>🎟️ 優惠券專區</h2>
             
             <div class="coupon-card">
-                <img src="coupon_daikoku.jpg" class="coupon-img" onclick="openModal('大國藥妝', 'coupon_daikoku.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_daikoku.jpg';">
+                <img src="coupon_daikoku.jpg" class="coupon-img" onclick="openPhotoModal('大國藥妝', 'coupon_daikoku.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=尚未上傳+coupon_daikoku.jpg';">
                 <div class="coupon-info"><div class="coupon-title">大國藥妝 (Daikoku)</div><div class="coupon-desc">免稅10% + 3%~7%</div></div>
             </div>
             <div class="coupon-card">
-                <img src="coupon_tsuruha.jpg" class="coupon-img" onclick="openModal('鶴羽藥妝', 'coupon_tsuruha.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
+                <img src="coupon_tsuruha.jpg" class="coupon-img" onclick="openPhotoModal('鶴羽藥妝', 'coupon_tsuruha.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
                 <div class="coupon-info"><div class="coupon-title">鶴羽藥妝 (Tsuruha)</div><div class="coupon-desc">免稅10% + 7%</div></div>
             </div>
             <div class="coupon-card">
-                <img src="coupon_matsukiyo.jpg" class="coupon-img" onclick="openModal('松本清', 'coupon_matsukiyo.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
+                <img src="coupon_matsukiyo.jpg" class="coupon-img" onclick="openPhotoModal('松本清', 'coupon_matsukiyo.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
                 <div class="coupon-info"><div class="coupon-title">松本清 (Matsumoto Kiyoshi)</div><div class="coupon-desc">免稅10% + 7%</div></div>
             </div>
             <div class="coupon-card">
-                <img src="coupon_cosmos.jpg" class="coupon-img" onclick="openModal('Cosmos', 'coupon_cosmos.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
+                <img src="coupon_cosmos.jpg" class="coupon-img" onclick="openPhotoModal('Cosmos', 'coupon_cosmos.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
                 <div class="coupon-info"><div class="coupon-title">Cosmos 藥妝</div><div class="coupon-desc">九州最便宜</div></div>
             </div>
             <div class="coupon-card">
-                <img src="coupon_bic.jpg" class="coupon-img" onclick="openModal('BicCamera', 'coupon_bic.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
+                <img src="coupon_bic.jpg" class="coupon-img" onclick="openPhotoModal('BicCamera', 'coupon_bic.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
                 <div class="coupon-info"><div class="coupon-title">BicCamera</div><div class="coupon-desc">免稅10% + 7%</div></div>
             </div>
             <div class="coupon-card">
-                <img src="coupon_donki.jpg" class="coupon-img" onclick="openModal('唐吉訶德', 'coupon_donki.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
+                <img src="coupon_donki.jpg" class="coupon-img" onclick="openPhotoModal('唐吉訶德', 'coupon_donki.jpg', '結帳請出示')" onerror="this.src='https://via.placeholder.com/300x150?text=圖片載入失敗';">
                 <div class="coupon-info"><div class="coupon-title">唐吉訶德 (Don Quijote)</div><div class="coupon-desc">免稅10% + 5%</div></div>
             </div>
         </div>
@@ -414,14 +425,22 @@
         </div>
     </div>
 
-    <div id="location-modal" class="modal" onclick="closeModal(event)">
-        <div class="modal-card">
-            <button class="close-modal" onclick="closeModal(event)">×</button>
-            <img id="modal-img" class="modal-img" src="">
-            <div class="modal-body">
-                <h3 id="modal-title"></h3>
-                <div id="modal-desc" style="color:#666;"></div>
+    <div id="image-modal" class="modal" onclick="closeAllModals(event)">
+        <div class="photo-card">
+            <button class="close-modal" onclick="closeAllModals(event)">×</button>
+            <img id="modal-img-src" class="modal-img" src="">
+            <div class="modal-caption" id="modal-img-title"></div>
+            <div class="modal-desc" id="modal-img-desc"></div>
+        </div>
+    </div>
+
+    <div id="info-modal" class="modal" onclick="closeAllModals(event)">
+        <div class="info-card">
+            <div class="info-header">
+                <div class="info-title" id="info-card-title">資訊卡</div>
+                <button class="close-modal" style="position:static; background:#eee; color:#333; width:30px; height:30px; font-size:1.2rem;" onclick="closeAllModals(event)">×</button>
             </div>
+            <div class="info-body" id="info-card-body"></div>
         </div>
     </div>
 
@@ -496,7 +515,7 @@
             </div>
         </div>
     `;
-
+    
     // --- HTML Content for Airport Taxi Request (Day 9) ---
     const airportTaxiRequestHTML = `
         <div class="taxi-card">
@@ -919,7 +938,7 @@
             if (s.isHtml) {
                 step.innerHTML = `<div class="step-time">${s.t}</div><div class="step-content" onclick="openHtmlModal('${s.name}', this)" data-html="${encodeURIComponent(s.htmlContent)}" data-image="${s.image}"><div style="font-weight:bold;color:var(--text)">${s.name}</div><div style="font-size:0.85rem;color:#666;">${s.desc}</div></div>`;
             } else {
-                step.innerHTML = `<div class="step-time">${s.t}</div><div class="step-content" onclick="openModal('${s.name}', '${s.image}', '${s.desc}')"><div style="font-weight:bold;color:var(--text)">${s.name}</div><div style="font-size:0.85rem;color:#666;">${s.desc}</div></div>`;
+                step.innerHTML = `<div class="step-time">${s.t}</div><div class="step-content" onclick="openPhotoModal('${s.name}', '${s.image}', '${s.desc}')"><div style="font-weight:bold;color:var(--text)">${s.name}</div><div style="font-size:0.85rem;color:#666;">${s.desc}</div></div>`;
             }
             div.appendChild(step);
         });
@@ -964,7 +983,7 @@
             const el = document.createElement('div');
             el.className = 'step-content res-content';
             el.style.marginBottom = '10px';
-            el.onclick = () => openModal(r.t, r.image, r.d);
+            el.onclick = () => openPhotoModal(r.t, r.image, r.d);
             el.innerHTML = `<div style="font-weight:bold;color:var(--res)">${r.t}</div><div style="font-size:0.9rem;color:#555;">${r.d}</div>`;
             div.appendChild(el);
         });
@@ -1013,38 +1032,33 @@
         localStorage.setItem('pack_'+idx, el.checked);
     }
 
-    // Modal
-    const modal = document.getElementById('location-modal');
-    function openModal(t, src, d) {
-        document.getElementById('modal-title').innerText = t;
-        document.getElementById('modal-desc').innerText = d;
-        const img = document.getElementById('modal-img');
-        img.style.display = 'block';
-        img.src = src;
-        modal.classList.add('open');
-    }
+    // --- Modal Logic (Dual System) ---
     
-    // New function for HTML content modal (Timetable & Taxi)
-    function openHtmlModal(t, el) {
-        const htmlContent = decodeURIComponent(el.getAttribute('data-html'));
-        const imageSrc = el.getAttribute('data-image');
-        
-        document.getElementById('modal-title').innerText = t;
-        document.getElementById('modal-desc').innerHTML = htmlContent;
-        
-        const img = document.getElementById('modal-img');
-        if(imageSrc && imageSrc !== 'null' && imageSrc !== 'undefined' && imageSrc !== '') {
-            img.style.display = 'block';
-            img.src = imageSrc;
-        } else {
-            img.style.display = 'none';
+    // Close All Modals
+    function closeAllModals(e) {
+        if(e.target.classList.contains('modal') || e.target.classList.contains('close-modal')) {
+            document.querySelectorAll('.modal').forEach(m => m.classList.remove('open'));
         }
-        
-        modal.classList.add('open');
     }
 
-    function closeModal(e) {
-        if(e.target === modal || e.target.classList.contains('close-modal')) modal.classList.remove('open');
+    // 1. Open Photo Modal
+    function openPhotoModal(title, src, desc) {
+        document.getElementById('modal-img-title').innerText = title;
+        document.getElementById('modal-img-desc').innerText = desc;
+        const img = document.getElementById('modal-img-src');
+        img.src = src;
+        // Reset to placeholder if no image
+        img.onerror = function() { this.src = 'https://via.placeholder.com/600x400?text=No+Image'; };
+        
+        document.getElementById('image-modal').classList.add('open');
+    }
+    
+    // 2. Open Info/Html Modal
+    function openHtmlModal(title, el) {
+        const htmlContent = decodeURIComponent(el.getAttribute('data-html'));
+        document.getElementById('info-card-title').innerText = title;
+        document.getElementById('info-card-body').innerHTML = htmlContent;
+        document.getElementById('info-modal').classList.add('open');
     }
 
     // Calculator
